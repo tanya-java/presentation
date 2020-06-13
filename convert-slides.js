@@ -15,3 +15,5 @@ var options = {
         'highlightjs-languages: xml, java, json, html, css'
     ]
 }
+
+asciidoctor.convertFile('src/java-enterprise/java-enterprise.adoc', options)
