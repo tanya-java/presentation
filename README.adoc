@@ -2,3 +2,6 @@
 
 Presenations for different courses. Use *AsciiDoc* and *Asciidoctor Reveal.js* for convertation to *HTML*
 
+== License
+
+The project is released under version 1.3 of the https://www.gnu.org/licenses/fdl-1.3.ru.html[GNU Free Documentation License].
