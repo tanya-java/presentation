@@ -9,6 +9,7 @@ var options = {
     backend: 'revealjs',
     attributes: [
         'revealjsdir=/node_modules/reveal.js@',
+        'customcss=/res/css/custom.css',
         'revealjs_theme=white',
         'source-highlighter=highlightjs',
         'highlightjs-languages: xml, java, json, html, css'
