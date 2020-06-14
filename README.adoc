@@ -46,6 +46,7 @@ events {
 
 http {
     access_log $PROJECT_PATH/.deploy/access.log;
+    include /etc/nginx/mime.types;
     server {
             listen 3000;
             server_name presentation;
