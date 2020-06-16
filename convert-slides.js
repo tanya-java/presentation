@@ -19,3 +19,4 @@ var options = {
 asciidoctor.convertFile('src/java-enterprise/java-enterprise.adoc', options)
 asciidoctor.convertFile('src/java-enterprise/apache-tomcat.adoc', options)
 asciidoctor.convertFile('src/java-enterprise/servlet.adoc', options)
+asciidoctor.convertFile('src/java-enterprise/jsp.adoc', options)
