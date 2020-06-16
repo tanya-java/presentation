@@ -44,7 +44,7 @@ image::/res/img/java-enterprise/servlet/servlet-lifecycle.jpg[Servlet Lifecycle]
 
 === `HelloServlet`
 
-[source, java]
+[source,java]
 ----
 public class HelloServlet extends HttpServlet {
     @Override
@@ -72,8 +72,8 @@ public class HelloServlet extends HttpServlet {
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
-    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-    version="2.4">
+    http://java.sun.com/xml/ns/j2ee/web-app_4_0.xsd"
+    version="4.0">
 
     <servlet>
         <servlet-name>HelloServlet</servlet-name>
@@ -148,7 +148,7 @@ public class HelloWorldServlet extends HttpServlet {
 [source, html]
 ----
 <form action="nameservlet">
-    Введите имя:<input name="fio" type="text"><br/>
+    Введите имя:<input name="fullname" type="text"><br/>
     <input type="submit"/>
 </form>
 ----
@@ -159,14 +159,14 @@ public class HelloWorldServlet extends HttpServlet {
 
 У этого объекта есть метод, который по имени параметра получает его значение:
 
-[source, java]
+[source,java]
 ----
 String getParameter(String paramName)
 ----
 
 Example:
 
-[source, java]
+[source,java]
 ----
 String name = request.getParameter(String name);
 ----
@@ -175,7 +175,7 @@ String name = request.getParameter(String name);
 
 Надо помнить, что данные из форм передаются всегда в текстовом виде. Если вам необходимо ввести число, вы должны полученную строку преобразовать к числовому виду, например:
 
-[source, java]
+[source,java]
 ----
 Integer.parseInt(request.getParameter("age"));
 ----
@@ -186,7 +186,7 @@ Integer.parseInt(request.getParameter("age"));
 
 Если имена параметров заранее неизвестны, можно получить список имен параметров, полученных сервлетом с помощью метода:
 
-[source, java]
+[source,java]
 ----
 Enumeration<String> params  = request.getParameterNames();
 ----
@@ -201,10 +201,10 @@ Enumeration<String> params  = request.getParameterNames();
 `http://localhost:8080/shop/nameservlet?num1=12&num2=10`
 
 В сервлете `MyTestServlet` имеется код:
-[source, java]
+[source,java]
 ----
 int totalNumber = request.getParameter("num1") + request.getParameter("num2");
-System.out.println(totalNumber);
+out.println(totalNumber);
 ----
 
 === Получение дополнительной информации
@@ -270,7 +270,7 @@ RequestDispatcher dispatcher =
 
 [source,java]
 ----
-dispatcher.include(request,response);
+dispatcher.include(request, response);
 ----
 
 В результате работы этого метода будет вызван второй сервлет, он выполнит свою часть работы, и после этого первый сервлет продолжит выполнение.
@@ -318,10 +318,10 @@ response.sendRedirect("new URI");
 
 Для создания *сookie* используется класса `Cookie` пакета `javax.servlet.http`. Объект создается обычным образом с помощью оператора new, конструктор имеет два параметра.
 
-[source, java]
+[source,java]
 ----
 Cookie myCookie = new Cookie("testCookie", "cookieValue");
-myCookie.setMaxAge(24*60*60);
+myCookie.setMaxAge(24 * 60 * 60);
 response.addCookie(myCookie);
 ----
 
@@ -342,9 +342,10 @@ Cookie[] myCookies = request.getCookies();
 
 [source,java]
 ----
+Cookie[] myCookies = request.getCookies();
 String cookieName = "testCookie";
 String cookieValue = "";
-for(int i=0; i< myCookies.length; i++) {
+for (int i = 0; i < myCookies.length; i++) {
     Cookie cookie = myCookies[i];
     if (cookieName.equals(cookie.getName())) {
        cookieValue = cookie.getValue();
@@ -376,16 +377,18 @@ HttpSession session = request.getSession();
 
 [source,java]
 ----
-session.setAttribute("userId","us1000");
+session.setAttribute("userId", "us1000");
 ----
 
 Следует обратить внимание, что тип второго аргумента - `Object`. Это означает, что в сессии может храниться любой объектный тип, а не только строка, как в случае с *cookie*.
+
+=== Session
 
 Чтобы получить данные занесенные в сессию, можно воспользоваться методом `getAttribute(String name)` который возвращает ссылку на хранимый объект.
 
 [source,java]
 ----
-String str = (String)session.getAttribute("userId");
+String str = (String) session.getAttribute("userId");
 ----
 
 Так как возвращаемое значение имеет тип `Object`, при получении значения должно использоваться приведение типов.
@@ -399,7 +402,7 @@ String str = (String)session.getAttribute("userId");
 PrintWriter out = response.getWriter();
 HttpSession session = request.getSession();
 String str = session.getAttribute("value");
-System.out.println("String length:" + str.length());
+out.println("String length:" + str.length());
 ----
 
 === Session
@@ -410,6 +413,10 @@ System.out.println("String length:" + str.length());
 * `invalidate()` уничтожение сессии.
 * `removeAttribute(String name)` удаление переменной в сессии.
 * `isNew()` определяет, является ли сессия свежесозданной, и возвращает соответствующее логическое значение.
+
+=== Session
+
+[.step]
 * `getCreationTime()` возвращает дату создания сессии в виде большого целого числа.
 * `getLastAccessedTime()` возвращает дату последнего обращения в виде большого целого числа.
 * `getMaxInactiveInterval()` возвращает временной интервал в секундах, сколько сессия может существовать на сервере без обращений к ней.
@@ -420,7 +427,7 @@ System.out.println("String length:" + str.length());
 
 [source,java]
 ----
-request.setAttribute("userId","us1000");
+request.setAttribute("userId", "us1000");
 ----
 
 Переменные, создаваемые в объекте запроса будут существовать только пока существует данный запрос. То есть, этот метод имеет смысл использовать только если один запрос обрабатывают несколько сервлетов, например с помощью методов `include()` или `forward()`. Как только закончится выполнение запроса, будет удален его объект, и соответственно, потеряны хранимые в нем данные.
@@ -431,15 +438,15 @@ request.setAttribute("userId","us1000");
 
 [source,java]
 ----
-request.setAttribute("header","value");
+request.setAttribute("header", "value");
 ----
 
 После чего, сервлет формирующий шапку страницы получает это значение и выводит его на страницу:
 
 [source,java]
 ----
-String headVal =(String)request.getAttribute("header");
-System.out.println(headVal);
+String headVal = (String) request.getAttribute("header");
+out.println(headVal);
 ----
 
 === `ServletContex`
@@ -450,7 +457,7 @@ System.out.println(headVal);
 
 [source,java]
 ----
-ServletContext app = req.getServletContext();
+ServletContext app = request.getServletContext();
 ----
 
 После чего можно пользоваться методами `setAttribute()` и `getAttribute()` чтобы заносить и получать значения.
@@ -480,8 +487,8 @@ ServletContext app = req.getServletContext();
 [source,java]
 ----
 PrintWriter out = response.getWriter();
-ServletContext servletCont = getServletContext();
-System.out.println(servletCont.getInitParameter("contextParam"));
+ServletContext servletCont = request.getServletContext();
+out.println(servletCont.getInitParameter("contextParam"));
 ----
 
 === `ServletConfig`
@@ -506,13 +513,18 @@ System.out.println(servletCont.getInitParameter("contextParam"));
 
 [source,java]
 ----
+private ServletConfig sc;
+
 @Override
 public void init(ServletConfig config) throws ServletException {
     super.init(config);
     sc = config;
 }
+----
 
-System.out.println(sc.getInitParameter("initParam"));
+[source,java]
+----
+out.println(sc.getInitParameter("initParam"));
 ----
 
 == UTF-8
