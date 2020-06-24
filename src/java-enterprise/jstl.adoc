@@ -214,6 +214,81 @@ public class NumberFormatterTag extends SimpleTagSupport {
 * `<c:redirect >`
 * `<c:url>`
 
+== Examples
+
+=== Установка значения
+
+Значение переменной:
+[source,jsp]
+----
+<c:set var="language" value="en_US" scope="request"/>
+----
+
+Значение поля объекта:
+
+[source,jsp]
+----
+<c:set target="book" property="name" value="Зелёная миля"/>
+----
+
+=== Вывод данных
+
+Вывод данных:
+
+[source,jsp]
+----
+<c:out value="Какой-то текст"/>
+<c:out value="${book.name}"/>
+----
+
+=== Условные выражения
+
+[source,jsp]
+----
+<c:if test="${условие}">
+    Выводимый результат
+</c:if>
+----
+
+Пример:
+
+[source,jsp]
+----
+<c:if test="${book.name not empty}">
+    <span>${book.name}</span>
+</c:if>
+----
+
+=== Условные выражения
+
+[source,jsp]
+----
+<c:choose>
+    <c:when test="${ book.author eq 'Pushkin'}">
+        Российская классика
+    </c:when>
+    <c:when test="${ book.author eq 'Dickens'}">
+        Английская классика
+    </c:when>
+    <c:otherwise>
+        Мировая классика
+    </c:otherwise>
+</c:choose>
+----
+
+=== Циклы
+
+[source,jsp]
+----
+<c:forEach var="book" items="${request.books}">
+    <p>${book.name} by ${book.authorName}</p>
+</c:forEach>
+
+<c:forEach var="bookId" begin="1" end="10">
+    <p>${books[bookId].name}</p>
+</c:forEach>
+----
+
 == Formatting tags
 
 === Formatting tags
@@ -292,3 +367,26 @@ public class NumberFormatterTag extends SimpleTagSupport {
 * `fn:toLowerCase()`
 * `fn:toUpperCase()`
 * `fn:trim()`
+
+== Examples
+
+=== Подключение
+
+Для использования утилитных функций JSTL следует подключить библиотеку:
+
+[source,jsp]
+----
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+----
+
+=== Использование
+
+* `${fn:length(аргумент)}` - подсчитывает число элементов в коллекции или длину строки
+* `${fn:toUpperCase(String str)}` и `${fn:toLowerCase(String str)}` - изменяет регистр строки
+* `${fn:substring(String str, int from, int to)}` - извлекает подстроку;
+
+=== Details
+
+Подробное описание всех функций:
+
+http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/fn/tld-summary.html
