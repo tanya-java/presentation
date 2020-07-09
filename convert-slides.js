@@ -11,6 +11,7 @@ var options = {
         'revealjsdir=/node_modules/reveal.js@',
         'customcss=/res/css/custom.css',
         'revealjs_theme=white',
+        'revealjs_slideNumber=true',
         'source-highlighter=highlightjs',
         'highlightjs-languages: xml, java, json, html, css'
     ]
@@ -25,3 +26,4 @@ asciidoctor.convertFile('src/java-enterprise/el.adoc', options)
 asciidoctor.convertFile('src/java-enterprise/filter.adoc', options)
 asciidoctor.convertFile('src/java-enterprise/i18n.adoc', options)
 asciidoctor.convertFile('src/java-enterprise/logging.adoc', options)
+asciidoctor.convertFile('src/java-enterprise/apache-maven.adoc', options)
