@@ -32,3 +32,4 @@ asciidoctor.convertFile('src/java/data-persistence/database-connection-pool.adoc
 asciidoctor.convertFile('src/java/data-persistence/intro-jpa.adoc', options)
 asciidoctor.convertFile('src/java/data-persistence/intro-hibernate.adoc', options)
 asciidoctor.convertFile('src/java/data-persistence/mapping.adoc', options)
+asciidoctor.convertFile('src/java/data-persistence/query-language.adoc', options)
