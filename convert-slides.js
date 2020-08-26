@@ -8,7 +8,7 @@ var options = {
     safe: 'safe',
     backend: 'revealjs',
     attributes: [
-        'revealjsdir=/node_modules/reveal.js@',
+        'revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2',
         'customcss=/assets/css/custom.css',
         'revealjs_theme=white',
         'revealjs_slideNumber=true',

@@ -24,6 +24,8 @@ npm i
 node convert-slides.js
 ----
 
+== Local deploy
+
 === Configure nginx
 
 Make directory `.deploy`:
