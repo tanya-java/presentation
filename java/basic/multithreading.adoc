@@ -1,0 +1,599 @@
+= Multithreading
+
+== Multithreading in Java
+
+=== Definition
+
+* multitasking
+* multiprocessing 
+* multithreading
+
+=== Differentiation
+
+image::/assets/img/java/basic/multithreading/java-multithreading.png[Java multithreading]
+
+== Class `Thread`
+
+=== Example
+
+[source,java]
+----
+public static void main(String[] args) {
+    Thread t = Thread.currentThread(); // получаем главный поток
+    System.out.println(t.getName()); // main
+}
+----
+
+=== Methods
+
+* `getName()`
+* `setName(String name)`
+* `getPriority()`
+* `setPriority(int proirity)`
+* `isAlive()`
+* `isInterrupted()`
+* `join()`
+* `run()`
+* `sleep()`
+* `start()`
+
+=== Life cycle
+
+image::/assets/img/java/basic/multithreading/thread-life-cycle.png[Thread life cycle]
+
+== Creating Thread
+
+=== Ways to create
+
+* By extending Thread class
+* By implementing Runnable interface
+
+=== Constructors
+
+* `Thread()`
+* `Thread(String name)`
+* `Thread(Runnable r)`
+* `Thread(Runnable r, String name)`
+
+=== By extending `Thread` class
+
+[source,java]
+----
+class Multi extends Thread {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi t1 = new Multi();
+        t1.start();
+    }
+}  
+----
+
+=== Implementing Runnable interface
+
+[source,java]
+----
+class Multi3 implements Runnable {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi3 m1 = new Multi3();
+        Thread t1 = new Thread(m1);
+        t1.start();
+    }
+} 
+----
+
+== Thread Synchronization
+
+=== Types of thread synchronization
+
+* Mutual Exclusive
+* Cooperation (Inter-thread communication in java)
+
+=== Problem code
+
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource = new CommonResource();
+        for (int i = 1; i < 6; i++) {
+            Thread t = new Thread(new CountThread(commonResource));
+            t.setName("Thread " + i);
+            t.start();
+        }
+    }
+}
+
+class CommonResource {
+    int x = 0;
+}
+
+class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.x = 1;
+        for (int i = 1; i < 5; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+            res.x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+}
+----
+
+== Operator synchronized
+
+=== Synchronized for Resource
+
+[source,java]
+----
+class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        synchronized (res) {
+            res.x = 1;
+            for (int i = 1; i < 5; i++) {
+                System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+                res.x++;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                }
+            }
+        }
+    }
+}
+----
+
+=== Synchronized for method
+
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource = new CommonResource();
+        for (int i = 1; i < 6; i++) {
+            Thread t = new Thread(new CountThread(commonResource));
+            t.setName("Thread " + i);
+            t.start();
+        }
+    }
+}
+
+class CommonResource {
+    private int x;
+
+    synchronized void increment() {
+        x = 1;
+        for (int i = 1; i < 5; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), x);
+            x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println(" Catch InterruptedException: ", e);
+            }
+        }
+    }
+}
+
+class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.increment();
+    }
+}
+----
+
+== Cooperation
+
+=== Methods
+
+* `wait()`
+* `notify()`
+* `notifyAll()`
+
+=== Example
+
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Store store=new Store();
+        Producer producer = new Producer(store);
+        Consumer consumer = new Consumer(store);
+        new Thread(producer).start();
+        new Thread(consumer).start();
+    }
+}
+
+// Класс Магазин, хранящий произведенные товары
+public class Store {
+   private int product = 0;
+
+   public synchronized void get() {
+      while (product < 1) {
+         try {
+            wait();
+         }
+         catch (InterruptedException e) {
+         }
+      }
+      product--;
+      System.out.println("Покупатель купил 1 товар");
+      System.out.println("Товаров на складе: " + product);
+      notify();
+   }
+
+   public synchronized void put() {
+       while (product >= 3) {
+         try {
+            wait();
+         } catch (InterruptedException e) {
+         } 
+      }
+      product++;
+      System.out.println("Производитель добавил 1 товар");
+      System.out.println("Товаров на складе: " + product);
+      notify();
+   }
+}
+
+// класс Производитель
+class Producer implements Runnable {
+    private Store store;
+
+    public Producer(Store store) {
+       this.store = store; 
+    }
+
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.put();
+        }
+    }
+}
+
+// Класс Потребитель
+class Consumer implements Runnable {
+    private Store store;
+
+    public Consumer(Store store) {
+       this.store = store; 
+    }
+
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.get();
+        }
+    }
+}
+----
+
+== `Semaphore`
+
+=== Constructors
+
+* `Semaphore(int permits)`
+* `Semaphore(int permits, boolean fair)`
+
+=== `Semaphore`
+
+image::/assets/img/java/basic/multithreading/semaphore.png[Semaphore]
+
+=== `Semaphore`
+
+image::/assets/img/java/basic/multithreading/java-monitor.gif[Java monitor]
+
+== `ReentrantLock`
+
+=== Methods
+
+* `void lock()`
+* `void lockInterruptibly() throws InterruptedException`
+* `boolean tryLock()`
+* `void unlock()`
+* `Condition newCondition()`
+
+=== Example
+
+[source,java]
+----
+import java.util.concurrent.locks.ReentrantLock;
+ 
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource= new CommonResource();
+        ReentrantLock locker = new ReentrantLock(); // создаем заглушку
+        for (int i = 1; i < 6; i++) {
+            Thread t = new Thread(new CountThread(commonResource, locker));
+            t.setName("Thread "+ i);
+            t.start();
+        }
+    }
+}
+  
+public class CommonResource {
+    public int x = 0;
+}
+  
+public class CountThread implements Runnable{
+    private CommonResource res;
+    private ReentrantLock locker;
+
+    public CountThread(CommonResource res, ReentrantLock lock) {
+        this.res =r es;
+        locker = lock;
+    }
+
+    public void run() {
+        locker.lock(); // устанавливаем блокировку
+        try{
+            res.x = 1;
+            for (int i = 1; i < 5; i++) {
+                System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+                res.x++;
+                Thread.sleep(100);
+            }
+        } catch(InterruptedException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            locker.unlock(); // снимаем блокировку
+        }
+    }
+}
+----
+
+== Interface `Condition`
+
+=== Methods
+
+* `await()`
+* `signal()`
+* `signalAll()`
+
+=== Example
+
+[source,java]
+----
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Condition;
+
+public class Program {
+    public static void main(String[] args) {
+        Store store = new Store();
+        Producer producer = new Producer(store);
+        Consumer consumer = new Consumer(store);
+        new Thread(producer).start();
+        new Thread(consumer).start();
+    }
+}
+
+// Класс Магазин, хранящий произведенные товары
+public class Store {
+    private int product = 0;
+    private ReentrantLock locker;
+    private Condition condition;
+
+    public Store() {
+        this.locker = new ReentrantLock(); // создаем блокировку
+        this.condition = this.locker.newCondition(); // получаем условие, связанное с блокировкой
+    }
+
+    public void get() {
+        this.locker.lock();
+        try {
+            // пока нет доступных товаров на складе, ожидаем
+            while (this.product < 1) {
+                this.condition.await();
+            }
+            
+            this.product--;
+            System.out.println("Покупатель купил 1 товар");
+            System.out.println("Товаров на складе: " + this.product);
+
+            // сигнализируем
+            this.condition.signalAll();
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            this.locker.unlock();
+        }
+   }
+
+    public void put() {
+        this.locker.lock();
+        try {
+            // пока на складе 3 товара, ждем освобождения места
+            while (this.product >= 3) {
+                condition.await();
+            }
+            
+            this.product++;
+            System.out.println("Производитель добавил 1 товар");
+            System.out.println("Товаров на складе: " + this.product);
+            // сигнализируем
+            this.condition.signalAll();
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            this.locker.unlock();
+        }
+    }
+}
+
+// класс Производитель
+class Producer implements Runnable {
+    private Store store;
+    
+    public Producer(Store store) {
+       this.store = store; 
+    }
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.put();
+        }
+    }
+}
+
+// Класс Потребитель
+class Consumer implements Runnable{
+    private Store store;
+
+    public Consumer(Store store) {
+       this.store = store; 
+    }
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.get();
+        }
+    }
+}
+----
+
+== Deadlock
+
+=== Deadlock
+
+image::/assets/img/java/basic/multithreading/deadlock.jpg[Deadlock]
+
+== `ExecutorService`
+
+=== Example
+
+[source,java]
+----
+ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+executorService.execute(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+executorService.shutdown();
+----
+
+=== Methods
+
+* `execute(Runnable)`
+* `submit(Runnable)`
+* `submit(Callable)`
+* `invokeAny(...)`
+* `invokeAll(...)`
+
+=== Execute `Runnable`
+
+[source,java]
+----
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+executorService.execute(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+executorService.shutdown();
+----
+
+=== Submit `Runnable`
+
+[source,java]
+----
+Future future = executorService.submit(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+future.get();  //returns null if the task has finished correctly.
+----
+
+=== `invokeAny()`
+
+[source,java]
+----
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+Set<Callable<String>> callables = new HashSet<Callable<String>>();
+
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 1";
+    }
+});
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 2";
+    }
+});
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 3";
+    }
+});
+
+String result = executorService.invokeAny(callables);
+
+System.out.println("result = " + result);
+
+executorService.shutdown();
+----
+
+=== `invokeAll()`
+
+[source,java]
+----
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+Set<Callable<String>> callables = new HashSet<Callable<String>>();
+
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 1";
+    }
+});
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 2";
+    }
+});
+callables.add(new Callable<String>() {
+    public String call() throws Exception {
+        return "Task 3";
+    }
+});
+
+List<Future<String>> futures = executorService.invokeAll(callables);
+
+for (Future<String> future : futures) {
+    System.out.println("future.get = " + future.get());
+}
+
+executorService.shutdown();
+----

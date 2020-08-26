@@ -1,0 +1,465 @@
+= Lambda expressions
+
+== Intro in Lambda expressions
+
+=== Functional Interface
+
+[source,java]
+----
+interface Operationable {
+    int calculate(int x, int y);
+}
+----
+
+=== Example
+
+[source,java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable operation;
+        operation = (x, y) -> x + y;
+
+        int result = operation.calculate(10, 20);
+        System.out.println(result);
+    }
+}
+----
+
+=== Lambda Expression as Anonymous Classes
+
+[source,java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable op = new Operationable() {
+            public int calculate(int x, int y) {
+                return x + y;
+            }
+        };
+        int z = op.calculate(20, 10);
+        System.out.println(z);
+    }
+}
+----
+
+=== Steps for using Lambda Expression
+
+[source,java]
+----
+// Defining reference to functional interface:
+Operationable operation;
+
+// Creating Lambda Expression
+operation = (x, y) -> x + y;
+
+// Using Lambda Expression
+int result = operation.calculate(10, 20);
+----
+
+=== Example
+
+[source,java]
+----
+Operationable operation1 = (int x, int y)-> x + y;
+Operationable operation2 = (int x, int y)-> x - y;
+Operationable operation3 = (int x, int y)-> x * y;
+         
+System.out.println(operation1.calculate(20, 10));
+System.out.println(operation2.calculate(20, 10));
+System.out.println(operation3.calculate(20, 10));
+----
+
+=== Syntax Lambda Expressions
+
+[source,java]
+----
+(int a, int b) -> {
+    return a + b;
+}
+
+(a, b) -> {
+    return a + b;
+}
+
+() -> System.out.println("Hello World");
+
+(String s) -> {
+    System.out.println(s);
+}
+
+(s) -> System.out.println(s);
+
+() -> 42;
+
+() -> {
+    return 3.1415;
+}
+----
+
+=== Terminal Lambda Expressions
+
+[source,java]
+----
+interface Printable {
+    void print(String s);
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Printable printer = s -> System.out.println(s);
+        printer.print("Hello Java!");
+    }
+}
+----
+
+=== Lambda Expressions and global variables
+
+[source,java]
+----
+public class LambdaApp {
+    static int x = 10;
+    static int y = 20;
+
+    public static void main(String[] args) {
+        Operation op = () -> {
+            x = 30;
+            return x + y;
+        };
+        System.out.println(op.calculate());
+        System.out.println(x);
+    }
+}
+
+interface Operation {
+    int calculate();
+}
+----
+
+=== Lambda Expressions and local variables
+
+[source,java]
+----
+public static void main(String[] args) {
+    int n = 70;
+    int m = 30;
+    Operation op = () -> {
+        // n = 100;
+        return m + n;
+    };
+    // n = 100;
+    System.out.println(op.calculate());
+}
+----
+
+=== Generic Functional Interface
+
+[source,java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable<Integer> operation1 = (x, y) -> x + y;
+        Operationable<String> operation2 = (x, y) -> x + y;
+
+        System.out.println(operation1.calculate(20, 10));
+        System.out.println(operation2.calculate("20", "10"));
+    }
+}
+
+interface Operationable<T> {
+    T calculate(T x, T y);
+}
+----
+
+== Lambda as parameters and results of methods
+
+=== Lambda as parameters method
+
+[source,java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Expression func = (n) -> n % 2 == 0;
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println(sum(nums, func));
+    }
+
+    private static int sum(int[] numbers, Expression func) {
+        int result = 0;
+        for (int i : numbers) {
+            if (func.isEqual(i))
+                result += i;
+        }
+        return result;
+    }
+}
+
+interface Expression {
+    boolean isEqual(int n);
+}
+----
+
+=== Method links as method parameters
+
+[source,java]
+----
+interface Expression {
+    boolean isEqual(int n);
+}
+
+class ExpressionHelper {
+    static boolean isEven(int n) {
+        return n % 2 == 0;
+    }
+
+    static boolean isPositive(int n) {
+        return n > 0;
+    }
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        int[] nums = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+        System.out.println(sum(nums, ExpressionHelper::isEven));
+
+        Expression expr = ExpressionHelper::isPositive;
+        System.out.println(sum(nums, expr));
+    }
+
+    private static int sum(int[] numbers, Expression func) {
+        int result = 0;
+        for (int i : numbers) {
+            if (func.isEqual(i))
+                result += i;
+        }
+        return result;
+    }
+}
+----
+
+=== Links to constructors
+
+[source,java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        UserBuilder userBuilder = User::new;
+        User user = userBuilder.create("Tom");
+        System.out.println(user.getName());
+    }
+}
+
+interface UserBuilder {
+    User create(String name);
+}
+
+class User {
+    private String name;
+
+    String getName() {
+        return name;
+    }
+
+    User(String n) {
+        this.name = n;
+    }
+}
+----
+
+=== Lambda as a result of methods
+
+[source,java]
+----
+interface Operation {
+    int execute(int x, int y);
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operation func = action(1);
+        int a = func.execute(6, 5);
+        System.out.println(a); // 11
+
+        int b = action(2).execute(8, 2);
+        System.out.println(b); // 6
+    }
+
+    private static Operation action(int number) {
+        switch (number) {
+            case 1:
+                return (x, y) -> x + y;
+            case 2:
+                return (x, y) -> x - y;
+            case 3:
+                return (x, y) -> x * y;
+            default:
+                return (x, y) -> 0;
+        }
+    }
+}
+----
+
+== Embedded Functional Interfaces
+
+=== `Predicate<T>`
+
+[source,java]
+----
+public interface Predicate<T> {
+    boolean test(T t);
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.function.Predicate;
+ 
+public class LambdaApp {
+    public static void main(String[] args) {
+        Predicate<Integer> isPositive = x -> x > 0;
+         
+        System.out.println(isPositive.test(5));
+        System.out.println(isPositive.test(-7));
+    }
+}
+----
+
+=== `BinaryOperator<T>`
+
+[source,java]
+----
+public interface BinaryOperator<T> {
+    T apply(T t1, T t2);
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.function.BinaryOperator;
+ 
+public class LambdaApp {
+    public static void main(String[] args) {
+        BinaryOperator<Integer> multiply = (x, y) -> x * y;
+         
+        System.out.println(multiply.apply(3, 5));
+        System.out.println(multiply.apply(10, -2));
+    }
+}
+----
+
+=== `UnaryOperator<T>`
+
+[source,java]
+----
+public interface UnaryOperator<T> {
+    T apply(T t);
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.function.UnaryOperator;
+ 
+public class LambdaApp {
+    public static void main(String[] args) {
+        UnaryOperator<Integer> square = x -> x * x;
+        System.out.println(square.apply(5));
+    }
+}
+----
+
+=== `Function<T, R>`
+
+[source,java]
+----
+public interface Function<T, R> {
+    R apply(T t);
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.function.Function;
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Function<Integer, String> convert = x -> String.valueOf(x) + " долларов";
+        System.out.println(convert.apply(5)); // 5 долларов
+    }
+}
+----
+
+=== `Consumer<T>`
+
+[source,java]
+----
+public interface Consumer<T> {
+    void accept(T t);
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.function.Consumer;
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Consumer<Integer> printer = x -> System.out.printf("%d долларов \n", x);
+        printer.accept(600);
+    }
+}
+----
+
+=== `Supplier<T>`
+
+[source,java]
+----
+public interface Supplier<T> {
+    T get();
+}
+----
+
+=== Example
+
+[source,java]
+----
+import java.util.Scanner;
+import java.util.function.Supplier;
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Supplier<User> userFactory = () -> {
+            Scanner in = new Scanner(System.in);
+            System.out.println("Введите имя: ");
+            String name = in.nextLine();
+            return new User(name);
+        };
+        User user1 = userFactory.get();
+        User user2 = userFactory.get();
+        System.out.println("Имя user1: " + user1.getName());
+        System.out.println("Имя user2: " + user2.getName());
+    }
+}
+
+public class User {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public User(String n) {
+        this.name = n;
+    }
+}
+----

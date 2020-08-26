@@ -1,0 +1,66 @@
+= Annotations
+
+== Definition Annotation
+
+=== Creating Custom Annotation
+
+[source,java]
+----
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface MyAnnotation { 
+    String str(); 
+    int val(); 
+}
+----
+
+=== Using Annotation
+
+[source,java]
+----
+@MyAnnotation(str = "Пример аннотации", val = 988) 
+public static void myMethod() {
+    // code 
+}
+----
+
+== Embedded Annotations
+
+=== Embedded Annotations
+
+* `@Retention`
+* `@Documented`
+* `@Target`
+* `@Inherited`
+* `@Override`
+
+=== Embedded Annotations
+
+* `@Deprecated`
+* `@SafeVarargs`
+* `@SuppressWarnings`
+* `@Repeatable`
+* `@FunctionalInterface`
+
+=== `@Retention`
+
+* `SOURCE`
+* `CLASS`
+* `RUNTIME`
+
+=== `@Target`
+
+* `TYPE`
+* `FIELD`
+* `METHOD`
+* `PARAMETER`
+* `CONSTRUCTOR`
+* `LOCAL_VARIABLE`
+
+=== `@Target`
+
+* `ANNOTATION_TYPE`
+* `PACKAGE`
+* `TYPE_PARAMETER`
+* `TYPE_USE`
+* `MODULE`

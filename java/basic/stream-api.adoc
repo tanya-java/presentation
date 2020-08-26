@@ -1,0 +1,111 @@
+= Stream API
+
+== Intro
+
+=== Stream API
+
+image::/assets/img/java/basic/stream-api.jpg[Stream API]
+
+== `BaseStream`
+
+=== Interface `BaseStream`
+
+* `interface BaseStream<T , S extends BaseStream<T , S>>`
+
+=== `BaseStream` Methods
+
+* `void close()`
+* `boolean isParallel():`
+* `Iterator<Т> iterator()`
+* `Spliterator<Т> spliterator()`
+* `S parallel()`
+* `S sequential()`
+* `S unordered()`
+
+=== `BaseStream` Inheritors
+
+* `Stream<T>`
+* `IntStream`
+* `DoubleStream`
+* `LongStream`
+
+== `Stream<T>`
+
+=== Intermediate methods
+
+* `Stream<T> concat​(Stream<? extends T> a, Stream<? extends T> b)`
+* `Stream<T> distinct()`
+* `Stream<T> dropWhile​(Predicate<? super T> predicate)`
+* `Stream<T> filter(Predicate<? super T> predicate)`
+* `Stream<T> limit(long maxSize)`
+* `Stream<T> skip(long n)`
+* `Stream<T> sorted()`
+* `Stream<T> sorted(Comparator<? super T> comparator)`
+* `Stream<T> takeWhile​(Predicate<? super T> predicate)`
+
+=== Terminal methods
+
+* `boolean allMatch(Predicate<? super T> predicate)`
+* `boolean anyMatch(Predicate<? super T> predicate)`
+* `<R, A> R collect(Collector<? super T, A, R> collector)`
+* `long count()`
+* `Optional<T> findFirst()`
+* `Optional<T> findAny()`
+* `void forEach(Consumer<? super T> action)`
+* `Optional<T> max(Comparator<? super T> comparator)`
+* `Optional<T> min(Comparator<? super T> comparator)<R> Stream<R> map(Function<? super T, ? extends R> mapper)`
+* `<R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)`
+* `boolean noneMatch(Predicate<? super T> predicate)`
+* `Object[] toArray()`
+
+== Creating `Stream`
+
+=== Creating `Stream`
+
+* `default Stream<E> stream`
+* `default Stream<E> parallelStream`
+* `Arrays.stream(T[] array)`
+* `Stream.of(T..values)`
+
+== `Optional`
+
+=== Methods
+
+* `static <T> Optional<T> empty()`
+* `Optional<T> filter(Predicate<? super T> predicate)`
+* `<U> Optional<U> flatMap(Function<? super T,Optional<U>> mapper)`
+* `T get()`
+* `void ifPresent(Consumer<? super T> consumer)`
+* `boolean isPresent()`
+* `<U> Optional<U> map(Function<? super T,? extends U> mapper)`
+* `static <T> Optional<T> of(T value)`
+* `static <T> Optional<T> ofNullable(T value)`
+* `T orElse(T other)`
+* `T orElseGet(Supplier<? extends T> other)`
+* `<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)`
+
+== Method `collect()`
+
+=== Collectors Methods
+
+* `toList()`
+* `toSet()`
+* `toMap()`
+* `toCollection()`
+* `groupingBy()`
+* `partitioningBy()`
+* `counting()`
+* `summing()`
+* `maxBy()`
+* `minBy()`
+* `summarizing()`
+* `mapping()`
+
+== Parallel Stream
+
+=== Methods
+
+* `parallel()`
+* `sequential()`
+* `forEachOrdered()`
+* `unordered()`
