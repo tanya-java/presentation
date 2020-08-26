@@ -2,7 +2,7 @@
 
 == Intro to Spring
 
-image:/res/img/java/spring/spring-logo.svg[Spring]
+image:/assets/img/java/spring/spring-logo.svg[Spring]
 
 === Simplifying Java development
 
@@ -72,7 +72,7 @@ image:/res/img/java/spring/spring-logo.svg[Spring]
 
 === Owerview
 
-image:/res/img/java/spring/spring-overview.png[Owerview]
+image:/assets/img/java/spring/spring-overview.png[Owerview]
 
 === Spring Framework Artifacts
 
@@ -115,7 +115,7 @@ image:/res/img/java/spring/spring-overview.png[Owerview]
 
 === Core Container
 
-image:/res/img/java/spring/spring-overview.png[Owerview]
+image:/assets/img/java/spring/spring-overview.png[Owerview]
 
 === Core Container modules
 
@@ -130,7 +130,7 @@ image:/res/img/java/spring/spring-overview.png[Owerview]
 
 === Problem
 
-image:/res/img/java/spring/objects-dependencies.png[Objects Dependencies]
+image:/assets/img/java/spring/objects-dependencies.png[Objects Dependencies]
 
 === Solution
 
@@ -138,7 +138,7 @@ image:/res/img/java/spring/objects-dependencies.png[Objects Dependencies]
 * *Dependency Inversion Principle*
 * *Dependency Injection*
 
-image:/res/img/java/spring/definitions.png[Inversion of Control, Dependency Inversion Principle and Dependency Injection]
+image:/assets/img/java/spring/definitions.png[Inversion of Control, Dependency Inversion Principle and Dependency Injection]
 
 === Problem: strong coupling
 
@@ -247,7 +247,7 @@ public class SenderService {
 
 === IoC Container
 
-image:/res/img/java/spring/spring-container.png[Spring Container]
+image:/assets/img/java/spring/spring-container.png[Spring Container]
 
 === Dependency Injection
 
@@ -258,7 +258,7 @@ image:/res/img/java/spring/spring-container.png[Spring Container]
 
 === Dependency Injection
 
-image:/res/img/java/spring/dependency-injection.gif[Dependency Injection]
+image:/assets/img/java/spring/dependency-injection.gif[Dependency Injection]
 
 === Bean
 
@@ -273,11 +273,11 @@ image:/res/img/java/spring/dependency-injection.gif[Dependency Injection]
 
 === Example
 
-image:/res/img/java/spring/ioc-container.png[IoC container]
+image:/assets/img/java/spring/ioc-container.png[IoC container]
 
 === Example
 
-image:/res/img/java/spring/di-testing.png[DI testing]
+image:/assets/img/java/spring/di-testing.png[DI testing]
 
 == Bean Definition
 

@@ -20,7 +20,7 @@
 
 === Architecture
 
-image:/res/img/java/spring/webmvc/architecture.png[Spring Web MVC]
+image:/assets/img/java/spring/webmvc/architecture.png[Spring Web MVC]
 
 === DispatcherServlet
 

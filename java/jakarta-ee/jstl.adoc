@@ -12,7 +12,7 @@
 
 === JavaEE Web history
 
-image::/res/img/java-enterprise/jstl/javaee-web-history.png[Java for Web history]
+image::/assets/img/jakarta-ee/jstl/javaee-web-history.png[Java for Web history]
 
 == *taglib*
 

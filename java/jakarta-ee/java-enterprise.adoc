@@ -21,11 +21,11 @@
 
 === JavaEE Architecture
 
-image::/res/img/java-enterprise/java-enterprise/jee-component-technologies.png[JavaEE Architecture]
+image::/assets/img/jakarta-ee/java-enterprise/jee-component-technologies.png[JavaEE Architecture]
 
 === Spring Architecture
 
-image::/res/img/java-enterprise/java-enterprise/spring-component-technologies.png[Spring Framework Architecture]
+image::/assets/img/jakarta-ee/java-enterprise/spring-component-technologies.png[Spring Framework Architecture]
 
 == JavaEE
 
@@ -43,7 +43,7 @@ https://docs.google.com/spreadsheets/d/14EZFEr5uqSVzLbQSims-qjA91K4BDMd66Y7Ju6Ob
 
 === JCP compared to the EFCP
 
-image::/res/img/java-enterprise/java-enterprise/jcp-efcp.png[JCP -> EFCP]
+image::/assets/img/jakarta-ee/java-enterprise/jcp-efcp.png[JCP -> EFCP]
 
 == JavaEE Web Server
 
@@ -54,7 +54,7 @@ image::/res/img/java-enterprise/java-enterprise/jcp-efcp.png[JCP -> EFCP]
 
 === Web Servers
 
-image::/res/img/java-enterprise/java-enterprise/javaee-spec-support.png[JavaEE spec support]
+image::/assets/img/jakarta-ee/java-enterprise/javaee-spec-support.png[JavaEE spec support]
 
 === Popular Web Servers
 

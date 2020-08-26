@@ -135,7 +135,7 @@ apache-maven/
 
 === Project Object Model (POM)
 
-image::/res/img/java-enterprise/apache-maven/pom.png[POM]
+image::/assets/img/jakarta-ee/apache-maven/pom.png[POM]
 
 === Project Object Model (POM)
 
@@ -198,7 +198,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 
 === Maven Flow
 
-image::/res/img/java-enterprise/apache-maven/flow.jpg[Apache Maven Flow]
+image::/assets/img/jakarta-ee/apache-maven/flow.jpg[Apache Maven Flow]
 
 === Build Life Cycles
 
@@ -224,12 +224,12 @@ The default-lifecycle executes the following build phases:
 
 === Lifecycle
 
-image::/res/img/java-enterprise/apache-maven/lifecycle.jpg[Apache Maven Lifecycle]
+image::/assets/img/jakarta-ee/apache-maven/lifecycle.jpg[Apache Maven Lifecycle]
 
 === Full lifecycle
 
-image::/res/img/java-enterprise/apache-maven/lifecycle-full.png[Apache Maven Full Lifecycle]
-http://localhost:3000/res/img/java-enterprise/apache-maven/lifecycle-full.png[Apache Maven Full Lifecycle]
+image::/assets/img/jakarta-ee/apache-maven/lifecycle-full.png[Apache Maven Full Lifecycle]
+http://localhost:3000/assets/img/jakarta-ee/apache-maven/lifecycle-full.png[Apache Maven Full Lifecycle]
 
 == Plugins
 
@@ -258,7 +258,7 @@ http://localhost:3000/res/img/java-enterprise/apache-maven/lifecycle-full.png[Ap
 
 === Artifacts
 
-image::/res/img/java-enterprise/apache-maven/artifacts.png[Artifacts]
+image::/assets/img/jakarta-ee/apache-maven/artifacts.png[Artifacts]
 
 === Artifacts
 
@@ -282,7 +282,7 @@ image::/res/img/java-enterprise/apache-maven/artifacts.png[Artifacts]
 
 === Repository
 
-image::/res/img/java-enterprise/apache-maven/repositories.jpg[Repositories]
+image::/assets/img/jakarta-ee/apache-maven/repositories.jpg[Repositories]
 
 == POM Relationships
 

@@ -19,11 +19,11 @@
 
 === Bean lifecycle
 
-image:/res/img/java/spring/bean-initialization.jpg[Bean initialization]
+image:/assets/img/java/spring/bean-initialization.jpg[Bean initialization]
 
 === Bean lifecycle
 
-image:/res/img/java/spring/bean-lifecycle.png[Bean lyfecycle]
+image:/assets/img/java/spring/bean-lifecycle.png[Bean lyfecycle]
 
 == Spring Configuration Metadata
 

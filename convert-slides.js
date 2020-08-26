@@ -9,7 +9,7 @@ var options = {
     backend: 'revealjs',
     attributes: [
         'revealjsdir=/node_modules/reveal.js@',
-        'customcss=/res/css/custom.css',
+        'customcss=/assets/css/custom.css',
         'revealjs_theme=white',
         'revealjs_slideNumber=true',
         'source-highlighter=highlightjs',
@@ -17,19 +17,23 @@ var options = {
     ]
 }
 
-asciidoctor.convertFile('src/index.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/java-enterprise.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/apache-tomcat.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/servlet.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/jsp.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/jstl.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/el.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/filter.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/i18n.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/logging.adoc', options)
-asciidoctor.convertFile('src/java-enterprise/apache-maven.adoc', options)
-asciidoctor.convertFile('src/java/data-persistence/database-connection-pool.adoc', options)
-asciidoctor.convertFile('src/java/data-persistence/intro-jpa.adoc', options)
-asciidoctor.convertFile('src/java/data-persistence/intro-hibernate.adoc', options)
-asciidoctor.convertFile('src/java/data-persistence/mapping.adoc', options)
-asciidoctor.convertFile('src/java/data-persistence/query-language.adoc', options)
+asciidoctor.convertFile('./index.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/java-enterprise.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/apache-tomcat.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/servlet.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/jsp.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/jstl.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/el.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/filter.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/i18n.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/logging.adoc', options)
+asciidoctor.convertFile('./java/jakarta-ee/apache-maven.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/database-connection-pool.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/intro-jpa.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/intro-hibernate.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/mapping.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/query-language.adoc', options)
+asciidoctor.convertFile('./java/spring/intro-spring.adoc', options)
+asciidoctor.convertFile('./java/spring/beans.adoc', options)
+asciidoctor.convertFile('./java/spring/spring-orm.adoc', options)
+asciidoctor.convertFile('./java/spring/spring-webmvc.adoc', options)

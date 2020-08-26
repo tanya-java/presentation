@@ -18,7 +18,7 @@
 
 === JavaEE Web history
 
-image::/res/img/java-enterprise/jsp/javaee-web-history.png[Java for Web history]
+image::/assets/img/jakarta-ee/jsp/javaee-web-history.png[Java for Web history]
 
 === JavaServer Pages
 
@@ -87,11 +87,11 @@ curl http://localhost:8080/jsp/example
 
 === Lifecycle
 
-image::/res/img/java-enterprise/jsp/jsp-lifecycle.png[JSP lifecycle]
+image::/assets/img/jakarta-ee/jsp/jsp-lifecycle.png[JSP lifecycle]
 
 === JSP is Servlet
 
-image::/res/img/java-enterprise/jsp/jsp-is-servlet.jpg[JSP is Servlet]
+image::/assets/img/jakarta-ee/jsp/jsp-is-servlet.jpg[JSP is Servlet]
 
 1. Движок *Jasper* (находится в поставке Tomcat) преобразует *JSP* в *Servlet*
 2. *Servlet* компилируется

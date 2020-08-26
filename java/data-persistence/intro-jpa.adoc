@@ -12,11 +12,11 @@
 
 === Problem
 
-image::/res/img/java/data-persistence/intro-jpa/problem.jpg[Problem without ORM]
+image::/assets/img/java/data-persistence/intro-jpa/problem.jpg[Problem without ORM]
 
 === Solution
 
-image::/res/img/java/data-persistence/intro-jpa/solution.jpg[Solution with ORM]
+image::/assets/img/java/data-persistence/intro-jpa/solution.jpg[Solution with ORM]
 
 == JPA
 
@@ -50,11 +50,11 @@ image::/res/img/java/data-persistence/intro-jpa/solution.jpg[Solution with ORM]
 
 === Hibernate
 
-image::/res/img/java/data-persistence/intro-jpa/hibernate-history.png[Hibernate History]
+image::/assets/img/java/data-persistence/intro-jpa/hibernate-history.png[Hibernate History]
 
 === Hibernate
 
-image::/res/img/java/data-persistence/intro-jpa/hibernate.svg[Hibernate]
+image::/assets/img/java/data-persistence/intro-jpa/hibernate.svg[Hibernate]
 
 == POJO
 
@@ -241,7 +241,7 @@ public class CreateEmployeeApp {
 
 === Entity lifecycle
 
-image::/res/img/java/data-persistence/intro-jpa/lifecycle.jpg[JPA lifecycle]
+image::/assets/img/java/data-persistence/intro-jpa/lifecycle.jpg[JPA lifecycle]
 
 == Use Hibernate
 

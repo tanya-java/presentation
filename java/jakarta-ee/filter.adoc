@@ -13,7 +13,7 @@ Java-объекты, которые могут выполнять действи
 
 === Filter
 
-image::/res/img/java-enterprise/filter/filter.png[Filter]
+image::/assets/img/jakarta-ee/filter/filter.png[Filter]
 
 === `javax.servlet.Filter`
 

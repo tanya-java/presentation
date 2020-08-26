@@ -23,7 +23,7 @@
 
 === Benchmark
 
-image::/res/img/java/data-persistence/database-connection-pool/benchmark.png[Benchmark]
+image::/assets/img/java/data-persistence/database-connection-pool/benchmark.png[Benchmark]
 
 == Tomcat Connection Pool
 
