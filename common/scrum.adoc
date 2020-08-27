@@ -143,7 +143,7 @@ The Sprint retrospective is held after the Sprint Review and before planning for
 a framework within with people can adress complex adaptive problems, while productively and creatively delivering products of the highest possible value
 
 [.colum]
-image::/res/img/common/scrum/scrum.png[Scrum]
+image::/assets/img/common/scrum/scrum.png[Scrum]
 
 === Scrum
 
@@ -196,48 +196,48 @@ Scrum is founded on empirical process control theory, or empiricism.
 
 === Scrum Values
 
-image::/res/img/common/scrum/scrum-values.png[Scrum Values]
+image::/assets/img/common/scrum/scrum-values.png[Scrum Values]
 
 == The Scrum Team
 
 === The Scrum Team consist of
 
-image::/res/img/common/scrum/scrum-team.jpg[Scrum team]
+image::/assets/img/common/scrum/scrum-team.jpg[Scrum team]
 
 === Product owner
 
-image::/res/img/common/scrum/product-owner.png[Product owner]
+image::/assets/img/common/scrum/product-owner.png[Product owner]
 
 === Scrum Master
 
-image::/res/img/common/scrum/scrum-master.png[Scrum master]
+image::/assets/img/common/scrum/scrum-master.png[Scrum master]
 
 === Scrum Team
 
-image::/res/img/common/scrum/scrum-team-2.png[Scrum team]
+image::/assets/img/common/scrum/scrum-team-2.png[Scrum team]
 
 == Scrum Events
 
 === Scrum Framework
 
-image::/res/img/common/scrum/scrum-framework.jpg[Scrum Framework]
+image::/assets/img/common/scrum/scrum-framework.jpg[Scrum Framework]
 
 === Scrum Planning
 
-image::/res/img/common/scrum/scrum-planning.png[Scrum Planning]
+image::/assets/img/common/scrum/scrum-planning.png[Scrum Planning]
 
 === Scrum Daily Meeting
 
-image::/res/img/common/scrum/scrum-daily-meeting.png[Scrum Daily Meeting]
+image::/assets/img/common/scrum/scrum-daily-meeting.png[Scrum Daily Meeting]
 
 === Sprint Review Meeting
 
-image::/res/img/common/scrum/sprint-review-meeting.jpg[Sprint Review Meeting]
+image::/assets/img/common/scrum/sprint-review-meeting.jpg[Sprint Review Meeting]
 
 == Scrum Artifacts
 
 === Scrum Dashboard
 
-image::/res/img/common/scrum/scrum-dashboard.jpeg[Scrum Dashboard]
+image::/assets/img/common/scrum/scrum-dashboard.jpeg[Scrum Dashboard]
 
 == Finally
