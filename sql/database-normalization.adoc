@@ -41,7 +41,7 @@ image::/assets/img/sql/database-normalization/1nf.png[1NF]
 
 === Composite Primary Key
 
-image::/assets/img/sql/database-normalization/composite-key.png.png[Composite Key]
+image::/assets/img/sql/database-normalization/composite-key.png[Composite Key]
 
 == 2NF
 
