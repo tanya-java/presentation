@@ -4,7 +4,7 @@
 
 === Example Form
 
-image::/assets/img/html-and-css/form/form.jpg[Form]
+image::/assets/img/html-and-css/form/form.png[Form]
 
 === `<form>`
 
