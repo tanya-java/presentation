@@ -16,7 +16,7 @@
 
 === Byte-based streams
 
-image::/assets/img/java/basic/byte-based-stream.png[Byte-based stream]
+image::/assets/img/java/basic/java-io/byte-based-stream.png[Byte-based stream]
 
 === `InputStream`
 
@@ -782,7 +782,7 @@ public class FileReaderExample {
 
 === Serialization and Deserialization
 
-image::/assets/img/java/basic/serialization.png[Serialization and Deserialization]
+image::/assets/img/java/basic/java-io/serialization.png[Serialization and Deserialization]
 
 === Interface `Serializable`
 
