@@ -4,7 +4,7 @@
 
 === JavaEE Web history
 
-image::/assets/img/jakarta-ee/el/javaee-web-history.png[Java for Web history]
+image::/assets/img/java/jakarta-ee/el/javaee-web-history.png[Java for Web history]
 
 === Intro
 
@@ -196,4 +196,4 @@ ${ 17 mod 7 } = 3
 
 === Example
 
-image::/assets/img/jakarta-ee/el/el-example.png[EL example]
+image::/assets/img/java/jakarta-ee/el/el-example.png[EL example]

@@ -18,7 +18,7 @@
 
 === Servlet Application Architecture
 
-image::/assets/img/jakarta-ee/servlet/servlet-application-architecture.jpg[Servlet Application Architecture]
+image::/assets/img/java/jakarta-ee/servlet/servlet-application-architecture.jpg[Servlet Application Architecture]
 
 === Servlet Container
 
@@ -34,13 +34,13 @@ image::/assets/img/jakarta-ee/servlet/servlet-application-architecture.jpg[Servl
 
 === Servlet Hierarchy
 
-image::/assets/img/jakarta-ee/servlet/servlet-hierarchy.jpg[Servlet Hierarchy]
+image::/assets/img/java/jakarta-ee/servlet/servlet-hierarchy.jpg[Servlet Hierarchy]
 
 == Создание сервлета
 
 === Servlet Lifecycle
 
-image::/assets/img/jakarta-ee/servlet/servlet-lifecycle.jpg[Servlet Lifecycle]
+image::/assets/img/java/jakarta-ee/servlet/servlet-lifecycle.jpg[Servlet Lifecycle]
 
 === `HelloServlet`
 
@@ -117,7 +117,7 @@ public class HelloServlet extends HttpServlet {
 
 === How works it?
 
-image::/assets/img/jakarta-ee/servlet/web-dynamic-app.png[Web dynamic app]
+image::/assets/img/java/jakarta-ee/servlet/web-dynamic-app.png[Web dynamic app]
 
 === Annotation `@WebServlet`
 
