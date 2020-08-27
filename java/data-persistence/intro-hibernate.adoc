@@ -40,7 +40,7 @@ image::/assets/img/java/data-persistence/intro-hibernate/session.png[Session]
 
 *Transient Objects and Collections* - временные Объекты и Коллекции. Экземпляры долгоживущих (persistent) классов, которые в данный момент не ассоциированы с сессией (`Session`).
 
-image::/assets/img/java/data-persistence/intro-hibernate/object-lifecycle.jpeg[Session Lifecycle]
+image::/assets/img/java/data-persistence/intro-hibernate/object-lifecycle.png[Session Lifecycle]
 
 === `Transaction`
 
