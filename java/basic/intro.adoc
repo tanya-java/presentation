@@ -1,0 +1,54 @@
+# Intro to Java
+
+## Problem
+
+[.step]
+* PC understand: 0110010101001010
+* Human understand: Programming Languages
+
+## Compiler
+
+### Compiler
+
+image::/assets/img/java/basic/intro/compiler.jpg[Compiler]
+
+### Cross-platform Java
+
+image::/assets/img/java/basic/intro/java-compiler-interpretator.jpg.jpg[Cross-platform Java]
+
+### Java versions
+
+image::/assets/img/java/basic/intro/java-versions.png[Java versions]
+
+## Check Setting Environment
+
+### JRE
+
+[.step]
+[source,sh]
+----
+java --version
+----
+
+[.step]
+[source,sh]
+----
+openjdk version "11.0.7" 2020-04-14
+OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.7+10)
+OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.7+10, mixed mode)
+[source,sh]
+----
+
+### JDK
+
+[.step]
+[source,sh]
+----
+javac --version
+----
+
+[.step]
+[source,sh]
+----
+javac 11.0.7
+----
