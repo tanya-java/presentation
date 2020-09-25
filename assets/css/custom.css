@@ -42,3 +42,12 @@ p.tableblock {
     text-align: center;
     font-size: 0.7em;
 }
+
+.columns .slide-content>.column {
+    --padding-value: 0.75rem;
+    padding: var(--padding-value) !important;
+}
+
+div.column {
+    width: calc(33.3333% - 2* var(--padding-value, 0)) !important;
+}

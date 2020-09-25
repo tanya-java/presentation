@@ -21,14 +21,15 @@
 
 == Course: Basics Java [[course-java-basics]]
 
-1. link:./java/basic/annotations.html[Annotations]
-2. link:./java/basic/collection.html[Collection]
-3. link:./java/basic/java-io.html[Java IO]
-4. link:./java/basic/lambda-expressions.html[Lambda Expressions]
-5. link:./java/basic/multithreading.html[Multithreading]
-6. link:./java/basic/networking.html[Networking]
-7. link:./java/basic/oop.html[OOP]
-8. link:./java/basic/stream-api.html[Stream API]
+1. link:./java/basic/intro.html[Intro]
+2. link:./java/basic/annotations.html[Annotations]
+3. link:./java/basic/collection.html[Collection]
+4. link:./java/basic/java-io.html[Java IO]
+5. link:./java/basic/lambda-expressions.html[Lambda Expressions]
+6. link:./java/basic/multithreading.html[Multithreading]
+7. link:./java/basic/networking.html[Networking]
+8. link:./java/basic/oop.html[OOP]
+9. link:./java/basic/stream-api.html[Stream API]
 
 == Course: Java for Desktop [[course-java-desktop]]
 
