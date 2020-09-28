@@ -1,0 +1,230 @@
+= Data Types
+
+== Java
+
+=== Java
+
+*Java* - *строго типизированный* язык программирования.
+
+== Variables
+
+=== Variables
+
+[.step]
+* *Переменная* (*variable*) - это именованная *ячейка памяти*, содержимое которой может изменяться.
+* При объявлении переменной сначала указывается *data type* (*тип данных*) переменной, а затем *identifier* (*идентификатор*) задаваемой переменной, например: `int age`.
+
+=== Типы данных
+
+Типы данных в языке Java делятся на:
+
+[.step]
+* *primitive* (*примитивные*)
+* *reference* (*ссылочные*)
+
+=== Типы данных
+
+Существует несколько предопределённых примитивных типов:
+
+[.step]
+* `boolean` - логический
+* `byte` - целочисленный
+* `char` - символьный
+* `short` - целочисленный
+* `int` - целочисленный
+* `long` - целочисленный
+* `float` - числовой, с плавающей точкой
+* `double` - числовой, с плавающей точкой
+
+=== Типы данных в языке Java
+
+Все остальные типы - *ссылочные*. Если быть точным, то любой `Object`
+
+=== Примитивные типы данных
+
+|====
+|Тип|Размер (байт)|По умолчанию|Мин|Макс
+|`boolean`|1|`false`|-|-
+|`char`|2|`\u0000`|Unicode 0|Unicode 2^16-1
+|`byte`|1|`0`|`-128`|`127`
+|`short`|2|`0`|-2^15|2^15 - 1
+|`int`|4|`0`|-2^31|2^31 - 1
+|`long`|8|`0`|-2^63|2^63 - 1
+|`float`|4|`0.0`|1.4E-45|1.4E+38
+|`double`|8|`0.0`|4.9E-324|1.8E+308
+|====
+
+== Definition and Initialization
+
+=== Definition and Initialization
+
+[.fragment]
+[source,java]
+----
+int x; // объявление переменной
+x = 10; // присвоения значения
+System.out.println(x); // 10
+----
+
+=== Definition and Initialization
+
+[.fragment]
+[source,java]
+----
+int x = 10; // объявление и инициализация переменной
+System.out.println(x); // 10
+----
+
+=== Definition and Initialization
+
+[.fragment]
+[source,java]
+----
+int x;
+System.out.println(x); // java: variable x might not have been initialized
+----
+
+=== Definition and Initialization
+
+[.fragment]
+[source,java]
+----
+int x, y;
+x = 10;
+y = 25;
+System.out.println(x); // 10
+System.out.println(y); // 25
+----
+
+=== Definition and Initialization
+
+[.fragment]
+[source,java]
+----
+int x = 8, y = 15;
+System.out.println(x); // 8
+System.out.println(y); // 15
+----
+
+== Literals
+
+=== Literals
+
+*Литералы* - это явно заданные значения в коде программы. Фактически, константы определенного типа, которые находятся в коде в момент запуска.
+
+=== Literals
+
+[.fragment]
+[source,java]
+----
+class Test {
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+    }
+}
+----
+
+=== Типы литералов
+
+[.step]
+* Числовые:
+[.step]
+** Целочисленные;
+** С плавающей точкой;
+* Строковые;
+* Символьные;
+* Логические.
+
+=== Literal type `long`
+
+[.fragment]
+[source,java]
+----
+long x = 1342352352351351353; // Ошибка
+long b = 1342352352351351353L; // Все в порядке
+----
+
+=== Literal type `float`
+
+[.fragment]
+[source,java]
+----
+float a = 2.718281828459045; // Ошибка
+float d = 2.718281828459045F; // Все в порядке
+----
+
+=== Literal type `double`
+
+[.fragment]
+[source,java]
+----
+double a = 2.718281828459045; // Тип double в классическом виде
+double d = 4.05E-13; // Тип double в научном виде
+----
+
+=== Literal type `char`
+
+[.fragment]
+[source,java]
+----
+char a = '&';
+char d = '\u00F7';
+----
+
+=== Другие системы счисления
+
+[.fragment]
+[source,java]
+----
+int num111 = 0x6F; // 16-тиричная система, число 111
+int num8 = 010; // 8-ричная система, число 8
+int num13 = 0b1101; // 2-ичная система, число 13
+----
+
+=== Поразрядное разделение
+
+[.fragment]
+[source,java]
+----
+int x = 123_456;
+int y = 234_567__789;
+System.out.println(x); // 123456
+System.out.println(y); // 234567789
+----
+
+== Ключевое слово `var`
+
+=== Ключевое слово `var` (`@since 10`)
+
+[.fragment]
+[source,java]
+----
+var x = 10;
+System.out.println(x); // 10
+----
+
+=== Ключевое слово `var` (`@since 10`)
+
+[.fragment]
+[source,java]
+----
+var x; // ! Ошибка, переменная не инициализирована
+x = 10;
+----
+
+== Constants
+
+=== Constants
+
+[.step]
+* Кроме переменных, в Java для хранения данных можно использовать *константы*.
+* Константы позволяют задать такие переменные, которые не должны больше изменяться.
+* В отличие от переменных константам можно присвоить значение только один раз.
+* Как правило, константы имеют имена в **ВЕРХНЕМ_РЕГИСТРЕ**.
+* Объявляется как и переменные, но только с служебным словом `final`: `final int LIMIT`.
+
+== Преобразование типов
+
+=== Преобразование типов
+
+image::/assets/img/java/basic/data-types/type-casting.png[Type casting]

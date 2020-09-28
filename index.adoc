@@ -22,6 +22,11 @@
 == Course: Basics Java [[course-java-basics]]
 
 1. link:./java/basic/intro.html[Intro]
+2. link:./java/basic/data-types.html[Data Types]
+
+== Course: Basics Java [[course-java-basics-2]]
+
+1. ***
 2. link:./java/basic/annotations.html[Annotations]
 3. link:./java/basic/collection.html[Collection]
 4. link:./java/basic/java-io.html[Java IO]
