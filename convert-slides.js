@@ -9,10 +9,11 @@ var options = {
     backend: 'revealjs',
     attributes: [
         'revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@3.9.2',
-        'customcss=/assets/css/custom.css',
         'revealjs_theme=white',
         'revealjs_slideNumber=true',
         'source-highlighter=highlightjs',
+        'highlightjs-theme=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/vs.min.css',
+        'customcss=/assets/css/custom.css',
         'highlightjs-languages: xml, java, json, html, css'
     ]
 }
