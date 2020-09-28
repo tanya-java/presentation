@@ -25,7 +25,12 @@
 .reveal h2 code,
 .reveal h3 code,
 .reveal p code {
-    color: rgb(200, 0, 0)
+    color: rgb(200, 0, 0);
+}
+
+.reveal pre code {
+    font-size: 1.2em;
+    line-height: 1.2em;
 }
 
 .reveal h1,
