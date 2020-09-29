@@ -1,0 +1,241 @@
+= Conditional statements
+
+== Conditional statements
+
+=== Problem
+
+[.step]
+* Последовательное (линейное) выполнение программы (алгоритма) позволяет решать ограниченный круг задач.
+
+=== Solution
+[.step]
+*
+
+== `if` statement
+
+=== Syntax
+
+[source,java]
+----
+if (condition) {
+    // execute this code if the condition is true
+}
+----
+
+=== Example
+
+[source,java]
+----
+if (20 > 18) {
+    System.out.println("20 is greater than 18");
+}
+----
+
+=== Example
+
+[source,java]
+----
+int x = 20;
+int y = 18;
+if (x > y) {
+    System.out.println("x is greater than y");
+}
+----
+
+== The `if ... else` statement
+
+=== Syntax
+
+[source,java]
+----
+if (condition) {
+    // execute this code if the condition is true
+} else {
+    // execute this code if the condition is false
+}
+----
+
+=== Example
+
+[source,java]
+----
+int time = 20;
+if (time < 18) {
+    System.out.println("Good day.");
+} else {
+    System.out.println("Good evening.");
+}
+// Outputs "Good evening."
+----
+
+== Inner `if` statement
+
+=== Syntax
+
+[source,java]
+----
+if (condition1) {
+    if (condition2) {
+        // execute this code if the condition1 AND condition2 is true
+    } else {
+        // execute this code if the condition1 AND condition2 is false
+    }
+} else {
+    // execute this code if the condition1 is false
+}
+----
+
+=== Example
+
+[source,java]
+----
+if (a > b) {
+    if (a > c) {
+        System.out.println("max number:" + a);
+    } else {
+        System.out.println("max number:" + c);
+    }
+} else {
+    if (b > c) {
+        System.out.println("max number:" + b);
+    } else {
+        System.out.println("max number:" + c);
+    }
+}
+----
+
+== The `if ... else if` statement
+
+=== Syntax
+[source,java]
+----
+if (condition1) {
+    // execute this code if condition1 is true
+} else if (condition2) {
+    // execute this code if the condition1 is false and condition2 is true
+} else {
+    // execute this code if the condition1 is false and condition2 is false
+}
+----
+
+=== Example
+
+[source,java]
+----
+int time = 22;
+if (time < 10) {
+    System.out.println("Good morning.");
+} else if (time < 20) {
+    System.out.println("Good day.");
+} else {
+    System.out.println("Good evening.");
+}
+// Outputs "Good evening."
+----
+
+== `switch` statement
+
+=== Syntax
+[source,java]
+----
+switch(expression) {
+case x:
+    // code block
+    break;
+case y:
+    // code block
+    break;
+default:
+    // code block
+}
+----
+
+=== Example
+
+[source,java]
+----
+int day = 4;
+switch (day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+    case 2:
+        System.out.println("Tuesday");
+        break;
+    case 3:
+        System.out.println("Wednesday");
+        break;
+    case 4:
+        System.out.println("Thursday");
+        break;
+    case 5:
+        System.out.println("Friday");
+        break;
+    case 6:
+        System.out.println("Saturday");
+        break;
+    case 7:
+        System.out.println("Sunday");
+        break;
+}
+// Outputs "Thursday" (day 4)
+----
+
+
+== The `break` keyword
+
+=== Example
+[source,java]
+----
+int day = 4;
+switch (day) {
+    case 6:
+        System.out.println("Today is Saturday");
+        break;
+    case 7:
+        System.out.println("Today is Sunday");
+        break;
+    default:
+        System.out.println("Looking forward to the Weekend");
+}
+// Outputs "Looking forward to the Weekend"
+----
+
+== Short hand `if ... else` (*Ternary Operator*)
+
+=== Ternary Operator
+
+image:/assets/img/java/basic/conditional-statements/ternary-operator.svg[Ternary Operator,200%]
+
+=== Syntax
+[source,java]
+----
+variable = (condition) ? expressionTrue : expressionFalse;
+
+variable = (condition)
+        ? expressionTrue
+        : expressionFalse;
+----
+
+=== Example
+
+[source,java]
+----
+int time = 20;
+if (time < 18) {
+    System.out.println("Good day.");
+} else {
+    System.out.println("Good evening.");
+}
+----
+
+=== Example
+
+[source,java]
+----
+int time = 20;
+String result = (time < 18)
+    ? "Good day."
+    : "Good evening.";
+System.out.println(result);
+----

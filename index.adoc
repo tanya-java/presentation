@@ -25,6 +25,7 @@
 2. link:./java/basic/data-types.html[Data Types]
 3. link:./java/basic/operators.html[Operators]
 4. link:./java/basic/methods.html[Methods]
+5. link:./java/basic/conditional-statements.html[Conditional statements]
 
 == Course: Basics Java [[course-java-basics-2]]
 
