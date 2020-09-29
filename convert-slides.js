@@ -23,9 +23,12 @@ asciidoctor.convertFile('./common/scrum.adoc', options)
 asciidoctor.convertFile('./html-and-css/form.adoc', options)
 asciidoctor.convertFile('./html-and-css/link.adoc', options)
 asciidoctor.convertFile('./html-and-css/text-markup.adoc', options)
+
+// Course: "Java Basics"
 asciidoctor.convertFile('./java/basic/intro.adoc', options)
 asciidoctor.convertFile('./java/basic/data-types.adoc', options)
 asciidoctor.convertFile('./java/basic/operators.adoc', options)
+asciidoctor.convertFile('./java/basic/methods.adoc', options)
 asciidoctor.convertFile('./java/basic/annotations.adoc', options)
 asciidoctor.convertFile('./java/basic/collection.adoc', options)
 asciidoctor.convertFile('./java/basic/java-io.adoc', options)
@@ -34,6 +37,8 @@ asciidoctor.convertFile('./java/basic/multithreading.adoc', options)
 asciidoctor.convertFile('./java/basic/networking.adoc', options)
 asciidoctor.convertFile('./java/basic/oop.adoc', options)
 asciidoctor.convertFile('./java/basic/stream-api.adoc', options)
+
+// Course: "Java with Jakarta EE"
 asciidoctor.convertFile('./java/jakarta-ee/java-enterprise.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/apache-tomcat.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/servlet.adoc', options)
