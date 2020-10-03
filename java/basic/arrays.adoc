@@ -1,0 +1,173 @@
+= Arrays
+
+== Arrays
+
+=== Arrays
+
+image:/assets/img/java/arrays/arrays.png[Arrays]
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+тип_данных[] название_массива;
+// либо
+тип_данных []название_массива;
+// либо
+тип_данных название_массива[];
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] array1; // best practice
+int []array2;
+int array3[];
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int nums[]; // объявили
+nums = new int[4]; // инициализировали (массив из 4 чисел)
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+// объявим и инициализируем массив из 4 чисел
+int nums[] = new int[4];
+// объявим и инициализируем массив из 15 чисел
+int[] nums2 = new int[15];
+----
+
+=== ArrExampleays
+
+[.fragment]
+[source,java]
+----
+// объявим и инициализируем массив из 4 чисел
+int[] nums = new int[4];
+// инициализируем 0-ой элемент массива
+nums[0] = 1;
+// инициализируем 1-ый элемент массива
+nums[1] = 2;
+// инициализируем 2-ой элемент массива
+nums[2] = 4;
+// инициализируем 3-ий элемент массива
+nums[3] = 100;
+System.out.println(nums[2]); // 4
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+// эти два способа равноценны
+int[] nums = new int[] {1, 2, 3, 5};
+int[] nums2 = {1, 2, 3, 5};
+----
+
+== Multidimensional Arrays
+
+=== Multidimensional Arrays
+
+image:/assets/img/java/arrays/arrays-2d.jpg[Multidimensional Arrays]
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+int[][] array1;
+int [][]array2;
+int array3[][];
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums1 = new int[] {0, 1, 2, 3, 4, 5};
+int[][] nums2 = {{0, 1, 2}, {3, 4, 5}};
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[][] nums2 = {{0, 1, 2}, {3, 4, 5}};
+
+// установим элемент первого столбца второй строки
+nums2[1][0] = 44;
+System.out.println(nums2[1][0]);
+----
+
+=== Multidimensional Arrays
+
+image:/assets/img/java/arrays/arrays-2d-variable-length.jpg[Multidimensional Arrays]
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[][] nums = new int[3][];
+nums[0] = new int[2];
+nums[1] = new int[3];
+nums[2] = new int[5];
+...
+----
+
+== Default initialization for Array
+
+=== Default initialization for Array
+
+|===
+|initialization|content
+|new boolean[3]|{false, false, false}
+|new int[3]|{0, 0, 0}
+|new double[3]|{0.0, 0.0, 0.0}
+|new String[3]|{null, null, null}
+|new int[3][]|{null, null, null}
+|===
+
+== Class `Arrays`
+
+=== Methods for class `Arrays`
+
+Methods:
+
+- `String toString(T[])`
+- `String toString(T[])`
+- `T[] copyOf(T[], int)`
+- `T[] copyOfRange(T[], int, int)`
+- `void sort(T[])`
+- `void sort(T[], int, int)`
+- `int binarySearch(T[], T)`
+- `int binarySearch(T[], int, int, T)`
+
+
+=== Methods for class `Arrays`
+
+Methods:
+
+- `void fill(T[], T)`
+- `void fill(T[], int, int, T)`
+- `boolean equals(T[], T[])`
+- `boolean equals(T[], int, int, T[], int, int)`
+- `int compare(T[], T[])`
+- `int compare(T[], int, int, T[], int, int)`
+- `boolean deepEquals(Object[], Object[])`
+- `List<T> asList(T ...)`
+

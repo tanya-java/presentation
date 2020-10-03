@@ -27,6 +27,7 @@
 4. link:./java/basic/methods.html[Methods]
 5. link:./java/basic/conditional-statements.html[Conditional statements]
 6. link:./java/basic/loops.html[Loops]
+7. link:./java/basic/arrays.html[Arrays]
 
 == Course: Basics Java [[course-java-basics-2]]
 
