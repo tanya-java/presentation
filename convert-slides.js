@@ -38,6 +38,7 @@ asciidoctor.convertFile('./java/basic/oop-inheritance-and-polymorphism.adoc', op
 asciidoctor.convertFile('./java/basic/generics.adoc', options)
 asciidoctor.convertFile('./java/basic/enum.adoc', options)
 asciidoctor.convertFile('./java/basic/collection.adoc', options)
+asciidoctor.convertFile('./java/basic/exception-handling.adoc', options)
 asciidoctor.convertFile('./java/basic/java-io.adoc', options)
 asciidoctor.convertFile('./java/basic/multithreading.adoc', options)
 asciidoctor.convertFile('./java/basic/lambda-expressions.adoc', options)

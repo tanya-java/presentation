@@ -37,12 +37,13 @@
 * link:./java/basic/generics.html[Generics]
 * link:./java/basic/enum.html[Enum]
 * link:./java/basic/collection.html[Java Collection Framework]
+* link:./java/basic/exception-handling.html[Exception Handling]
 * link:./java/basic/java-io.html[Java IO]
-* link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/multithreading.html[Multithreading]
 
 == Course: Basics Java [[course-java-basics-3]]
 
+* link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/stream-api.html[Stream API]
 * link:./java/basic/annotations.html[Annotations]
 * link:./java/basic/networking.html[Networking]
