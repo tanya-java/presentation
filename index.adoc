@@ -29,6 +29,7 @@
 6. link:./java/basic/loops.html[Loops]
 7. link:./java/basic/arrays.html[Arrays]
 8. link:./java/basic/oop-classes-and-objects.html[OOP]
+9. link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
 
 == Course: Basics Java [[course-java-basics-2]]
 
