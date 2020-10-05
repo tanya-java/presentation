@@ -92,6 +92,7 @@
 * link:./html-and-css/text-markup.html[Text Markup]
 * link:./html-and-css/link.html[Link]
 * link:./html-and-css/form.html[Form]
+* link:./html-and-css/html-tables.html[Tables]
 
 == Course: JavaScript Basic [[course-javascript-basic]]
 

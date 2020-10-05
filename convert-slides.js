@@ -30,6 +30,7 @@ asciidoctor.convertFile('./common/solid.adoc', options)
 asciidoctor.convertFile('./html-and-css/form.adoc', options)
 asciidoctor.convertFile('./html-and-css/link.adoc', options)
 asciidoctor.convertFile('./html-and-css/text-markup.adoc', options)
+asciidoctor.convertFile('./html-and-css/html-tables.adoc', options)
 
 // Course: "Java Basics"
 asciidoctor.convertFile('./java/basic/intro.adoc', options)
