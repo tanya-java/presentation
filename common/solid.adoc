@@ -1,0 +1,21 @@
+= SOLID
+
+== SRP (single responsibility principle)
+
+image::/assets/img/common/solid/SRP.jpg[SRP]
+
+== OCP (open–closed principle)
+
+image::/assets/img/common/solid/OCP.jpg[OCP]
+
+== LSP (Liskov substitution principle))
+
+image::/assets/img/common/solid/LSP.jpg[LSP]
+
+== ISP(interface segregation principle)
+
+image::/assets/img/common/solid/ISP.jpg[ISP]
+
+== DIP (dependency inversion principle)
+
+image::/assets/img/common/solid/DIP.jpg[DIP]

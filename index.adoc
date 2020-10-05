@@ -20,6 +20,7 @@
 * link:./common/design-patterns.html[Design Patterns]
 * link:./common/programming-languages.html[Programming languages]
 * link:./common/scrum.html[Scrum]
+* link:./common/solid.html[SOLID]
 
 == Course: Basics Java [[course-java-basics]]
 

@@ -24,6 +24,7 @@ asciidoctor.convertFile('./index.adoc', options)
 asciidoctor.convertFile('./common/design-patterns.adoc', options)
 asciidoctor.convertFile('./common/programming-languages.adoc', options)
 asciidoctor.convertFile('./common/scrum.adoc', options)
+asciidoctor.convertFile('./common/solid.adoc', options)
 
 // Course: "HTML and CSS"
 asciidoctor.convertFile('./html-and-css/form.adoc', options)
