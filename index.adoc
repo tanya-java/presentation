@@ -28,6 +28,7 @@
 5. link:./java/basic/conditional-statements.html[Conditional statements]
 6. link:./java/basic/loops.html[Loops]
 7. link:./java/basic/arrays.html[Arrays]
+8. link:./java/basic/oop-classes-and-objects.html[OOP]
 
 == Course: Basics Java [[course-java-basics-2]]
 
@@ -38,7 +39,7 @@
 5. link:./java/basic/lambda-expressions.html[Lambda Expressions]
 6. link:./java/basic/multithreading.html[Multithreading]
 7. link:./java/basic/networking.html[Networking]
-8. link:./java/basic/oop.html[OOP]
+8. ***
 9. link:./java/basic/stream-api.html[Stream API]
 
 == Course: Java for Desktop [[course-java-desktop]]

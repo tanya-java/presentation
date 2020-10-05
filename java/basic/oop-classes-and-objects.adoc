@@ -2,14 +2,29 @@
 
 == Intro
 
+== Problem
+
+=== Структурное программирование
+
+Принцип: код воздействует на данные
+
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/structured-programming.svg[Structured Programming]
+
+=== Solution
+
 === Объектно-ориентированное программирование
 
 Принцип: данные управляют доступом к коду
 
-image::/assets/img/java/basic/oop/oop-01.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-01.png[OOP]
+
+== Классы и объекты
 
 === Классы и объекты
 
+[.step]
 *Класс* - это_шаблон_ для создания объектов
 *Объект* - это _экземпляр_ класса
 _Функция_, созданная внутри класса, называется *метод*
@@ -17,6 +32,7 @@ _Переменная_, созданная внутри класса, назыв
 
 === Нужно ли всегда создавать объекты?
 
+[.step]
 * Даже если программа простейшая – всегда нужно создавать объекты и писать код в стиле ООП
 * Это должно быть привычкой
 * В программе не должно быть лишних объектов
@@ -24,6 +40,7 @@ _Переменная_, созданная внутри класса, назыв
 
 === Модификаторы доступа
 
+[.step]
 * `public`- доступно из любого места. Чаще всего для внешнего интерфейса.
 * `protected`- внутри пакета и в дочерних классах
 * _default_ - доступно внутри пакета – использовать нежелательно
@@ -33,16 +50,19 @@ _Переменная_, созданная внутри класса, назыв
 
 Открытая часть класса, с помощью которой другие классы могут с ним взаимодействовать
 
-image::/assets/img/java/basic/oop/oop-02.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-02.png[OOP]
 
 === Инкапсуляция
 
 Ограничение доступа одних компонентов программы к другим
 
-image::/assets/img/java/basic/oop/oop-03.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-03.png[OOP]
 
 === Конструктор
 
+[.step]
 * Конструктор и метод внешне похожи
 * Конструктор имеет имя как у класса
 * Если конструктор не указан – компилятор создаст конструктор по умолчанию
@@ -54,14 +74,17 @@ image::/assets/img/java/basic/oop/oop-03.png[OOP]
 
 === non `static`
 
-image::/assets/img/java/basic/oop/oop-04.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-04.png[OOP]
 
 === `static`
 
-image::/assets/img/java/basic/oop/oop-05.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-05.png[OOP]
 
 === Ключевое слово `static`
 
+[.step]
 * Статичному элементу запрещено использовать нестатичные переменные и методы класса.
 * Статичные элементы не манипулируют свойствами объекта и не привязаны к конкретному объекту.
 * Статичные методы и свойства можно вызывать:
@@ -74,8 +97,10 @@ image::/assets/img/java/basic/oop/oop-05.png[OOP]
 
 === Композиция
 
-image::/assets/img/java/basic/oop/oop-06.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-06.png[OOP]
 
 === Композиция
 
-image::/assets/img/java/basic/oop/oop-07.png[OOP]
+[.fragment]
+image::/assets/img/java/basic/oop/classes-and-objects/oop-07.png[OOP]
