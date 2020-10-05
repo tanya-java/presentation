@@ -1,0 +1,606 @@
+= Generics
+
+== Generics
+
+=== Identificator: `Number` vs. `String`: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account acc1 = new Account(2334, 5000);
+        int acc1Id = (int) acc1.getId();
+        System.out.println(acc1Id);
+
+        Account acc2 = new Account("sid5523", 5000);
+        System.out.println(acc2.getId());
+    }
+}
+
+class Account {
+    private Object id;
+    private int sum;
+
+    Account(Object id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public Object getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Generics: example
+
+[.fragment]
+[source,java]
+----
+class Account<T> {
+    private T id;
+    private int sum;
+
+    Account(T id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Generics: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account<String> acc1 = new Account<String>("2345", 5000);
+        String acc1Id = acc1.getId();
+        System.out.println(acc1Id);
+
+        Account<Integer> acc2 = new Account<Integer>(2345, 5000);
+        Integer acc2Id = acc2.getId();
+        System.out.println(acc2Id);
+    }
+}
+
+class Account<T> {
+    private T id;
+    private int sum;
+
+    Account(T id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Generics and interfaces: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Accountable<String> acc1 = new Account("1235rwr", 5000);
+        Account acc2 = new Account("2373", 4300);
+        System.out.println(acc1.getId());
+        System.out.println(acc2.getId());
+    }
+}
+
+interface Accountable<T> {
+    T getId();
+
+    int getSum();
+
+    void setSum(int sum);
+}
+
+class Account implements Accountable<String> {
+    private String id;
+    private int sum;
+
+    Account(String id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Generics and methods: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Printer printer = new Printer();
+        String[] people = {"Tom", "Alice", "Sam", "Kate", "Bob", "Helen"};
+        Integer[] numbers = {23, 4, 5, 2, 13, 456, 4};
+        printer.<String>print(people);
+        printer.<Integer>print(numbers);
+    }
+}
+
+class Printer {
+    public <T> void print(T[] items) {
+        for (T item : items) {
+            System.out.println(item);
+        }
+    }
+}
+----
+
+=== Generics and constructors: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account acc1 = new Account("cid2373", 5000);
+        Account acc2 = new Account(53757, 4000);
+        System.out.println(acc1.getId());
+        System.out.println(acc2.getId());
+    }
+}
+
+class Account {
+    private String id;
+    private int sum;
+
+    <T> Account(T id, int sum) {
+        this.id = id.toString();
+        this.sum = sum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Multiple Generics: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account<String, Double> acc1 = new Account<String, Double>("354", 5000.87);
+        String id = acc1.getId();
+        Double sum = acc1.getSum();
+        System.out.printf("Id: %s  Sum: %f \n", id, sum);
+    }
+}
+
+class Account<T, S> {
+    private T id;
+    private S sum;
+
+    Account(T id, S sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public S getSum() {
+        return sum;
+    }
+
+    public void setSum(S sum) {
+        this.sum = sum;
+    }
+}
+----
+
+== Limitations of Generics
+
+=== Limitation with superclass: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account acc1 = new Account("1876", 4500);
+        Account acc2 = new Account("3476", 1500);
+
+        Transaction<Account> tran1 = new Transaction<Account>(acc1, acc2, 4000);
+        tran1.execute();
+        tran1 = new Transaction<Account>(acc1, acc2, 4000);
+        tran1.execute();
+    }
+}
+
+class Transaction<T extends Account> {
+    private T from;
+    private T to;
+    private int sum;
+
+    Transaction(T from, T to, int sum) {
+        this.from = from;
+        this.to = to;
+        this.sum = sum;
+    }
+
+    public void execute() {
+        if (from.getSum() > sum) {
+            from.setSum(from.getSum() - sum);
+            to.setSum(to.getSum() + sum);
+            System.out.printf("Account %s: %d \nAccount %s: %d \n", from.getId(), from.getSum(), to.getId(), to.getSum());
+        } else {
+            System.out.printf("Operation is invalid");
+        }
+    }
+}
+
+class Account {
+    private String id;
+    private int sum;
+
+    Account(String id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Limitation with Generic Types: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account<String> acc1 = new Account<String>("1876", 4500);
+        Account<String> acc2 = new Account<String>("3476", 1500);
+
+        Transaction<Account<String>> tran1 = new Transaction<Account<String>>(acc1, acc2, 4000);
+        tran1.execute();
+        tran1 = new Transaction<Account<String>>(acc1, acc2, 4000);
+        tran1.execute();
+    }
+}
+
+class Transaction<T extends Account<String>> {
+    private T from;
+    private T to;
+    private int sum;
+
+    Transaction(T from, T to, int sum) {
+        this.from = from;
+        this.to = to;
+        this.sum = sum;
+    }
+
+    public void execute() {
+        if (from.getSum() > sum) {
+            from.setSum(from.getSum() - sum);
+            to.setSum(to.getSum() + sum);
+            System.out.printf("Account %s: %d \nAccount %s: %d \n", from.getId(), from.getSum(), to.getId(), to.getSum());
+        } else {
+            System.out.printf("Operation is invalid");
+        }
+    }
+}
+
+class Account<T> {
+    private T id;
+    private int sum;
+
+    Account(T id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public T getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+----
+
+=== Limitation with Interfaces: example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Account acc1 = new Account("1235rwr", 5000);
+        Account acc2 = new Account("2373", 4300);
+        Transaction<Account> tran1 = new Transaction<Account>(acc1, acc2, 1560);
+        tran1.execute();
+    }
+}
+
+interface Accountable {
+    String getId();
+
+    int getSum();
+
+    void setSum(int sum);
+}
+
+class Account implements Accountable {
+    private String id;
+    private int sum;
+
+    Account(String id, int sum) {
+        this.id = id;
+        this.sum = sum;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public void setSum(int sum) {
+        this.sum = sum;
+    }
+}
+
+class Transaction<T extends Accountable> {
+    private T from;
+    private T to;
+    private int sum;
+
+    Transaction(T from, T to, int sum) {
+        this.from = from;
+        this.to = to;
+        this.sum = sum;
+    }
+
+    public void execute() {
+        if (from.getSum() > sum) {
+            from.setSum(from.getSum() - sum);
+            to.setSum(to.getSum() + sum);
+            System.out.printf("Account %s: %d \nAccount %s: %d \n",
+                    from.getId(), from.getSum(), to.getId(), to.getSum());
+        } else {
+            System.out.printf("Operation is invalid");
+        }
+    }
+}
+----
+
+
+=== Multiple Limitations: example
+
+[.fragment]
+[source,java]
+----
+class Person {
+}
+
+interface Accountable {
+}
+
+class Transaction<T extends Person & Accountable> {
+}
+----
+
+== Inheritance and Generics
+
+=== Basic generic class: example
+
+[.fragment]
+[source,java]
+----
+class Account<T> {
+    private T id;
+
+    public T getId() {
+        return this.id;
+    }
+
+    public Account(T id) {
+        this.id = id;
+    }
+}
+
+class DepositAccount<T> extends Account<T> {
+    public DepositAccount(T id) {
+        super(id);
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        DepositAccount dAccount1 = new DepositAccount(20);
+        System.out.println(dAccount1.getId());
+                
+        DepositAccount dAccount2 = new DepositAccount("12345");
+        System.out.println(dAccount2.getId());
+    }
+}
+----
+
+=== Basic generic class: example
+
+[.fragment]
+[source,java]
+----
+class Account<T> {
+    private T id;
+
+    public T getId() {
+        return this.id;
+    }
+
+    public Account(T id) {
+        this.id = id;
+    }
+}
+
+class DepositAccount<T, S> extends Account<T> {
+    private S name;
+
+    public S getName() {
+        return this.name;
+    }
+
+    public DepositAccount(T id, S name) {
+        super(id);
+        this.name = name;
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        DepositAccount<Integer, String> dAccount1 = new DepositAccount(20, "Tom");
+        System.out.println(dAccount1.getId() + " : " + dAccount1.getName());
+                    
+        DepositAccount<String, Integer> dAccount2 = new DepositAccount("12345", 23456);
+        System.out.println(dAccount2.getId() + " : " + dAccount2.getName());
+    }
+}
+----
+
+=== Generic subclass: example
+
+[.fragment]
+[source,java]
+----
+class Account {
+    private String name;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Account(String name) {
+        this.name = name;
+    }
+}
+
+class DepositAccount<T> extends Account {
+    private T id;
+
+    public T getId() {
+        return this.id;
+    }
+
+    public DepositAccount(String name, T id) {
+        super(name);
+        this.id = id;
+    }
+}
+----
+
+=== Generic Type Converion: example
+
+[.fragment]
+[source,java]
+----
+class Account<T> {
+    private T id;
+
+    T getId() {
+        return this.id;
+    }
+
+    Account(T id) {
+        this.id = id;
+    }
+}
+
+class DepositAccount<T> extends Account<T> {
+    DepositAccount(T id) {
+        super(id);
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        DepositAccount<Integer> depAccount = new DepositAccount(10);
+        Account<Integer> account = (Account<Integer>) depAccount;
+        System.out.println(account.getId());
+
+        DepositAccount<Integer> depAccount = new DepositAccount(10);
+        Account<String> account = (Account<String>) depAccount;
+    }
+}
+----

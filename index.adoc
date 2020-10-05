@@ -34,7 +34,7 @@
 
 * link:./java/basic/strings.html[Strings]
 * link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
-* link:./java/basic/annotations.html[Annotations]
+* link:./java/basic/generics.html[Generics]
 * link:./java/basic/collection.html[Java Collection Framework]
 * link:./java/basic/java-io.html[Java IO]
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
@@ -43,6 +43,7 @@
 
 == Course: Basics Java [[course-java-basics-3]]
 
+* link:./java/basic/annotations.html[Annotations]
 * link:./java/basic/networking.html[Networking]
 
 == Course: Java for Desktop [[course-java-desktop]]
