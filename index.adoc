@@ -35,14 +35,15 @@
 * link:./java/basic/strings.html[Strings]
 * link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
 * link:./java/basic/generics.html[Generics]
+* link:./java/basic/enum.html[Enum]
 * link:./java/basic/collection.html[Java Collection Framework]
 * link:./java/basic/java-io.html[Java IO]
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/multithreading.html[Multithreading]
-* link:./java/basic/stream-api.html[Stream API]
 
 == Course: Basics Java [[course-java-basics-3]]
 
+* link:./java/basic/stream-api.html[Stream API]
 * link:./java/basic/annotations.html[Annotations]
 * link:./java/basic/networking.html[Networking]
 
