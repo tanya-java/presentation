@@ -20,6 +20,7 @@ var options = {
 
 asciidoctor.convertFile('./index.adoc', options)
 asciidoctor.convertFile('./common/scrum.adoc', options)
+asciidoctor.convertFile('./common/programming-languages.adoc', options)
 asciidoctor.convertFile('./html-and-css/form.adoc', options)
 asciidoctor.convertFile('./html-and-css/link.adoc', options)
 asciidoctor.convertFile('./html-and-css/text-markup.adoc', options)
