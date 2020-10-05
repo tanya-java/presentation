@@ -32,14 +32,18 @@
 
 == Course: Basics Java [[course-java-basics-2]]
 
+* link:./java/basic/strings.html[Strings]
 * link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
 * link:./java/basic/annotations.html[Annotations]
 * link:./java/basic/collection.html[Java Collection Framework]
 * link:./java/basic/java-io.html[Java IO]
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/multithreading.html[Multithreading]
-* link:./java/basic/networking.html[Networking]
 * link:./java/basic/stream-api.html[Stream API]
+
+== Course: Basics Java [[course-java-basics-3]]
+
+* link:./java/basic/networking.html[Networking]
 
 == Course: Java for Desktop [[course-java-desktop]]
 
