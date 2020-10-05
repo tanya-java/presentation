@@ -93,6 +93,7 @@
 * link:./html-and-css/link.html[Link]
 * link:./html-and-css/form.html[Form]
 * link:./html-and-css/html-tables.html[Tables]
+* link:./html-and-css/css-intro.html[CSS: Intro]
 
 == Course: JavaScript Basic [[course-javascript-basic]]
 
