@@ -1,8 +1,25 @@
 = Strings
 
-== Strings
+== Problem
 
-=== Strings
+[.fragment]
+Большая часть информации, которая используется в ПО является текстовой. Как работать с текстом в Java?
+
+== Class `String`
+
+=== Class `String`
+
+[.step]
+* `String` из пакета `java.lang`
+* `String` *неизменяемый* (*immutable*), т.е. после создания, его содержимое не может изменяться.
+
+[.fragment]
+[source,java]
+----
+String str = "Hello Java!";
+----
+
+=== How create `String` objects?
 
 [.fragment]
 [source,java]
@@ -18,14 +35,11 @@ System.out.println(str3); // hello
 System.out.println(str4); // come
 ----
 
-=== Strings
+=== Operator `+` for strings
 
-[.step]
-* immutable
-* immutable
-* immutable
-
-=== Strings
+[.fragment]
+Для _объектов_ и _литералов_ типа `String` определена одна операция `+` (*конкатенация*), которая объединяет
+ две строки.
 
 [.fragment]
 [source,java]
@@ -37,7 +51,7 @@ String str3 = str1 + " " + str2;
 System.out.println(str3); // Hello Java
 ----
 
-== Main methods for Strings
+== `String`: main methods
 
 === `lenght()`
 
@@ -269,7 +283,57 @@ regret
 it
 ----
 
+== String Pool
+
+=== String Pool
+
+[.fragment]
+*String Poll* (*Пул строк*) - это набор строк, который хранится в *Heap*.
+
+[.fragment]
+image:/assets/img/java/basic/string-pool.png[String Pool]
+
+=== String Pool
+
+[.step]
+* При создании объекта через оператор `new` строка не помещается в *String Pool*.
+* Для того чтобы поместить строку в *String Pool* используется метод `intern()`.
+
 == `StringBuffer` и `StringBuilder`
+
+=== Immutable `String`
+
+[.fragment]
+Класс `String` *immutable* (неизменяемый).
+
+[.fragment]
+[source,java]
+----
+String str = "Hello";
+str += " Java";
+----
+
+[.fragment]
+Код приведенный выше, приводит к тому, что создается новый объект, и содержимое обеих исходных строк в него копируется.
+
+=== `StringBuffer` и `StringBuilder`
+
+[.fragment]
+Эту проблему решают объекты типа `StringBuilder` или `StringBuffer`. Оба эти класса позволяют менять содержимое находящихся в них строк.
+
+[.fragment]
+[source,java]
+----
+String str = "Hello";
+StringBuilder strBuilder = new StringBuilder(str);
+strBuilder.append(" Java");
+----
+
+=== `StringBuffer` и `StringBuilder`
+
+[.step]
+* Класс `StringBuilder` - _NOT thread safe_ (потокоНЕбезопасный), но быстрый
+* Класс `StringBuffer` - _thread safe_ (потокобезопасный), но медленный
 
 === `StringBuffer`
 
@@ -322,7 +386,7 @@ System.out.println(strBuffer.toString()); // cava
 StringBuffer strBuffer = new StringBuffer("world");
 int startIndex = 1;
 int endIndex = 4;
-char[] buffer = new char[endIndex-startIndex];
+char[] buffer = new char[endIndex - startIndex];
 strBuffer.getChars(startIndex, endIndex, buffer, 0);
 System.out.println(buffer); // orl
 ----
@@ -410,7 +474,52 @@ strBuffer.reverse();
 System.out.println(strBuffer.toString()); // relbmessa
 ----
 
-== Regular Expression for Strings
+== Regular Expression in `String`
+
+=== `String`: `split()`
+
+[.fragment]
+[source,java]
+----
+String text = "FIFA will never regret it";
+String[] words = text.split("\\s*(\\s|,|!|\\.)\\s*");
+for (String word : words) {
+    System.out.println(word);
+}
+----
+
+=== `String`: `matches()`
+
+[.fragment]
+[source,java]
+----
+String input = "+12343454556";
+boolean result = input.matches("(\\+*)\\d{11}");
+if (result == true) {
+    System.out.println("It is a phone number");
+} else {
+    System.out.println("It is not a phone number!");
+}
+----
+
+=== `String`: `replaceAll()`
+
+[.fragment]
+[source,java]
+----
+String input = "Hello Java! Hello JavaScript! JavaSE 8.";
+String myStr =input.replaceAll("Java(\\w*)", "HTML");
+System.out.println(myStr); // Hello HTML! Hello HTML! HTML 8.
+----
+
+== Regular Expression with `Pattern` and `Matcher`
+
+=== Regular Expression with `Pattern` and `Matcher`
+
+[.step]
+* Более мощные средства, для работы с регулярными выражениями предлагают классы `Pattern` и `Matcher` из пакета `java.util.regex`.
+* Класс `Pattern` служит для хранения регулярного выражения
+* Класс `Matcher` служит для выполнения операций поиска и сравнения.
 
 === `Pattern`: `matches()`
 
@@ -423,7 +532,7 @@ public class StringsApp {
     public static void main(String[] args) {
         String input = "Hello";
         boolean found = Pattern.matches("Hello", input);
-        if(found) {
+        if (found) {
             System.out.println("Найдено");
         } else {
             System.out.println("Не найдено");
@@ -529,40 +638,4 @@ Pattern pattern = Pattern.compile("Java(\\w*)");
 Matcher matcher = pattern.matcher(input);
 String newStr = matcher.replaceAll("HTML");
 System.out.println(newStr); // Hello HTML! Hello HTML! HTML 8.
-----
-
-=== `String`: `split()`
-
-[.fragment]
-[source,java]
-----
-String text = "FIFA will never regret it";
-String[] words = text.split("\\s*(\\s|,|!|\\.)\\s*");
-for (String word : words) {
-    System.out.println(word);
-}
-----
-
-=== `String`: `matches()`
-
-[.fragment]
-[source,java]
-----
-String input = "+12343454556";
-boolean result = input.matches("(\\+*)\\d{11}");
-if (result == true) {
-    System.out.println("It is a phone number");
-} else {
-    System.out.println("It is not a phone number!");
-}
-----
-
-=== `String`: `replaceAll()`
-
-[.fragment]
-[source,java]
-----
-String input = "Hello Java! Hello JavaScript! JavaSE 8.";
-String myStr =input.replaceAll("Java(\\w*)", "HTML");
-System.out.println(myStr); // Hello HTML! Hello HTML! HTML 8.
 ----
