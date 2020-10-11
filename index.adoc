@@ -8,23 +8,7 @@
 * <<course-java-jakarta-ee, Java with Jakarta EE>>
 * <<course-java-spring-framework, Java with Spring Framework>>
 
-== Other Courses
-
-* <<course-common, Common>>
-* <<course-html-and-css, HTML and CSS>>
-* <<course-javascript-basic, JavaScript Basic>>
-* <<course-sql, SQL>>
-
-== Course: Common [[course-common]]
-
-* link:./common/design-patterns.html[Design Patterns]
-* link:./common/json.html[JSON]
-* link:./common/programming-languages.html[Programming languages]
-* link:./common/scrum.html[Scrum]
-* link:./common/solid.html[SOLID]
-* link:./common/regex.html[Regular Expression]
-
-== Course: Basics Java [[course-java-basics]]
+=== Course: Basics Java [[course-java-basics]]
 
 * link:./java/basic/intro.html[Intro]
 * link:./java/basic/data-types.html[Data Types]
@@ -35,7 +19,7 @@
 * link:./java/basic/arrays.html[Arrays]
 * link:./java/basic/oop-classes-and-objects.html[OOP: Classes and Objects]
 
-== Course: Basics Java [[course-java-basics-2]]
+=== Course: Basics Java [[course-java-basics-2]]
 
 * link:./java/basic/strings.html[Strings]
 * link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
@@ -46,16 +30,16 @@
 * link:./java/basic/java-io.html[Java IO]
 * link:./java/basic/multithreading.html[Multithreading]
 
-== Course: Basics Java [[course-java-basics-3]]
+=== Course: Basics Java [[course-java-basics-3]]
 
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/stream-api.html[Stream API]
 * link:./java/basic/annotations.html[Annotations]
 * link:./java/basic/networking.html[Networking]
 
-== Course: Java for Desktop [[course-java-desktop]]
+=== Course: Java for Desktop [[course-java-desktop]]
 
-== Course: Data Persistence in Java [[course-java-data-persistence]]
+=== Course: Data Persistence in Java [[course-java-data-persistence]]
 
 * link:./java/data-persistence/jdbc.html[(in develop)Java DataBase Connectivity (JDBC)]
 * link:./java/data-persistence/dto.html[(in develop) Data Access Object (DAO)]
@@ -66,7 +50,7 @@
 * link:./java/data-persistence/query-language.html[Query Language]
 * link:./java/data-persistence/transaction.html[(in develop) Transaction]
 
-== Course: Java with Jakarta EE [[course-java-jakarta-ee]]
+=== Course: Java with Jakarta EE [[course-java-jakarta-ee]]
 
 * link:./java/jakarta-ee/apache-maven.html[Apache Maven]
 * link:./java/jakarta-ee/apache-tomcat.html[Apache Tomcat]
@@ -77,19 +61,35 @@
 * link:./java/jakarta-ee/filter.html[Filter]
 * link:./java/jakarta-ee/i18n.html[i18n]
 
-== Course: Java with Jakarta EE [[course-java-jakarta-ee-2]]
+=== Course: Java with Jakarta EE [[course-java-jakarta-ee-2]]
 
 * link:./java/jakarta-ee/java-enterprise.html[Java Enterprise]
 * link:./java/jakarta-ee/logging.html[Logging]
 
-== Course: Java with Spring Framework [[course-java-spring-framework]]
+=== Course: Java with Spring Framework [[course-java-spring-framework]]
 
 * link:./java/spring/intro-spring.html[Intro to Spring]
 * link:./java/spring/beans.html[Beans]
 * link:./java/spring/spring-orm.html[Spring ORM]
 * link:./java/spring/spring-webmvc.html[Spring Web MVC]
 
-== Course: HTML and CSS [[course-html-and-css]]
+== Other Courses
+
+* <<course-common, Common>>
+* <<course-html-and-css, HTML and CSS>>
+* <<course-javascript-basic, JavaScript Basic>>
+* <<course-sql, SQL>>
+
+=== Course: Common [[course-common]]
+
+* link:./common/design-patterns.html[Design Patterns]
+* link:./common/json.html[JSON]
+* link:./common/programming-languages.html[Programming languages]
+* link:./common/scrum.html[Scrum]
+* link:./common/solid.html[SOLID]
+* link:./common/regex.html[Regular Expression]
+
+=== Course: HTML and CSS [[course-html-and-css]]
 
 * link:./html-and-css/text-markup.html[Text Markup]
 * link:./html-and-css/link.html[Link]
@@ -98,8 +98,8 @@
 * link:./html-and-css/css-intro.html[CSS: Intro]
 * link:./html-and-css/css-float.html[CSS: Float]
 
-== Course: JavaScript Basic [[course-javascript-basic]]
+=== Course: JavaScript Basic [[course-javascript-basic]]
 
-== Course: SQL [[course-sql]]
+=== Course: SQL [[course-sql]]
 
 * link:./sql/database-normalization.html[Database Normalization]
