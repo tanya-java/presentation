@@ -18,6 +18,7 @@
 == Course: Common [[course-common]]
 
 * link:./common/design-patterns.html[Design Patterns]
+* link:./common/json.html[JSON]
 * link:./common/programming-languages.html[Programming languages]
 * link:./common/scrum.html[Scrum]
 * link:./common/solid.html[SOLID]
