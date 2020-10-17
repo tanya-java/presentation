@@ -18,7 +18,7 @@ public Object() {}
 
 == Methods
 
-=== `getClass(): Class<?>`: example
+=== `getClass(): Class<?>`
 
 [.fragment]
 [source,java]
@@ -33,7 +33,7 @@ public class Test {
 }
 ----
 
-=== `hashCode(): int`: example
+=== `hashCode(): int`
 
 [.fragment]
 [source,java]
@@ -69,7 +69,7 @@ public String toString() {
 }
 ----
 
-=== `toString(): String`: example
+=== `toString(): String`
 
 [.fragment]
 [source,java]
@@ -90,7 +90,7 @@ class Complex {
 }
 ----
 
-=== `toString(): String`: example
+=== `toString(): String`
 
 [.fragment]
 [source,java]
@@ -103,7 +103,7 @@ public class DEmo {
 }
 ----
 
-=== `equals(Object): boolean`: example
+=== `equals(Object): boolean`
 
 [.fragment]
 [source,java]
@@ -131,7 +131,7 @@ class Complex {
 }
 ----
 
-=== `equals(Object): boolean`: example
+=== `equals(Object): boolean`
 
 [.fragment]
 [source,java]
@@ -149,7 +149,7 @@ public class Demo {
 }
 ----
 
-=== `finalize(): void`: example
+=== `finalize(): void`
 
 [.fragment]
 [source,java]
