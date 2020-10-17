@@ -23,15 +23,16 @@
 
 * link:./java/basic/strings.html[Strings]
 * link:./java/basic/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
+* link:./java/basic/class-object.html[Class `Objects`]
 * link:./java/basic/generics.html[Generics]
 * link:./java/basic/enum.html[Enum]
 * link:./java/basic/collection.html[Java Collection Framework]
 * link:./java/basic/exception-handling.html[Exception Handling]
 * link:./java/basic/java-io.html[Java IO]
-* link:./java/basic/multithreading.html[Multithreading]
 
 === Course: Basics Java [[course-java-basics-3]]
 
+* link:./java/basic/multithreading.html[Multithreading]
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/stream-api.html[Stream API]
 * link:./java/basic/annotations.html[Annotations]
