@@ -1,4 +1,4 @@
-= Inheritance and Polymorphism
+= OOP. Inheritance and Polymorphism
 
 == Problem
 
