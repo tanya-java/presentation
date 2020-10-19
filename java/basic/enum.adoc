@@ -1,13 +1,13 @@
 = Enum
 
-== Enum
+== Enum (Перечисления)
 
-=== Enum definition: example
+=== Enum definition
 
 [.fragment]
 [source,java]
 ----
-enum Day {
+public enum Day {
     MONDAY,
     TUESDAY,
     WEDNESDAY,
@@ -18,7 +18,38 @@ enum Day {
 }
 ----
 
-=== Enum: example
+=== Enum
+
+[.fragment]
+[source,java]
+----
+public enum Type {
+    SCIENCE,
+    BELLETRE,
+    PHANTASY,
+    SCIENCE_FICTION
+}
+----
+
+=== Enum
+
+[.fragment]
+[source,java]
+----
+public class Book {
+    private String name;
+    private Type bookType;
+    private String author;
+
+    public Book(String name, String author, Type type) {
+        this.bookType = type;
+        this.name = name;
+        this.author = author;
+    }
+}
+----
+
+=== Enum
 
 [.fragment]
 [source,java]
@@ -44,20 +75,14 @@ public class Program {
         }
     }
 }
+----
 
-class Book {
-    String name;
-    Type bookType;
-    String author;
+=== `values(): T[]`, `ordinal(): int`, 
 
-    Book(String name, String author, Type type) {
-        bookType = type;
-        this.name = name;
-        this.author = author;
-    }
-}
-
-enum Type {
+[.fragment]
+[source,java]
+----
+public enum Type {
     SCIENCE,
     BELLETRE,
     PHANTASY,
@@ -65,7 +90,7 @@ enum Type {
 }
 ----
 
-=== Enum methods: example
+=== `values(): T[]`, `ordinal(): int`, 
 
 [.fragment]
 [source,java]
@@ -79,16 +104,42 @@ public class Program {
         System.out.println(Type.BELLETRE.ordinal());
     }
 }
+----
 
-enum Type {
-    SCIENCE,
-    BELLETRE,
-    PHANTASY,
-    SCIENCE_FICTION
+=== Result
+
+[.fragment]
+[source,out]
+----
+SCIENCE
+BELLETRE
+PHANTASY
+SCIENCE_FICTION
+1
+----
+
+== Special cases
+
+=== Enum item as few fields
+
+[.fragment]
+[source,java]
+----
+public enum Color {
+    RED("#FF0000"), BLUE("#0000FF"), GREEN("#00FF00");
+    private String code;
+
+    public Color(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
 }
 ----
 
-=== Constructors, fields, and Enum methods: example
+=== Enum item as few fields
 
 [.fragment]
 [source,java]
@@ -99,36 +150,14 @@ public class Program {
         System.out.println(Color.GREEN.getCode());
     }
 }
-
-enum Color {
-    RED("#FF0000"), BLUE("#0000FF"), GREEN("#00FF00");
-    private String code;
-
-    Color(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
-    }
-}
 ----
 
-=== Constructors, fields, and Enum methods: example
+=== Enum item as Method
 
 [.fragment]
 [source,java]
 ----
-public class Program {
-    public static void main(String[] args) {
-        Operation op = Operation.SUM;
-        System.out.println(op.action(10, 4));
-        op = Operation.MULTIPLY;
-        System.out.println(op.action(6, 4));
-    }
-}
-
-enum Operation {
+public enum Operation {
     SUM {
         public int action(int x, int y) {
             return x + y;
@@ -146,5 +175,20 @@ enum Operation {
     };
 
     public abstract int action(int x, int y);
+}
+----
+
+=== Enum item as Method
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Operation op = Operation.SUM;
+        System.out.println(op.action(10, 4));
+        op = Operation.MULTIPLY;
+        System.out.println(op.action(6, 4));
+    }
 }
 ----
