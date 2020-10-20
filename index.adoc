@@ -26,7 +26,7 @@
 * link:./java/basic/class-object.html[Class `Objects`]
 * link:./java/basic/generics.html[Generics]
 * link:./java/basic/enum.html[Enum]
-* link:./java/basic/collection.html[Java Collection Framework]
+* link:./java/basic/collections.html[Java Collection Framework]
 * link:./java/basic/exception-handling.html[Exception Handling]
 * link:./java/basic/java-io.html[Java IO]
 
