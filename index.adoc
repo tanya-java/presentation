@@ -33,6 +33,7 @@
 === Course: Basics Java [[course-java-basics-3]]
 
 * link:./java/basic/multithreading.html[Multithreading]
+* link:./java/basic/functional-interfaces.html[Functional interfaces]
 * link:./java/basic/lambda-expressions.html[Lambda Expressions]
 * link:./java/basic/stream-api.html[Stream API]
 * link:./java/basic/annotations.html[Annotations]
