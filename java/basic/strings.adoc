@@ -26,13 +26,15 @@ String str = "Hello Java!";
 ----
 String str1 = "Java";
 String str2 = new String();
-String str3 = new String(new char[] {'h', 'e', 'l', 'l', 'o'});
-String str4 = new String(new char[] {'w', 'e', 'l', 'c', 'o', 'm', 'e'}, 3, 4);
+String str3 = new String("JVM");
+String str4 = new String(new char[] {'h', 'e', 'l', 'l', 'o'});
+String str5 = new String(new char[] {'w', 'e', 'l', 'c', 'o', 'm', 'e'}, 3, 4);
 
-System.out.println(str1); // Java
+System.out.println(str1); // 'Java'
 System.out.println(str2); //
-System.out.println(str3); // hello
-System.out.println(str4); // come
+System.out.println(str3); // 'JVM'
+System.out.println(str4); // 'hello'
+System.out.println(str5); // 'come'
 ----
 
 === Operator `+` for strings
@@ -53,7 +55,7 @@ System.out.println(str3); // Hello Java
 
 == `String`: main methods
 
-=== `lenght()`
+=== `length(): int`
 
 [.fragment]
 [source,java]
@@ -62,7 +64,7 @@ String str1 = "Java";
 System.out.println(str1.length()); // 4
 ----
 
-=== `toCharArray()`
+=== `toCharArray(): char[]`
 
 [.fragment]
 [source,java]
@@ -76,39 +78,37 @@ if (s.length() == 0) {
 }
 ----
 
-=== `isEmpty()`
+=== `isEmpty(): boolean`
 
 [.fragment]
 [source,java]
 ----
-String s = ""; // строка не указывает на объект
-if (s.length() == 0) {
-    System.out.println("String is empty");
-}
-
-String s = null; // строка не указывает на объект
-if(s == null) {
-    System.out.println("String is null");
+public boolean isEmpty() {
+    return value.length == 0;
 }
 ----
 
-=== `isEmpty()`
+=== `isEmpty(): boolean`
 
 [.fragment]
 [source,java]
 ----
 String s = null; // строка не указывает на объект
-if (s.length() == 0) { // NullPointerException
-    System.out.println("String is empty");
-}
-
-String s = null; // строка не указывает на объект
-if (s != null && s.length() == 0) {
+if (s.isEmpty()) { // NullPointerException
     System.out.println("String is empty");
 }
 ----
 
-=== `concat()`
+[.fragment]
+[source,java]
+----
+String s = null; // строка не указывает на объект
+if (s != null && s.isEmpty()) {
+    System.out.println("String is empty");
+}
+----
+
+=== `concat(String): String`
 
 [.fragment]
 [source,java]
@@ -118,7 +118,7 @@ String str2 = "Hello";
 str2 = str2.concat(str1); // HelloJava
 ----
 
-=== `join()`
+=== `join(CharSequence, CharSequence...): String`
 
 [.fragment]
 [source,java]
@@ -128,7 +128,7 @@ String str2 = "Hello";
 String str3 = String.join(" ", str2, str1); // Hello Java
 ----
 
-=== `charAt()`
+=== `charAt(int): char`
 
 [.fragment]
 [source,java]
@@ -139,21 +139,22 @@ char c = str.charAt(2);
 System.out.println(c); // v
 ----
 
-=== `getChars()`
+=== `getChars(int, int, char[], int): void`
 
 [.fragment]
 [source,java]
 ----
 String str = "Hello world!";
-int start = 6;
-int end = 11;
-char[] dst=new char[end - start];
-str.getChars(start, end, dst, 0);
+int srcBegin = 6;
+int srcEnd = 11;
+char[] dst = new char[end - start];
+int dstBegin = 0;
+str.getChars(srcBegin, srcEnd, dst, dstBegin);
 
 System.out.println(dst); // world
 ----
 
-=== `equals()` и `equalsIgnoreCase()`
+=== `equals(Object): boolean`
 
 [.fragment]
 [source,java]
@@ -162,19 +163,29 @@ String str1 = "Hello";
 String str2 = "hello";
 
 System.out.println(str1.equals(str2)); // false
-System.out.println(str1.equalsIgnoreCase(str2)); // true
 ----
 
-=== `regionMatches()`
+=== `equalsIgnoreCase(Object): boolean`
 
 [.fragment]
 [source,java]
 ----
-boolean regionMatches(int toffset, String other, int oofset, int len)
-boolean regionMatches(boolean ignoreCase, int toffset, String other, int oofset, int)
+String str1 = "Hello";
+String str2 = "hello";
+
+System.out.println(str1.equalsIgnoreCase(str2)); // true
 ----
 
-=== `regionMatches()`
+=== `regionMatches(int, String, int, int): boolean`
+
+[.fragment]
+[source,java]
+----
+regionMatches(int toffset, String other, int oofset, int len): boolean 
+regionMatches(boolean ignoreCase, int toffset, String other, int oofset, int): boolean 
+----
+
+=== `regionMatches(int, String, int, int): boolean`
 
 [.fragment]
 [source,java]
@@ -186,7 +197,7 @@ boolean result = str1.regionMatches(6, str2, 2, 3);
 System.out.println(result); // true
 ----
 
-=== `compareTo()` и `compareToIgnoreCase()`
+=== `compareTo(String): int` и `compareToIgnoreCase(String): int`
 
 [.fragment]
 [source,java]
@@ -199,7 +210,7 @@ System.out.println(str1.compareTo(str2)); // -15 -> str1 меньше чем str
 System.out.println(str1.compareTo(str3)); // 1 -> str1 больше чем str3
 ----
 
-=== `indexOf()` и `lastIndexOf()`
+=== `indexOf(String): int` и `lastIndexOf(String): int`
 
 [.fragment]
 [source,java]
@@ -210,7 +221,7 @@ int index2 = str.indexOf("wo"); // 6
 int index3 = str.lastIndexOf('l'); // 9
 ----
 
-=== `startsWith()` и `endsWith()`
+=== `startsWith(String): boolean` и `endsWith(String): boolean`
 
 [.fragment]
 [source,java]
@@ -220,7 +231,7 @@ boolean start = str.startsWith("my"); // true
 boolean end = str.endsWith("exe"); // true
 ----
 
-=== `replace()`
+=== `replace(CharSequence, CharSequence)`
 
 [.fragment]
 [source,java]
@@ -230,7 +241,7 @@ String replStr1 = str.replace('l', 'd'); // Heddo wordd
 String replStr2 = str.replace("Hello", "Bye"); // Bye world
 ----
 
-=== `trim()`
+=== `trim(): String`
 
 [.fragment]
 [source,java]
@@ -239,7 +250,7 @@ String str = "  hello world  ";
 str = str.trim(); // "hello world"
 ----
 
-=== `substring()`
+=== `substring(int): String` and `substring(int, int): String`
 
 [.fragment]
 [source,java]
@@ -249,7 +260,7 @@ String substr1 = str.substring(6); // "world"
 String substr2 = str.substring(3,5); // "lo"
 ----
 
-=== `toLowerCase()` и `toUpperCase()`
+=== `toLowerCase(): String` и `toUpperCase(): String`
 
 [.fragment]
 [source,java]
@@ -259,7 +270,7 @@ System.out.println(str.toLowerCase()); // hello world
 System.out.println(str.toUpperCase()); // HELLO WORLD
 ----
 
-=== `split()`
+=== `split(String): String[]` and `split(String, int): String[]`
 
 [.fragment]
 [source,java]
@@ -271,7 +282,7 @@ for (String word : words) {
 }
 ----
 
-=== `split()`
+=== `split(String): String[]`
 
 [.fragment]
 [source,java]
@@ -335,18 +346,16 @@ strBuilder.append(" Java");
 * Класс `StringBuilder` - _NOT thread safe_ (потокоНЕбезопасный), но быстрый
 * Класс `StringBuffer` - _thread safe_ (потокобезопасный), но медленный
 
-=== `StringBuffer`
+=== `StringBuffer` constructors
 
-Constructors:
 [.step]
 * `StringBuffer()`
 * `StringBuffer(int capacity)`
 * `StringBuffer(String str)`
 * `StringBuffer(CharSequence chars)`
 
-=== `StringBuilder`
+=== `StringBuilder` constructors
 
-Constructors:
 [.step]
 * `StringBuilder()`
 * `StringBuilder(int capacity)`
@@ -366,7 +375,7 @@ System.out.println("Емкость: " + strBuffer.capacity()); // 42
 System.out.println("Длина: " + strBuffer.length()); // 4
 ----
 
-=== `charAt()` и `setCharAt()`
+=== `charAt(int): char` и `setCharAt(int, char): void`
 
 [.fragment]
 [source,java]
@@ -378,7 +387,7 @@ strBuffer.setCharAt(0, 'c');
 System.out.println(strBuffer.toString()); // cava
 ----
 
-=== `getChars()`
+=== `getChars(int, int, char[], int): void`
 
 [.fragment]
 [source,java]
@@ -391,7 +400,7 @@ strBuffer.getChars(startIndex, endIndex, buffer, 0);
 System.out.println(buffer); // orl
 ----
 
-=== `append()`
+=== `append(*): StringBuffer`
 
 [.fragment]
 [source,java]
@@ -401,7 +410,7 @@ strBuffer.append(" world");
 System.out.println(strBuffer.toString()); // hello world
 ----
 
-=== `insert()`
+=== `insert(int, *): StringBuffer`
 
 [.fragment]
 [source,java]
@@ -415,7 +424,7 @@ strBuffer.insert(0, "s");
 System.out.println(strBuffer.toString()); // sworld
 ----
 
-=== `delete()` и `deleteCharAt()`
+=== `delete(int, int): StringBuffer` и `deleteCharAt(int): StringBuffer`
 
 [.fragment]
 [source,java]
@@ -428,7 +437,7 @@ strBuffer.deleteCharAt(6);
 System.out.println(strBuffer.toString()); // semble
 ----
 
-=== `substring()`
+=== `substring(int): String` и `substring(int, int): String`
 
 [.fragment]
 [source,java]
@@ -441,7 +450,7 @@ String str2 = strBuffer.substring(3, 9); // обрезка строки с 3 п�
 System.out.println(str2); //lo jav
 ----
 
-=== `setLength()`
+=== `setLength(int): void`
 
 [.fragment]
 [source,java]
@@ -454,7 +463,7 @@ strBuffer.setLength(4);
 System.out.println(strBuffer.toString()); // "hell"
 ----
 
-=== `replace()`
+=== `replace(int, int, String): StringBuffer`
 
 [.fragment]
 [source,java]
@@ -464,7 +473,7 @@ strBuffer.replace(6, 11, "java");
 System.out.println(strBuffer.toString()); // hello java!
 ----
 
-=== `reverse()`
+=== `reverse(): StringBuffer`
 
 [.fragment]
 [source,java]
@@ -476,7 +485,7 @@ System.out.println(strBuffer.toString()); // relbmessa
 
 == Regular Expression in `String`
 
-=== `String`: `split()`
+=== `split(String): String[]`
 
 [.fragment]
 [source,java]
@@ -488,7 +497,7 @@ for (String word : words) {
 }
 ----
 
-=== `String`: `matches()`
+=== matches(String): boolean`
 
 [.fragment]
 [source,java]
@@ -502,7 +511,7 @@ if (result == true) {
 }
 ----
 
-=== `String`: `replaceAll()`
+=== `replaceAll(String, String): String`
 
 [.fragment]
 [source,java]
@@ -521,7 +530,7 @@ System.out.println(myStr); // Hello HTML! Hello HTML! HTML 8.
 * Класс `Pattern` служит для хранения регулярного выражения
 * Класс `Matcher` служит для выполнения операций поиска и сравнения.
 
-=== `Pattern`: `matches()`
+=== `Pattern`: `matches(String, CharSequence): boolean`
 
 [.fragment]
 [source,java]
@@ -541,7 +550,7 @@ public class StringsApp {
 }
 ----
 
-=== `Pattern`: `split()`
+=== `Pattern`: `split(CharSequence): String[]`
 
 [.fragment]
 [source,java]
@@ -560,7 +569,7 @@ public class StringsApp {
 }
 ----
 
-=== `Pattern`: `split()`
+=== `Pattern`: `split(CharSequence): String[]`
 
 [.fragment]
 [source,out]
@@ -575,7 +584,7 @@ JavaSE
 8
 ----
 
-=== `Matcher`: `matches()`
+=== `Matcher`: `matches(): boolean`
 
 [.fragment]
 [source,java]
@@ -598,7 +607,7 @@ public class StringsApp {
 }
 ----
 
-=== `Matcher`: `find()` и `group()`
+=== `Matcher`: `find(): boolean` и `group(): String`
 
 [.fragment]
 [source,java]
@@ -618,7 +627,7 @@ public class StringsApp {
 }
 ----
 
-=== `Matcher`: `find()` и `group()`
+=== `Matcher`: `find(): boolean` и `group(): String`
 
 [.fragment]
 [source,out]
@@ -628,7 +637,7 @@ JavaScript
 JavaSE
 ----
 
-=== `Matcher`: `replaceAll()`
+=== `Matcher`: `replaceAll(String): String`
 
 [.fragment]
 [source,java]
