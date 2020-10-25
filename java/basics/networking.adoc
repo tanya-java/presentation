@@ -4,11 +4,11 @@
 
 === OSI vs. TCP/IP
 
-image::/assets/img/java/basic/networking/network-model.png[Network model]
+image::/assets/img/java/basics/networking/network-model.png[Network model]
 
 === OSI vs. TCP/IP
 
-image::/assets/img/java/basic/networking/logical-mapping-between-OSI-and-TCP-IP.png[Logical mapping between OSI and TCP/IP]
+image::/assets/img/java/basics/networking/logical-mapping-between-OSI-and-TCP-IP.png[Logical mapping between OSI and TCP/IP]
 
 == InetAddress
 

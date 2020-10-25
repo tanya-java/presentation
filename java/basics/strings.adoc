@@ -302,7 +302,7 @@ it
 *String Poll* (*Пул строк*) - это набор строк, который хранится в *Heap*.
 
 [.fragment]
-image:/assets/img/java/basic/string-pool.png[String Pool]
+image:/assets/img/java/basics/string-pool.png[String Pool]
 
 === String Pool
 

@@ -4,7 +4,7 @@
 
 === Stream API
 
-image::/assets/img/java/basic/stream-api.jpg[Stream API]
+image::/assets/img/java/basics/stream-api.jpg[Stream API]
 
 == `BaseStream`
 

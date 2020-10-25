@@ -51,14 +51,14 @@
 
 === Java
 
-image::/assets/img/java/basic/intro/java-logo.png[Java logo, 400]
+image::/assets/img/java/basics/intro/java-logo.png[Java logo, 400]
 
 *Java* - объектно-ориентированный язык программирования, разработанный компанией *Sun Microsystems* (в последующем приобретённой компанией *Oracle*)
 
 === Author
 
 [.fragment]
-image::/assets/img/java/basic/intro/james-gosling.jpg[James Gosling]
+image::/assets/img/java/basics/intro/james-gosling.jpg[James Gosling]
 
 [.fragment]
 *James Gosling*
@@ -75,19 +75,19 @@ image::/assets/img/java/basic/intro/james-gosling.jpg[James Gosling]
 === Java versions
 
 [.fragment]
-image::/assets/img/java/basic/intro/java-versions.png[Java versions]
+image::/assets/img/java/basics/intro/java-versions.png[Java versions]
 
 === Java versions releases
 
 [.fragment]
-image::/assets/img/java/basic/intro/java-se-lifecycle.jpg[Java SE Lifecycle]
+image::/assets/img/java/basics/intro/java-se-lifecycle.jpg[Java SE Lifecycle]
 
 === JVM
 
 *Java Virtual Machine* (*JVM*) - ключевой компонент платформы Java
 
 [.fragment]
-image::/assets/img/java/basic/intro/boxer-engine.jpg[Boxer Engine]
+image::/assets/img/java/basics/intro/boxer-engine.jpg[Boxer Engine]
 
 === JRE
 
@@ -103,7 +103,7 @@ image::/assets/img/java/basic/intro/boxer-engine.jpg[Boxer Engine]
 === Recap
 
 [.fragment]
-image::/assets/img/java/basic/intro/jvm-jre-jdk.png[JVM, JRE, JDK]
+image::/assets/img/java/basics/intro/jvm-jre-jdk.png[JVM, JRE, JDK]
 
 == Install JDK (OS Windows)
 
@@ -148,12 +148,12 @@ setx PATH "%PATH%;%JAVA_HOME%\bin"
 
 === How computer understands Java?
 
-image::/assets/img/java/basic/intro/compiler.jpg[Compiler]
+image::/assets/img/java/basics/intro/compiler.jpg[Compiler]
 
 === Lifecycle
 
 [.fragment]
-image::/assets/img/java/basic/intro/lifecycle.png[Program Lifecycle]
+image::/assets/img/java/basics/intro/lifecycle.png[Program Lifecycle]
 
 === Write `source code`
 
@@ -245,7 +245,7 @@ Hello World!
 [.fragment]
 [.column.is-one-third]
 --
-image::/assets/img/java/basic/intro/ide-intellij-idea.png[IntelliJ IDEA]
+image::/assets/img/java/basics/intro/ide-intellij-idea.png[IntelliJ IDEA]
 
 IntelliJ IDEA
 --
@@ -253,7 +253,7 @@ IntelliJ IDEA
 [.fragment]
 [.column.is-one-third]
 --
-image::/assets/img/java/basic/intro/ide-eclipse.svg[Eclipse]
+image::/assets/img/java/basics/intro/ide-eclipse.svg[Eclipse]
 
 Eclipse
 --
@@ -261,7 +261,7 @@ Eclipse
 [.fragment]
 [.column.is-one-third]
 --
-image::/assets/img/java/basic/intro/ide-netbeans.png[NetBeans]
+image::/assets/img/java/basics/intro/ide-netbeans.png[NetBeans]
 
 NetBeans
 --

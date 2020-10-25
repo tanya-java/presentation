@@ -227,4 +227,4 @@ x = 10;
 
 === Преобразование типов
 
-image::/assets/img/java/basic/data-types/type-casting.png[Type casting]
+image::/assets/img/java/basics/data-types/type-casting.png[Type casting]

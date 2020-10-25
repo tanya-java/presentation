@@ -16,7 +16,7 @@ System.out.println(numbers[4]);
 
 === Hierarchy
 
-image::/assets/img/java/basic/hierarchy-exceptions.png[Hierarchy for Exceptions]
+image::/assets/img/java/basics/hierarchy-exceptions.png[Hierarchy for Exceptions]
 
 === `Throwable`
 

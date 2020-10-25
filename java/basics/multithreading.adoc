@@ -10,7 +10,7 @@
 
 === Differentiation
 
-image::/assets/img/java/basic/multithreading/java-multithreading.png[Java multithreading]
+image::/assets/img/java/basics/multithreading/java-multithreading.png[Java multithreading]
 
 == Class `Thread`
 
@@ -39,7 +39,7 @@ public static void main(String[] args) {
 
 === Life cycle
 
-image::/assets/img/java/basic/multithreading/thread-life-cycle.png[Thread life cycle]
+image::/assets/img/java/basics/multithreading/thread-life-cycle.png[Thread life cycle]
 
 == Creating Thread
 
@@ -303,11 +303,11 @@ class Consumer implements Runnable {
 
 === `Semaphore`
 
-image::/assets/img/java/basic/multithreading/semaphore.png[Semaphore]
+image::/assets/img/java/basics/multithreading/semaphore.png[Semaphore]
 
 === `Semaphore`
 
-image::/assets/img/java/basic/multithreading/java-monitor.gif[Java monitor]
+image::/assets/img/java/basics/multithreading/java-monitor.gif[Java monitor]
 
 == `ReentrantLock`
 
@@ -479,7 +479,7 @@ class Consumer implements Runnable{
 
 === Deadlock
 
-image::/assets/img/java/basic/multithreading/deadlock.jpg[Deadlock]
+image::/assets/img/java/basics/multithreading/deadlock.jpg[Deadlock]
 
 == `ExecutorService`
 
