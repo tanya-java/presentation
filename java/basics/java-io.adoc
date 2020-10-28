@@ -1,44 +1,108 @@
 = Java IO
 
+== Problem
+
+=== Problem
+
+[.step]
+* Как читать/писать данные из/в файла?
+* Как принимать/отправлять данные из/в сети?
+* How is *data* *reading* from *Input* and *writing* to *Output*?
+
+== Solution
+
+=== Java IO API
+
+[.step]
+* package `java.io`
+* reading and writing data (input and output)
+
+=== Concept IO
+
+[.fragment]
+image::/assets/img/java/basics/java-io/concept-io.png[Concept IO]
+
+=== Concept Java IO
+
+[.fragment]
+image::/assets/img/java/basics/java-io/concept-java-io.png[Concept Java IO]
+
 == Streams
 
-=== `java.io`
+=== Types
 
-|===
-|`InputStream`|`OutputStream`|`Reader`|`Writer`
-|`FileInputStream`|`FileOutputStream`|`FileReader`|`FileWriter`
-|`BufferedInputStream`|`BufferedOutputStream`|`BufferedReader`|`BufferedWriter`
-|`ByteArrayInputStream`|`ByteArrayOutputStream`|`CharArrayReader`|`CharArrayWriter`
-|`FilterInputStream`|`FilterOutputStream`|`FilterReader`|`FilterWriter`
-|`DataInputStream`|`DataOutputStream`||
-|`ObjectInputStream`|`ObjectOutputStream`||
-|===
+[.step]
+* Byte Based
+* Character Based
+
+=== Types (target)
+
+[.step]
+* Basic
+* Arrays
+* Files
+* Pipes
+* Buffering
+* Filtering
+
+=== Types (target)
+
+[.step]
+* Parsing
+* Strings
+* Data
+* Data-Formatted
+* Objects
+* Utilities
+
+== Byte-based streams
 
 === Byte-based streams
 
+[.fragment]
 image::/assets/img/java/basics/java-io/byte-based-stream.png[Byte-based stream]
+
+=== Byte-based streams
+
+[.fragment]
+
+[.fragment]
+|===
+.2+| 2+|Byte Based
+|Input|Output
+|Basic|`InputStream`|`OutputStream`
+|Arrays|`ByteArrayInputStream`|`ByteArrayOutputStream`
+|Files|`FileInputStream`|`FileOutputStream`
+|Buffering|`BufferedInputStream`|`BufferedOutputStream`
+|Filtering|`FilterInputStream`|`FilterOutputStream`
+|Data|`DataInputStream`|`DataOutputStream`
+|Objects|`ObjectInputStream`|`ObjectOutputStream`
+|===
 
 === `InputStream`
 
-* `int available()`
-* `void close()`
-* `int read()`
-* `int read(byte[] buffer)`
-* `int read(byte[] buffer, int offset, int length)`
-* `long skip(long number)`
+[.step]
+* `available(): int`
+* `close(): void`
+* `read(): int`
+* `read(byte[] buffer): int`
+* `read(byte[] buffer, int offset, int length): int`
+* `skip(long number): long`
 
 === `OutputStream`
 
-* `void close()`
-* `void flush()`
-* `void write(int b)`
-* `void write(byte[] buffer)`
-* `void write(byte[] buffer, int offset, int length)`
+[.step]
+* `close(): void`
+* `flush(): void`
+* `write(int b): void`
+* `write(byte[] buffer): void`
+* `write(byte[] buffer, int offset, int length): void`
 
 == Closing Streams
 
 === `Closeable`
 
+[.fragment]
 [source,java]
 ----
 public interface Closeable extends AutoCloseable {
@@ -48,11 +112,13 @@ public interface Closeable extends AutoCloseable {
 
 === Ways to Close Streams
 
-* `try`..`catch`..`finally`
+[.step]
+* `try` ... `catch` ... `finally`
 * try-with-resource
 
-=== `try`..`catch`..`finally`
+=== `try` ... `catch` ... `finally`
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -67,15 +133,15 @@ public class Program {
             while ((i = fin.read()) != -1) {
                 System.out.print((char) i);
             }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         } finally {
             try {
                 if (fin != null) {
                     fin.close();
                 }
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -84,6 +150,7 @@ public class Program {
 
 === try-with-resources
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -96,8 +163,8 @@ public class Program {
             while ((i = fin.read()) != -1) {
                 System.out.print((char) i);
             }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
@@ -107,11 +174,13 @@ public class Program {
 
 === Constructors
 
+[.step]
 * `ByteArrayInputStream(byte[] buf)`
 * `ByteArrayInputStream(byte[] buf, int offset, int length)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.ByteArrayInputStream;
@@ -135,11 +204,13 @@ public class ReadExample {
 
 === Constructors
 
+[.step]
 * `ByteArrayOutputStream()`
 * `ByteArrayOutputStream(int size)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.ByteArrayOutputStream;
@@ -164,6 +235,7 @@ public class DataStreamExample {
 
 === Example `writeTo()`
 
+[.fragment]
 [source,java]
 ----
 import java.io.ByteArrayOutputStream;
@@ -177,8 +249,8 @@ public class DataStreamExample {
         byte[] buffer = text.getBytes();
         try {
             baos.write(buffer);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         try (FileOutputStream fos = new FileOutputStream("hello.txt")) {
             baos.writeTo(fos);
@@ -193,6 +265,7 @@ public class DataStreamExample {
 
 === Fields
 
+[.step]
 * `public static final char separatorChar = fs.getSeparator();`
 * `public static final String separator = "" + separatorChar;`
 * `public static final char pathSeparatorChar = fs.getPathSeparator();`
@@ -200,6 +273,7 @@ public class DataStreamExample {
 
 === Constructors
 
+[.step]
 * `File(File parent, String child)`
 * `File(String pathname)`
 * `File(String parent, String child)`
@@ -207,24 +281,30 @@ public class DataStreamExample {
 
 === Methods
 
-* `boolean createNewFile()`
-* `boolean delete()`
-* `boolean exists()`
-* `String getAbsolutePath()`
-* `String getName()`
-* `String getParent()`
-* `boolean isDirectory()`
-* `boolean isFile()`
-* `boolean isHidden()`
-* `long length()`
-* `long lastModified()`
-* `String[] list()`
-* `File[] listFiles()`
-* `boolean mkdir()`
-* `boolean renameTo(File dest)`
+[.step]
+* `createNewFile(): boolean`
+* `delete(): boolean`
+* `exists(): boolean`
+* `getAbsolutePath(): String`
+* `getName(): String`
+* `getParent(): String`
+* `isDirectory(): boolean`
+* `isFile(): boolean`
+
+=== Methods
+
+[.step]
+* `isHidden(): boolean`
+* `length(): long`
+* `lastModified(): long`
+* `list(): String[]`
+* `listFiles(): File[]`
+* `mkdir(): boolean`
+* `renameTo(File dest): boolean`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.File;
@@ -248,6 +328,7 @@ public class FileDemo {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.File;
@@ -277,6 +358,7 @@ public class FileDemo2 {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.File;
@@ -294,6 +376,7 @@ public class FileExample {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.File;
@@ -316,6 +399,7 @@ public class FileExample {
 
 === Constructors
 
+[.step]
 * `FileOutputStream(String filePath)`
 * `FileOutputStream(File fileObj)`
 * `FileOutputStream(String filePath, boolean append)`
@@ -323,6 +407,7 @@ public class FileExample {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileOutputStream;
@@ -347,12 +432,14 @@ public class FileOutputStreamExample {
 
 === Constructors
 
+[.step]
 * `FileInputStream(File file)`
 * `​​FileInputStream(FileDescriptor fdObj)`
 * `FileInputStream(String name)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -375,11 +462,13 @@ public class DataStreamExample {
 
 === Constructors
 
+[.step]
 * `BufferedInputStream(InputStream inputStream)`
 * `BufferedInputStream(InputStream inputStream, int bufSize)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.BufferedInputStream;
@@ -407,11 +496,13 @@ public class BufferedInputStreamExample {
 
 === Constructors
 
+[.step]
 * `BufferedOutputStream(OutputStream outputStream)`
 * `BufferedOutputStream(OutputStream outputStream, int bufSize)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.BufferedOutputStream;
@@ -436,18 +527,20 @@ public class BufferedOutputStreamExample {
 
 === Methods
 
-* `writeBoolean(boolean v)`
-* `writeByte(int v)`
-* `writeChar(int v)`
-* `writeDouble(double v)`
-* `writeFloat(float v)`
-* `writeInt(int v)`
-* `writeLong(long v)`
-* `writeShort(int v)`
-* `writeUTF(String str)`
+[.step]
+* `writeBoolean(boolean v): void`
+* `writeByte(int v): void`
+* `writeChar(int v): void`
+* `writeDouble(double v): void`
+* `writeFloat(float v): void`
+* `writeInt(int v): void`
+* `writeLong(long v): void`
+* `writeShort(int v): void`
+* `writeUTF(String str): void`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.DataOutputStream;
@@ -470,19 +563,25 @@ public class OutputExample {
 
 === Methods
 
-* `boolean readBoolean()`
-* `byte readByte()`
-* `char readChar()`
-* `double readDouble()`
-* `float readFloat()`
-* `int readInt()`
-* `long readLong()`
-* `short readShort()`
-* `String readUTF()`
-* `int skipBytes(int n)`
+[.step]
+* `readBoolean(): boolean`
+* `readByte(): byte`
+* `readChar(): char`
+* `readDouble(): double`
+* `readFloat(): float`
+
+=== Methods
+
+[.step]
+* `readInt(): int`
+* `readLong(): long`
+* `readShort(): short`
+* `readUTF(): String`
+* `skipBytes(int n): int`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.DataInputStream;
@@ -509,10 +608,12 @@ public class DataStreamExample {
 
 === Constructor
 
+[.step]
 * `ZipOutputStream(OutputStream out)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -531,8 +632,8 @@ public class Program {
             fis.read(buffer);
             zout.write(buffer);
             zout.closeEntry();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
@@ -542,10 +643,12 @@ public class Program {
 
 === Constructor
 
+[.step]
 * `ZipInputStream(InputStream in)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -571,8 +674,8 @@ public class Program {
                 zin.closeEntry();
                 fout.close();
             }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
@@ -580,41 +683,63 @@ public class Program {
 
 == Char-based streams
 
+=== Char-based streams
+
+[.fragment]
+|===
+.2+| 2+|Character Based
+|Input|Output
+|Basic|`Reader`, `InputStreamReader`|`Writer`, `OutputStreamWriter`
+|Arrays|`CharArrayReader`|`CharArrayWriter`
+|Files|`FileReader`|`FileWriter`
+|Strings|`StringReader`|`StringWriter`
+|Buffering|`BufferedReader`|`BufferedWriter`
+|Filtering|`FilterReader`|`FilterWriter`
+|===
+
 === `Reader`
 
+[.step]
 * `absract void close()`
-* `int read()`
-* `int read(char[] buffer)`
-* `int read(CharBuffer buffer)`
 * `absract int read(char[] buffer, int offset, int count)`
-* `long skip(long count)`
+* `read(): int`
+* `read(char[] buffer): int`
+* `read(CharBuffer buffer): int`
+* `skip(long count): long`
 
 === `Writer`
 
-* `Writer append(char c)`
-* `Writer append(CharSequence chars)`
+[.step]
 * `abstract void close()`
 * `abstract void flush()`
-* `void write(int c)`
-* `void write(char[] buffer)`
-* `absract void write(char[] buffer, int off, int len)`
-* `void write(String str)`
-* `void write(String str, int off, int len)`
+* `abstract void write(char[] buffer, int off, int len)`
+* `append(char c): Writer`
+* `append(CharSequence chars): Writer`
+* `write(int c): void`
+* `write(char[] buffer): void`
+* `write(String str): void`
+* `write(String str, int off, int len): void`
 
 == `PrintStream`
 
 === Constructors
 
+[.step]
 * `PrintStream(OutputStream outputStream)`
 * `PrintStream(OutputStream outputStream, boolean autoFlushingOn)`
 * `PrintStream(OutputStream outputStream, boolean autoFlushingOn, String charSet) throws UnsupportedEncodingException`
 * `PrintStream(File outputFile) throws FileNotFoundException`
+
+=== Constructors
+
+[.step]
 * `PrintStream(File outputFile, String charSet) throws FileNotFoundException, UnsupportedEncodingException`
 * `PrintStream(String outputFileName) throws FileNotFoundException`
 * `PrintStream(String outputFileName, String charSet) throws FileNotFoundException, UnsupportedEncodingException`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileOutputStream;
@@ -638,6 +763,7 @@ public class PrintStreamTest {
 
 === Constructors
 
+[.step]
 * `PrintWriter(File file)`
 * `PrintWriter(File file, String csn)`
 * `PrintWriter(OutputStream out)`
@@ -649,6 +775,7 @@ public class PrintStreamTest {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.File;
@@ -673,11 +800,13 @@ public class PrintWriterExample {
 
 === Constructors
 
+[.step]
 * `BufferedWriter(Writer out)`
 * `BufferedWriter(Writer out, int sz)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.BufferedWriter;
@@ -698,11 +827,13 @@ public class BufferedWriterExample {
 
 === Constructors
 
+[.step]
 * `BufferedReader(Reader in)`
 * `BufferedReader(Reader in, int sz)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.BufferedReader;
@@ -727,6 +858,7 @@ public class BufferedReaderExample {
 
 === Constructors
 
+[.step]
 * `FileWriter(File file)`
 * `FileWriter(File file, boolean append)`
 * `FileWriter(FileDescriptor fd)`
@@ -735,6 +867,7 @@ public class BufferedReaderExample {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileWriter;
@@ -757,12 +890,14 @@ public class FileWriterExample {
 
 === Constructors
 
+[.step]
 * `FileReader(String fileName)`
 * `FileReader(File file)`
 * `FileReader(FileDescriptor fd)`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileReader;
@@ -782,10 +917,12 @@ public class FileReaderExample {
 
 === Serialization and Deserialization
 
+[.fragment]
 image::/assets/img/java/basics/java-io/serialization.png[Serialization and Deserialization]
 
 === Interface `Serializable`
 
+[.fragment]
 [source,java]
 ----
 public interface Serializable {
@@ -796,23 +933,29 @@ public interface Serializable {
 
 === Methods
 
-* `void close()`
-* `void flush()`
-* `void write(byte[] buf)`
-* `void write(int val)`
-* `void writeBoolean(boolean val)`
-* `void writeByte(int val)`
-* `void writeChar(int val)`
-* `void writeDouble(double val)`
-* `void writeFloat(float val)`
-* `void writeInt(int val)`
-* `void writeLong(long val)`
-* `void writeShort(int val)`
-* `void writeUTF(String str)`
-* `void writeObject(Object obj)`
+[.step]
+* `close(): void`
+* `flush(): void`
+* `write(byte[] buf): void`
+* `write(int val): void`
+* `writeBoolean(boolean val): void`
+* `writeByte(int val): void`
+* `writeChar(int val): void`
+
+=== Methods
+
+[.step]
+* `writeDouble(double val): void`
+* `writeFloat(float val): void`
+* `writeInt(int val): void`
+* `writeLong(long val): void`
+* `writeShort(int val): void`
+* `writeUTF(String str): void`
+* `writeObject(Object obj): void`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileOutputStream;
@@ -829,30 +972,36 @@ class Persist {
         out.flush();
         System.out.println("success");
     }
-} 
+}
 ----
 
 == `ObjectInputStream`
 
 === Methods
 
-* `void close()`
-* `int skipBytes(int len)`
-* `int available()`
-* `int read()`
-* `boolean readBoolean()`
-* `byte readByte()`
-* `char readChar()`
-* `double readDouble()`
-* `float readFloat()`
-* `int readInt()`
-* `long readLong()`
-* `short readShort()`
-* `String readUTF()`
-* `Object readObject()`
+[.step]
+* `close(): void`
+* `skipBytes(int len): int`
+* `available(): int`
+* `read(): int`
+* `readBoolean(): boolean`
+* `readByte(): byte`
+* `readChar(): char`
+
+=== Methods
+
+[.step]
+* `readDouble(): double`
+* `readFloat(): float`
+* `readInt(): int`
+* `readLong(): long`
+* `readShort(): short`
+* `readUTF(): String`
+* `readObject(): Object`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.FileInputStream;
@@ -871,6 +1020,7 @@ class Depersist {
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.Serializable;
@@ -898,14 +1048,17 @@ class Person implements Serializable {
 
 === Methods
 
-* `flush()`
-* `format()`
-* `printf()`
-* `String readLine()`
-* `char[] readPassword()`
+[.step]
+* `flush(): void`
+* `format(String, Object...): Console`
+* `printf(String, Object...): Console`
+* `readLine(): String`
+* `readLine(String, Object...): String`
+* `readPassword(): char[]`
 
 === Example
 
+[.fragment]
 [source,java]
 ----
 import java.io.Console;
