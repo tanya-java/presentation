@@ -1,0 +1,357 @@
+= Multithreading
+
+== Multithreading in Java
+
+=== Definition
+
+[.step]
+* multitasking
+* multiprocessing
+* multithreading
+
+=== Differentiation
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/multithreading.png[Multithreading]
+
+== Class `Thread`
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+public static void main(String[] args) {
+    Thread t = Thread.currentThread(); // получаем главный поток
+    System.out.println(t.getName()); // main
+}
+----
+
+=== Methods
+
+[.step]
+* `getName(): String`
+* `setName(String): void`
+* `getPriority(): int`
+* `setPriority(int): void`
+* `isAlive(): boolean`
+
+=== Methods
+
+[.step]
+* `isInterrupted(): boolean`
+* `join(): void`
+* `run(): void`
+* `sleep(long): void`
+* `start(): void`
+
+=== Life cycle
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/thread-life-cycle.png[Thread life cycle]
+
+== Creating Thread
+
+=== Ways to create
+
+[.step]
+* By extending Thread class
+* By implementing Runnable interface
+
+=== Constructors
+
+[.step]
+* `Thread()`
+* `Thread(String name)`
+* `Thread(Runnable r)`
+* `Thread(Runnable r, String name)`
+
+=== By extending `Thread` class
+
+[.fragment]
+[source,java]
+----
+class Multi extends Thread {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi t1 = new Multi();
+        t1.start();
+    }
+}
+----
+
+=== Implementing Runnable interface
+
+[.fragment]
+[source,java]
+----
+class Multi3 implements Runnable {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi3 m1 = new Multi3();
+        Thread t1 = new Thread(m1);
+        t1.start();
+    }
+}
+----
+
+== Thread Synchronization
+
+=== Types of thread synchronization
+
+[.step]
+* Mutual Exclusive
+* Cooperation (Inter-thread communication in java)
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class CommonResource {
+    public int x = 0;
+}
+----
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.x = 1;
+        for (int i = 1; i < 5; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+            res.x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                // error processing
+            }
+        }
+    }
+}
+----
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource = new CommonResource();
+        for (int i = 1; i < 6; i++) {
+            Thread t = new Thread(new CountThread(commonResource));
+            t.setName("Thread " + i);
+            t.start();
+        }
+    }
+}
+----
+
+== Operator synchronized
+
+=== Synchronized for Resource
+
+[.fragment]
+[source,java]
+----
+class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        synchronized (res) {
+            res.x = 1;
+            for (int i = 1; i < 5; i++) {
+                System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+                res.x++;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    // error processing
+                }
+            }
+        }
+    }
+}
+----
+
+=== Synchronized for method
+
+[.fragment]
+[source,java]
+----
+class CommonResource {
+    private int x;
+
+    synchronized void increment() {
+        x = 1;
+        for (int i = 1; i < 5; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), x);
+            x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println(" Catch InterruptedException: ", e);
+            }
+        }
+    }
+}
+----
+
+=== Synchronized for method
+
+[.fragment]
+[source,java]
+----
+class CountThread implements Runnable {
+    private CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.increment();
+    }
+}
+----
+
+=== Synchronized for method
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource = new CommonResource();
+        for (int i = 1; i < 6; i++) {
+            Thread t = new Thread(new CountThread(commonResource));
+            t.setName("Thread " + i);
+            t.start();
+        }
+    }
+}
+----
+
+== Cooperation
+
+=== Methods
+
+[.step]
+* `wait()`
+* `notify()`
+* `notifyAll()`
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+// Класс Магазин, хранящий произведенные товары
+public class Store {
+    private int product = 0;
+
+    public synchronized void get() {
+        while (product < 1) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // error processing
+            }
+        }
+        product--;
+        System.out.println("Покупатель купил 1 товар");
+        System.out.println("Товаров на складе: " + product);
+        notify();
+    }
+
+    public synchronized void put() {
+        while (product >= 3) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                // error processing
+            }
+        }
+        product++;
+        System.out.println("Производитель добавил 1 товар");
+        System.out.println("Товаров на складе: " + product);
+        notify();
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+class Producer implements Runnable {
+    private Store store;
+
+    public Producer(Store store) {
+       this.store = store; 
+    }
+
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.put();
+        }
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+class Consumer implements Runnable {
+    private Store store;
+
+    public Consumer(Store store) {
+       this.store = store; 
+    }
+
+    public void run() {
+        for (int i = 1; i < 6; i++) {
+            store.get();
+        }
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Store store=new Store();
+        Producer producer = new Producer(store);
+        Consumer consumer = new Consumer(store);
+        new Thread(producer).start();
+        new Thread(consumer).start();
+    }
+}
+----
