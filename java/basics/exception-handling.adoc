@@ -226,7 +226,7 @@ public class FirstApp {
                 throw new Exception("Число х должно быть меньше 30");
             }
         } catch (Exception e) {
-            System.out.println(ex.getMessage());
+            System.out.println(e.getMessage());
         }
         System.out.println("Программа завершена");
     } 
@@ -271,7 +271,7 @@ public static void main(String[] args) {
         int result = getFactorial(-6); 
         System.out.println(result);
     } catch (Exception e) {
-        System.out.println(ex.getMessage());
+        System.out.println(e.getMessage());
     }
 }
 ----
@@ -291,7 +291,7 @@ public static int getFactorial(int num) {
             result *= i;
         }
     } catch (Exception e) {
-        System.out.println(ex.getMessage());
+        System.out.println(e.getMessage());
         result = num;
     }
     return result;
