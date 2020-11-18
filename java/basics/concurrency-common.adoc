@@ -1,0 +1,102 @@
+= Concurrency: common
+
+== Concurrency in Java
+
+=== Definition
+
+[.step]
+* multitasking
+* multiprocessing
+* multithreading
+
+=== Differentiation
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/multithreading.png[Multithreading]
+
+== Class `Thread`
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+public static void main(String[] args) {
+    Thread t = Thread.currentThread(); // получаем главный поток
+    System.out.println(t.getName()); // main
+}
+----
+
+=== Methods
+
+[.step]
+* `getName(): String`
+* `setName(String): void`
+* `getPriority(): int`
+* `setPriority(int): void`
+* `isAlive(): boolean`
+
+=== Methods
+
+[.step]
+* `isInterrupted(): boolean`
+* `join(): void`
+* `run(): void`
+* `sleep(long): void`
+* `start(): void`
+
+=== Life cycle
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/thread-life-cycle.png[Thread life cycle]
+
+== Creating Thread
+
+=== Ways to create
+
+[.step]
+* By extending `Thread` class
+* By implementing `Runnable` interface
+
+=== Constructors
+
+[.step]
+* `Thread()`
+* `Thread(String name)`
+* `Thread(Runnable r)`
+* `Thread(Runnable r, String name)`
+
+=== By extending `Thread` class
+
+[.fragment]
+[source,java]
+----
+class Multi extends Thread {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi t1 = new Multi();
+        t1.start();
+    }
+}
+----
+
+=== Implementing Runnable interface
+
+[.fragment]
+[source,java]
+----
+class Multi3 implements Runnable {
+    public void run() {
+        System.out.println("thread is running...");
+    }
+
+    public static void main(String args[]) {
+        Multi3 m1 = new Multi3();
+        Thread t1 = new Thread(m1);
+        t1.start();
+    }
+}
+----

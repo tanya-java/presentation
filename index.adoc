@@ -32,8 +32,9 @@
 
 === Course: Basics Java [[course-java-basics-3]]
 
-* link:./java/basics/concurrency.html[Java Concurrency]
-* link:./java/basics/java-util-concurrent.html[`java.util.concurrent`]
+* link:./java/basics/concurrency-common.html[Concurrency: common]
+* link:./java/basics/concurrency-thread-synchronization.html[Concurrency: thread synchronization]
+* link:./java/basics/concurrency-java-concurrency-framework.html[Concurrency: Java Concurrency Framework]
 * link:./java/basics/functional-interfaces.html[Functional interfaces]
 * link:./java/basics/lambda-expressions.html[Lambda Expressions]
 * link:./java/basics/stream-api.html[Stream API]

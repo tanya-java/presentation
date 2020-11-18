@@ -1,113 +1,6 @@
-= Multithreading
+= Concurrency: thread synchronization
 
-== Multithreading in Java
-
-=== Definition
-
-[.step]
-* multitasking
-* multiprocessing
-* multithreading
-
-=== Differentiation
-
-[.fragment]
-image::/assets/img/java/basics/concurrency/multithreading.png[Multithreading]
-
-== Class `Thread`
-
-=== Example
-
-[.fragment]
-[source,java]
-----
-public static void main(String[] args) {
-    Thread t = Thread.currentThread(); // получаем главный поток
-    System.out.println(t.getName()); // main
-}
-----
-
-=== Methods
-
-[.step]
-* `getName(): String`
-* `setName(String): void`
-* `getPriority(): int`
-* `setPriority(int): void`
-* `isAlive(): boolean`
-
-=== Methods
-
-[.step]
-* `isInterrupted(): boolean`
-* `join(): void`
-* `run(): void`
-* `sleep(long): void`
-* `start(): void`
-
-=== Life cycle
-
-[.fragment]
-image::/assets/img/java/basics/concurrency/thread-life-cycle.png[Thread life cycle]
-
-== Creating Thread
-
-=== Ways to create
-
-[.step]
-* By extending Thread class
-* By implementing Runnable interface
-
-=== Constructors
-
-[.step]
-* `Thread()`
-* `Thread(String name)`
-* `Thread(Runnable r)`
-* `Thread(Runnable r, String name)`
-
-=== By extending `Thread` class
-
-[.fragment]
-[source,java]
-----
-class Multi extends Thread {
-    public void run() {
-        System.out.println("thread is running...");
-    }
-
-    public static void main(String args[]) {
-        Multi t1 = new Multi();
-        t1.start();
-    }
-}
-----
-
-=== Implementing Runnable interface
-
-[.fragment]
-[source,java]
-----
-class Multi3 implements Runnable {
-    public void run() {
-        System.out.println("thread is running...");
-    }
-
-    public static void main(String args[]) {
-        Multi3 m1 = new Multi3();
-        Thread t1 = new Thread(m1);
-        t1.start();
-    }
-}
-----
-
-== Thread Synchronization
-
-=== Types of thread synchronization
-
-[.step]
-* Mutual Exclusive
-* Cooperation (Inter-thread communication in java)
+== Problem
 
 === Problem code
 
@@ -125,7 +18,7 @@ public class CommonResource {
 [source,java]
 ----
 public class CountThread implements Runnable {
-    private CommonResource res;
+    private final CommonResource res;
 
     public CountThread(CommonResource res) {
         this.res = res;
@@ -139,7 +32,7 @@ public class CountThread implements Runnable {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                // error processing
+                e.printStackTrace();
             }
         }
     }
@@ -163,15 +56,27 @@ public class Program {
 }
 ----
 
-== Operator synchronized
+== Thread Synchronization
 
-=== Synchronized for Resource
+=== Types of thread synchronization
+
+[.step]
+* Mutual Exclusive (взаимное исключение)
+[.step]
+** synchronized method
+** synchronized block
+** static synchronization
+* Cooperation (Inter-thread communication in java) (кооперация)
+
+== Operator `synchronized`
+
+=== `synchronized block`
 
 [.fragment]
 [source,java]
 ----
 class CountThread implements Runnable {
-    private CommonResource res;
+    private final CommonResource res;
 
     public CountThread(CommonResource res) {
         this.res = res;
@@ -186,7 +91,7 @@ class CountThread implements Runnable {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    // error processing
+                    e.printStackTrace();
                 }
             }
         }
@@ -194,7 +99,7 @@ class CountThread implements Runnable {
 }
 ----
 
-=== Synchronized for method
+=== `synchronized method`
 
 [.fragment]
 [source,java]
@@ -210,20 +115,20 @@ class CommonResource {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                System.out.println(" Catch InterruptedException: ", e);
+                e.printStackTrace();
             }
         }
     }
 }
 ----
 
-=== Synchronized for method
+=== `synchronized method`
 
 [.fragment]
 [source,java]
 ----
 class CountThread implements Runnable {
-    private CommonResource res;
+    private final CommonResource res;
 
     public CountThread(CommonResource res) {
         this.res = res;
@@ -231,23 +136,6 @@ class CountThread implements Runnable {
 
     public void run() {
         res.increment();
-    }
-}
-----
-
-=== Synchronized for method
-
-[.fragment]
-[source,java]
-----
-public class Program {
-    public static void main(String[] args) {
-        CommonResource commonResource = new CommonResource();
-        for (int i = 1; i < 6; i++) {
-            Thread t = new Thread(new CountThread(commonResource));
-            t.setName("Thread " + i);
-            t.start();
-        }
     }
 }
 ----
@@ -275,7 +163,7 @@ public class Store {
             try {
                 wait();
             } catch (InterruptedException e) {
-                // error processing
+                e.printStackTrace();
             }
         }
         product--;
@@ -289,7 +177,7 @@ public class Store {
             try {
                 wait();
             } catch (InterruptedException e) {
-                // error processing
+                e.printStackTrace();
             }
         }
         product++;
@@ -309,7 +197,7 @@ class Producer implements Runnable {
     private Store store;
 
     public Producer(Store store) {
-       this.store = store; 
+       this.store = store;
     }
 
     public void run() {
@@ -329,7 +217,7 @@ class Consumer implements Runnable {
     private Store store;
 
     public Consumer(Store store) {
-       this.store = store; 
+       this.store = store;
     }
 
     public void run() {
@@ -355,3 +243,11 @@ public class Program {
     }
 }
 ----
+
+== Typical problems in Java concurrency
+
+[.step]
+* Deadlock (взаимная блокировка)
+* Starvation (голодание)
+* Nested Monitor Lockout (блокировка вложенного монитора)
+* Slipped Conditions (изменчивое условие)

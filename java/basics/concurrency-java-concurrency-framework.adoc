@@ -1,4 +1,6 @@
-= `java.util.concurrent`
+= Concurrency: Java Concurrency Framework
+
+== Java Concurrency Framework (JSR-166)
 
 == `Semaphore`
 
@@ -11,23 +13,23 @@
 === `Semaphore`
 
 [.fragment]
-image::/assets/img/java/basics/java-util-concurrent/semaphore.png[Semaphore]
+image::/assets/img/java/basics/concurrency/semaphore.png[Semaphore]
 
 === `Semaphore`
 
 [.fragment]
-image::/assets/img/java/basics/java-util-concurrent/java-monitor.gif[Java monitor]
+image::/assets/img/java/basics/concurrency/java-monitor.gif[Java monitor]
 
 == `ReentrantLock`
 
 === Methods
 
 [.step]
-* `void lock()`
-* `void lockInterruptibly() throws InterruptedException`
-* `boolean tryLock()`
-* `void unlock()`
-* `Condition newCondition()`
+* `lock(): void`
+* `lockInterruptibly() throws InterruptedException: void`
+* `tryLock(): boolean`
+* `unlock(): void`
+* `newCondition(): Condition`
 
 === Example
 
@@ -37,8 +39,14 @@ image::/assets/img/java/basics/java-util-concurrent/java-monitor.gif[Java monito
 public class CommonResource {
     public int x = 0;
 }
-  
-public class CountThread implements Runnable{
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+public class CountThread implements Runnable {
     private CommonResource res;
     private ReentrantLock locker;
 
@@ -71,7 +79,7 @@ public class CountThread implements Runnable{
 [source,java]
 ----
 import java.util.concurrent.locks.ReentrantLock;
- 
+
 public class Program {
     public static void main(String[] args) {
         CommonResource commonResource= new CommonResource();
@@ -113,37 +121,34 @@ public class Store {
     public void get() {
         this.locker.lock();
         try {
-            // пока нет доступных товаров на складе, ожидаем
-            while (this.product < 1) {
-                this.condition.await();
+            while (this.product < 1) { // пока нет доступных товаров на складе
+                this.condition.await(); // ожидаем
             }
-            
+
             this.product--;
             System.out.println("Покупатель купил 1 товар");
             System.out.println("Товаров на складе: " + this.product);
 
-            // сигнализируем
-            this.condition.signalAll();
+            this.condition.signalAll(); // сигнализируем
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
             this.locker.unlock();
         }
-   }
+    }
 
     public void put() {
         this.locker.lock();
         try {
-            // пока на складе 3 товара, ждем освобождения места
-            while (this.product >= 3) {
-                condition.await();
+            while (this.product >= 3) { // пока на складе 3 товара
+                condition.await(); // ждем освобождения места
             }
 
             this.product++;
             System.out.println("Производитель добавил 1 товар");
             System.out.println("Товаров на складе: " + this.product);
-            // сигнализируем
-            this.condition.signalAll();
+
+            this.condition.signalAll(); // сигнализируем
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -160,10 +165,11 @@ public class Store {
 ----
 class Producer implements Runnable {
     private Store store;
-    
+
     public Producer(Store store) {
-       this.store = store; 
+       this.store = store;
     }
+
     public void run() {
         for (int i = 1; i < 6; i++) {
             store.put();
@@ -177,12 +183,13 @@ class Producer implements Runnable {
 [.fragment]
 [source,java]
 ----
-class Consumer implements Runnable{
+class Consumer implements Runnable {
     private Store store;
 
     public Consumer(Store store) {
-       this.store = store; 
+       this.store = store;
     }
+
     public void run() {
         for (int i = 1; i < 6; i++) {
             store.get();
@@ -215,7 +222,7 @@ public class Program {
 === Deadlock
 
 [.fragment]
-image::/assets/img/java/basics/java-util-concurrent/deadlock.jpg[Deadlock]
+image::/assets/img/java/basics/concurrency/deadlock.jpg[Deadlock]
 
 == `ExecutorService`
 
