@@ -34,7 +34,7 @@
 
 * link:./java/basics/concurrency-common.html[Concurrency: common]
 * link:./java/basics/concurrency-thread-synchronization.html[Concurrency: thread synchronization]
-* link:./java/basics/concurrency-java-concurrency-framework.html[Concurrency: Java Concurrency Framework]
+* link:./java/basics/concurrency-utilities.html[Concurrency: utilities (JSR-166)]
 * link:./java/basics/functional-interfaces.html[Functional interfaces]
 * link:./java/basics/lambda-expressions.html[Lambda Expressions]
 * link:./java/basics/stream-api.html[Stream API]

@@ -1,6 +1,6 @@
-= Concurrency: Java Concurrency Framework
+= Concurrency Utilities (JSR-166)
 
-== Java Concurrency Framework (JSR-166)
+== Concurrency Utilities (JSR-166)
 
 == `Semaphore`
 
