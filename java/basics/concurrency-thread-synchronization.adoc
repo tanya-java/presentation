@@ -26,7 +26,7 @@ public class CountThread implements Runnable {
 
     public void run() {
         res.x = 1;
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i <= 4; i++) {
             System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
             res.x++;
             try {
@@ -47,7 +47,7 @@ public class CountThread implements Runnable {
 public class Program {
     public static void main(String[] args) {
         CommonResource commonResource = new CommonResource();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             Thread t = new Thread(new CountThread(commonResource));
             t.setName("Thread " + i);
             t.start();
@@ -85,7 +85,7 @@ class CountThread implements Runnable {
     public void run() {
         synchronized (res) {
             res.x = 1;
-            for (int i = 1; i < 5; i++) {
+            for (int i = 1; i <= 4; i++) {
                 System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
                 res.x++;
                 try {
@@ -109,7 +109,7 @@ class CommonResource {
 
     synchronized void increment() {
         x = 1;
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i <= 4; i++) {
             System.out.printf("%s %d \n", Thread.currentThread().getName(), x);
             x++;
             try {
@@ -148,6 +148,11 @@ class CountThread implements Runnable {
 * `wait()`
 * `notify()`
 * `notifyAll()`
+
+=== Thread Lifecycle
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/thread-lifecycle.jpeg[Thread lifecycle]
 
 === Example
 
@@ -201,7 +206,7 @@ class Producer implements Runnable {
     }
 
     public void run() {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             store.put();
         }
     }
@@ -221,7 +226,7 @@ class Consumer implements Runnable {
     }
 
     public void run() {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             store.get();
         }
     }
@@ -251,3 +256,13 @@ public class Program {
 * Starvation (голодание)
 * Nested Monitor Lockout (блокировка вложенного монитора)
 * Slipped Conditions (изменчивое условие)
+
+=== Deadlock
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/deadlock.jpg[Deadlock]
+
+=== Starvation
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/starvation.png[Starvation]
