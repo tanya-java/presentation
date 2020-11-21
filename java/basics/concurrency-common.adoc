@@ -45,10 +45,10 @@ public static void main(String[] args) {
 * `sleep(long): void`
 * `start(): void`
 
-=== Life cycle
+=== Thread Lifecycle
 
 [.fragment]
-image::/assets/img/java/basics/concurrency/thread-life-cycle.png[Thread life cycle]
+image::/assets/img/java/basics/concurrency/thread-lifecycle.jpeg[Thread lifecycle]
 
 == Creating Thread
 
