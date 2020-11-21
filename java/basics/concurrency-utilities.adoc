@@ -1,6 +1,93 @@
-= Concurrency Utilities (JSR-166)
+= JSR 166: Concurrency Utilities
 
-== Concurrency Utilities (JSR-166)
+== Intro
+
+=== Problem
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/concurrency-theory-practice.jpg[Concurrency: Theory and Practice]
+
+=== Solution
+
+[.fragment]
+*JSR 166: Concurrency Utilities*
+
+== `java.util.concurrent`
+
+=== Whom to thank?
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/doug-lea.jpeg[Doug Lea]
+[.fragment]
+Doug Lea
+
+=== Consist
+
+[.step]
+* `java.util.concurrent.atomic` - пакет с набор атомарных классов, позволяющих использовать принцип действия механизма оптимистической блокировки для выполнения атомарных операций.
+* *Concurrency collections* - набор более эффективно работающих в многопоточной среде коллекций нежели стандартные универсальные коллекции из `java.util` пакета
+* *Queues* - объекты создания блокирующих и неблокирующих очередей с поддержкой многопоточности.
+
+=== Consist
+
+[.step]
+* *Synchronizers* - объекты синхронизации, позволяющие разработчику управлять и/или ограничивать работу нескольких потоков.
+* `java.util.concurrent.locks` - пакет з набором механизмов синхронизации потоков, альтернативных базовым `synchronized`, `wait()`, `notify()`, `notifyAll()`
+* *Executors* - механизмы создания пулов потоков и планирования работы асинхронных задач
+
+== `java.util.concurrent.atomic`
+
+=== `java.util.concurrent.atomic`
+
+[.step]
+* включает 9 атомарных классов для выполнения, так называемых, атомарных операций.
+* Операция является атомарной, если её можно безопасно выполнять при параллельных вычислениях в нескольких потоках, не используя при этом ни блокировок, ни синхронизацию `synchronized`.
+
+=== Consist
+
+[.step]
+* Atomic classes for Data Types:
+[.step]
+** `AtomicBoolean`
+** `AtomicInteger`
+** `AtomicLong`
+** `AtomicReference`
+* Atomic classes for Arrays:
+[.step]
+** `AtomicIntegerArray`
+** `AtomicLongArray`
+** `AtomicReferenceArray`
+
+=== Consist
+
+[.step]
+* Atomic classes for to update fields (use Reflection):
+[.step]
+** `AtomicIntegerFieldUpdater`
+** `AtomicLongFieldUpdater`
+** `AtomicReferenceFieldUpdater`
+* Atomic classes for to build algorithms:
+[.step]
+** `AtomicStampedReference`
+** `AtomicMarkableReference`
+
+== *Concurrency collections*
+
+=== Consist
+
+[.step]
+* `CopyOnWriteArrayList` - реализует алгоритм *CopyOnWrite* и является потокобезопасным аналогом `ArrayList`. Класс `CopyOnWriteArrayList` содержит изменяемую ссылку на неизменяемый массив, обеспечивая преимущества потокобезопасности без необходимости использования блокировок, т.е. при выполнении модифицирующей операции
+* `ConcurrentHashMap<K, V>` - реализует интерфейс `java.util.concurrent.ConcurrentMap` и отличается от `HashMap` и `Hashtable` внутренней структурой хранения пар _key-value_.
+
+=== Consist
+
+[.step]
+* `CopyOnWriteArraySet` - выполнен на основе `CopyOnWriteArrayList` с реализацией интерфейса `Set`
+* `ConcurrentNavigableMap` - расширяет возможности интерфейса `NavigableMap` для использования в многопоточных приложениях
+* `ConcurrentSkipListMap` - является аналогом коллекции `TreeMap` с сортировкой данных по ключу и с поддержкой многопоточности
+* `ConcurrentSkipListSet` - выполнен на основе `ConcurrentSkipListMap` с реализацией интерфейса `Set`
+
+== *Synchronizers*
 
 == `Semaphore`
 
@@ -19,6 +106,8 @@ image::/assets/img/java/basics/concurrency/semaphore.png[Semaphore]
 
 [.fragment]
 image::/assets/img/java/basics/concurrency/java-monitor.gif[Java monitor]
+
+== `java.concurrent.locks`
 
 == `ReentrantLock`
 
@@ -47,19 +136,18 @@ public class CommonResource {
 [source,java]
 ----
 public class CountThread implements Runnable {
-    private CommonResource res;
-    private ReentrantLock locker;
+    private final CommonResource res;
+    private final ReentrantLock lock;
 
     public CountThread(CommonResource res, ReentrantLock lock) {
-        this.res =r es;
-        locker = lock;
+        this.res = res;
+        this.lock = lock;
     }
 
     public void run() {
-        locker.lock(); // устанавливаем блокировку
-        try{
-            res.x = 1;
-            for (int i = 1; i < 5; i++) {
+        lock.lock(); // устанавливаем блокировку
+        try {
+            for (int i = 1; i <= 4; i++) {
                 System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
                 res.x++;
                 Thread.sleep(100);
@@ -67,7 +155,7 @@ public class CountThread implements Runnable {
         } catch(InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
-            locker.unlock(); // снимаем блокировку
+            lock.unlock(); // снимаем блокировку
         }
     }
 }
@@ -82,11 +170,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Program {
     public static void main(String[] args) {
-        CommonResource commonResource= new CommonResource();
+        CommonResource commonResource = new CommonResource();
         ReentrantLock locker = new ReentrantLock(); // создаем заглушку
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             Thread t = new Thread(new CountThread(commonResource, locker));
-            t.setName("Thread "+ i);
+            t.setName("Thread " + i);
             t.start();
         }
     }
@@ -98,28 +186,28 @@ public class Program {
 === Methods
 
 [.step]
-* `await()`
-* `signal()`
-* `signalAll()`
+* `await(): void`
+* `await(long, TimeUnit): boolean`
+* `signal(): void`
+* `signalAll(): void`
 
 === Example
 
 [.fragment]
 [source,java]
 ----
-// Класс Магазин, хранящий произведенные товары
 public class Store {
     private int product = 0;
-    private ReentrantLock locker;
-    private Condition condition;
+    private final ReentrantLock lock;
+    private final Condition condition;
 
     public Store() {
-        this.locker = new ReentrantLock(); // создаем блокировку
-        this.condition = this.locker.newCondition(); // получаем условие, связанное с блокировкой
+        this.lock = new ReentrantLock(); // создаем блокировку
+        this.condition = this.lock.newCondition(); // получаем условие, связанное с блокировкой
     }
 
     public void get() {
-        this.locker.lock();
+        this.lock.lock();
         try {
             while (this.product < 1) { // пока нет доступных товаров на складе
                 this.condition.await(); // ожидаем
@@ -133,12 +221,12 @@ public class Store {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
-            this.locker.unlock();
+            this.lock.unlock();
         }
     }
 
     public void put() {
-        this.locker.lock();
+        this.lock.lock();
         try {
             while (this.product >= 3) { // пока на складе 3 товара
                 condition.await(); // ждем освобождения места
@@ -152,7 +240,7 @@ public class Store {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         } finally {
-            this.locker.unlock();
+            this.lock.unlock();
         }
     }
 }
@@ -164,14 +252,14 @@ public class Store {
 [source,java]
 ----
 class Producer implements Runnable {
-    private Store store;
+    private final Store store;
 
     public Producer(Store store) {
        this.store = store;
     }
 
     public void run() {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             store.put();
         }
     }
@@ -184,14 +272,14 @@ class Producer implements Runnable {
 [source,java]
 ----
 class Consumer implements Runnable {
-    private Store store;
+    private final Store store;
 
     public Consumer(Store store) {
        this.store = store;
     }
 
     public void run() {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i <= 5; i++) {
             store.get();
         }
     }
@@ -217,39 +305,90 @@ public class Program {
 }
 ----
 
-== Deadlock
-
-=== Deadlock
-
-[.fragment]
-image::/assets/img/java/basics/concurrency/deadlock.jpg[Deadlock]
+== Executors
 
 == `ExecutorService`
 
-=== Example
-
-[.fragment]
-[source,java]
-----
-ExecutorService executorService = Executors.newFixedThreadPool(10);
-
-executorService.execute(new Runnable() {
-    public void run() {
-        System.out.println("Asynchronous task");
-    }
-});
-
-executorService.shutdown();
-----
-
-=== Methods
+=== `ExecutorService`
 
 [.step]
-* `execute(Runnable)`
-* `submit(Runnable)`
-* `submit(Callable)`
-* `invokeAny(...)`
-* `invokeAll(...)`
+* альтернатива классу `Thread`
+* предназначенному для управления потоками
+* в основе положен интерфейс `Executor`
+* работает с интерфейсами `Runnable`, `Callable<V>`, `Future<V>`
+
+=== Interface `Executor`
+
+[.fragment]
+[source, java]
+----
+package java.util.concurrent;
+
+public interface Executor {
+    void execute(Runnable command);
+}
+----
+
+
+=== Interface `Callable<V>`
+
+[.fragment]
+[source, java]
+----
+package java.util.concurrent;
+
+@FunctionalInterface
+public interface Callable<V> {
+    V call() throws Exception;
+}
+----
+
+
+=== Interface `Future<V>`
+
+[.fragment]
+[source, java]
+----
+package java.util.concurrent;
+
+public interface Future<V> {
+    boolean cancel(boolean mayInterruptIfRunning);
+
+    boolean isCancelled();
+
+    boolean isDone();
+
+    V get() throws InterruptedException, ExecutionException;
+
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
+----
+
+=== Interface `ExecutorService`
+
+[.step]
+* `shutdown(): void`
+* `isShutdown(): boolean`
+* `shutdownNow(): List<Runnable>`
+* `awaitTermination(long timeout, TimeUnit unit): boolean`
+* `isTerminated(): boolean`
+* `execute(Runnable): void`
+
+=== Interface `ExecutorService`
+
+[.step]
+* `invokeAny(Collection<? extends Callable<T>> tasks): T`
+* `invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit): T`
+* `invokeAll (Collection<? extends Callable<T>> tasks): List<Future<T>>`
+* `invokeAll (Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit): List<Future<T>>`
+
+=== Interface `ExecutorService`
+
+[.step]
+* `submit(Callable<T> task): Future<T>`
+* `submit(Runnable task, T result): Future<T>`
+* `submit(Runnable task): Future<?>`
 
 === Execute `Runnable`
 
@@ -267,18 +406,38 @@ executorService.execute(new Runnable() {
 executorService.shutdown();
 ----
 
+=== Example
+
+[.fragment]
+[source,java]
+----
+ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+executorService.execute(new Runnable() {
+    public void run() {
+        System.out.println("Asynchronous task");
+    }
+});
+
+executorService.shutdown();
+----
+
 === Submit `Runnable`
 
 [.fragment]
 [source,java]
 ----
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+
 Future future = executorService.submit(new Runnable() {
     public void run() {
         System.out.println("Asynchronous task");
     }
 });
 
-future.get();  //returns null if the task has finished correctly.
+future.get(); //returns null if the task has finished correctly.
+
+executorService.shutdown();
 ----
 
 === `invokeAny()`
@@ -288,7 +447,7 @@ future.get();  //returns null if the task has finished correctly.
 ----
 ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-Set<Callable<String>> callables = new HashSet<Callable<String>>();
+Set<Callable<String>> callables = new HashSet<>();
 
 callables.add(new Callable<String>() {
     public String call() throws Exception {
@@ -320,7 +479,7 @@ executorService.shutdown();
 ----
 ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-Set<Callable<String>> callables = new HashSet<Callable<String>>();
+Set<Callable<String>> callables = new HashSet<>();
 
 callables.add(new Callable<String>() {
     public String call() throws Exception {
