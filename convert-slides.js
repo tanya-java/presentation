@@ -58,7 +58,6 @@ asciidoctor.convertFile('./java/basics/concurrency-thread-synchronization.adoc',
 asciidoctor.convertFile('./java/basics/concurrency-utilities.adoc', options)
 asciidoctor.convertFile('./java/basics/functional-interfaces.adoc', options)
 asciidoctor.convertFile('./java/basics/lambda-expressions.adoc', options)
-asciidoctor.convertFile('./java/basics/stream-api.adoc', options)
 asciidoctor.convertFile('./java/basics/networking.adoc', options)
 asciidoctor.convertFile('./java/basics/annotations.adoc', options)
 
