@@ -33,31 +33,18 @@ link:https://jcp.org/en/jsr/detail?id=335[JSR-335]: Lambda expressions
 
 === Functional Interface
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 interface Operationable {
     int calculate(int x, int y);
 }
 ----
 
-=== Example
+=== Anonymous Classes
 
-[source,java]
-----
-public class LambdaApp {
-    public static void main(String[] args) {
-        Operationable operation;
-        operation = (x, y) -> x + y;
-
-        int result = operation.calculate(10, 20);
-        System.out.println(result);
-    }
-}
-----
-
-=== Lambda Expression as Anonymous Classes
-
-[source,java]
+[.fragment]
+[source, java]
 ----
 public class LambdaApp {
     public static void main(String[] args) {
@@ -72,9 +59,26 @@ public class LambdaApp {
 }
 ----
 
+=== Example
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable operation;
+        operation = (x, y) -> x + y;
+
+        int result = operation.calculate(10, 20);
+        System.out.println(result);
+    }
+}
+----
+
 === Steps for using Lambda Expression
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 // Defining reference to functional interface:
 Operationable operation;
@@ -88,7 +92,8 @@ int result = operation.calculate(10, 20);
 
 === Example
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 Operationable operation1 = (int x, int y)-> x + y;
 Operationable operation2 = (int x, int y)-> x - y;
@@ -101,7 +106,8 @@ System.out.println(operation3.calculate(20, 10));
 
 === Syntax Lambda Expressions
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 (int a, int b) -> {
     return a + b;
@@ -128,7 +134,8 @@ System.out.println(operation3.calculate(20, 10));
 
 === Terminal Lambda Expressions
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 interface Printable {
     void print(String s);
@@ -144,7 +151,8 @@ public class LambdaApp {
 
 === Lambda Expressions and global variables
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 public class LambdaApp {
     static int x = 10;
@@ -167,7 +175,8 @@ interface Operation {
 
 === Lambda Expressions and local variables
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 public static void main(String[] args) {
     int n = 70;
@@ -183,7 +192,8 @@ public static void main(String[] args) {
 
 === Generic Functional Interface
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 public class LambdaApp {
     public static void main(String[] args) {
@@ -204,7 +214,8 @@ interface Operationable<T> {
 
 === Lambda as parameters method
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 public class LambdaApp {
     public static void main(String[] args) {
@@ -230,7 +241,8 @@ interface Expression {
 
 === Method links as method parameters
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 interface Expression {
     boolean isEqual(int n);
@@ -268,7 +280,8 @@ public class LambdaApp {
 
 === Links to constructors
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 public class LambdaApp {
     public static void main(String[] args) {
@@ -297,7 +310,8 @@ class User {
 
 === Lambda as a result of methods
 
-[source,java]
+[.fragment]
+[source, java]
 ----
 interface Operation {
     int execute(int x, int y);
@@ -332,26 +346,30 @@ public class LambdaApp {
 
 === Stream
 
+[.fragment]
 image::/assets/img/java/basics/stream.jpg[Stream]
 
 == `BaseStream`
 
 === Interface `BaseStream`
 
+[.step]
 * `interface BaseStream<T , S extends BaseStream<T , S>>`
 
 === `BaseStream` Methods
 
-* `void close()`
-* `boolean isParallel():`
-* `Iterator<Т> iterator()`
-* `Spliterator<Т> spliterator()`
-* `S parallel()`
-* `S sequential()`
-* `S unordered()`
+[.step]
+* `close(): void`
+* `isParallel(): boolean`
+* `iterator(): Iterator<Т>`
+* `spliterator(): Spliterator<Т>`
+* `parallel(): S`
+* `sequential(): S`
+* `unordered(): S`
 
 === `BaseStream` Inheritors
 
+[.step]
 * `Stream<T>`
 * `IntStream`
 * `DoubleStream`
@@ -361,35 +379,47 @@ image::/assets/img/java/basics/stream.jpg[Stream]
 
 === Intermediate methods
 
-* `Stream<T> concat​(Stream<? extends T> a, Stream<? extends T> b)`
-* `Stream<T> distinct()`
-* `Stream<T> dropWhile​(Predicate<? super T> predicate)`
-* `Stream<T> filter(Predicate<? super T> predicate)`
-* `Stream<T> limit(long maxSize)`
-* `Stream<T> skip(long n)`
-* `Stream<T> sorted()`
-* `Stream<T> sorted(Comparator<? super T> comparator)`
-* `Stream<T> takeWhile​(Predicate<? super T> predicate)`
+[.step]
+* `map(Function<? super T, ? extends R> mapper): Stream<R>`
+* `filter(Predicate<? super T> predicate): Stream<T>`
+* `sorted(): Stream<T>`
+* `concat​(Stream<? extends T> a, Stream<? extends T> b): Stream<T>`
+* `distinct(): Stream<T>`
+
+=== Intermediate methods
+
+[.step]
+* `skip(long n): Stream<T>`
+* `sorted(Comparator<? super T> comparator): Stream<T>`
+* `takeWhile​(Predicate<? super T> predicate): Stream<T>`
+* `dropWhile​(Predicate<? super T> predicate): Stream<T>`
+* `limit(long maxSize): Stream<T>`
 
 === Terminal methods
 
-* `boolean allMatch(Predicate<? super T> predicate)`
-* `boolean anyMatch(Predicate<? super T> predicate)`
-* `<R, A> R collect(Collector<? super T, A, R> collector)`
-* `long count()`
-* `Optional<T> findFirst()`
-* `Optional<T> findAny()`
-* `void forEach(Consumer<? super T> action)`
-* `Optional<T> max(Comparator<? super T> comparator)`
-* `Optional<T> min(Comparator<? super T> comparator)<R> Stream<R> map(Function<? super T, ? extends R> mapper)`
-* `<R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)`
-* `boolean noneMatch(Predicate<? super T> predicate)`
-* `Object[] toArray()`
+[.step]
+* `forEach(Consumer<? super T> action): void`
+* `allMatch(Predicate<? super T> predicate): boolean`
+* `anyMatch(Predicate<? super T> predicate): boolean`
+* `count(): long`
+* `noneMatch(Predicate<? super T> predicate): boolean`
+* `toArray(): Object[]`
+
+=== Terminal methods
+
+[.step]
+* `collect(Collector<? super T, A, R> collector): <R, A> R`
+* `flatMap(Function<? super T, ? extends Stream<? extends R>> mapper): <R> Stream<R>`
+* `findFirst(): Optional<T>`
+* `findAny(): Optional<T>`
+* `max(Comparator<? super T> comparator): Optional<T>`
+* `min(Comparator<? super T> comparator): Optional<T>`
 
 == Creating `Stream`
 
 === Creating `Stream`
 
+[.step]
 * `default Stream<E> stream`
 * `default Stream<E> parallelStream`
 * `Arrays.stream(T[] array)`
@@ -399,33 +429,43 @@ image::/assets/img/java/basics/stream.jpg[Stream]
 
 === Methods
 
-* `static <T> Optional<T> empty()`
-* `Optional<T> filter(Predicate<? super T> predicate)`
-* `<U> Optional<U> flatMap(Function<? super T,Optional<U>> mapper)`
-* `T get()`
-* `void ifPresent(Consumer<? super T> consumer)`
-* `boolean isPresent()`
-* `<U> Optional<U> map(Function<? super T,? extends U> mapper)`
-* `static <T> Optional<T> of(T value)`
-* `static <T> Optional<T> ofNullable(T value)`
-* `T orElse(T other)`
-* `T orElseGet(Supplier<? extends T> other)`
-* `<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)`
+[.step]
+* `Optional<T>.empty(): <T>`
+* `filter(Predicate<? super T> predicate): Optional<T>`
+* `flatMap(Function<? super T,Optional<U>> mapper): Optional<U>`
+* `get(): T`
+* `ifPresent(Consumer<? super T> consumer): void`
+* `isPresent(): boolean`
+
+=== Methods
+
+[.step]
+* `map(Function<? super T,? extends U> mapper): Optional<U>`
+* `Optional<T>.of(T value): <T>`
+* `Optional<T>.ofNullable(T value): <T>`
+* `orElse(T other): T`
+* `orElseGet(Supplier<? extends T> other): T`
+* `<X extends Throwable> orElseThrow(Supplier<? extends X> exceptionSupplier): T`
 
 == Method `collect()`
 
+=== `Collectors` Methods
+
+[.step]
+* `toList(): List<T>`
+* `toSet(): Set<T>`
+* `toMap(): Map<K, U>`
+* `toCollection(): Collection<T>`
+* `groupingBy(Function<? super T, ? extends K>): Collector<T, ?, Map<K, List<T>>>`
+* `partitioningBy(Predicate<? super T>): Collector<T, ?, Map<Boolean, List<T>>>`
+
 === Collectors Methods
 
-* `toList()`
-* `toSet()`
-* `toMap()`
-* `toCollection()`
-* `groupingBy()`
-* `partitioningBy()`
+[.step]
 * `counting()`
 * `summing()`
-* `maxBy()`
-* `minBy()`
+* `maxBy(Comparator<? super T>)`
+* `minBy(Comparator<? super T>)`
 * `summarizing()`
 * `mapping()`
 
@@ -433,6 +473,7 @@ image::/assets/img/java/basics/stream.jpg[Stream]
 
 === Methods
 
+[.step]
 * `parallel()`
 * `sequential()`
 * `forEachOrdered()`
