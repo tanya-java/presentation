@@ -59,8 +59,9 @@ asciidoctor.convertFile('./java/basics/concurrency-utilities.adoc', options)
 asciidoctor.convertFile('./java/basics/functional-interfaces.adoc', options)
 asciidoctor.convertFile('./java/basics/lambda-expressions.adoc', options)
 asciidoctor.convertFile('./java/basics/date-and-time.adoc', options)
-asciidoctor.convertFile('./java/basics/networking.adoc', options)
+asciidoctor.convertFile('./java/basics/reflection.adoc', options)
 asciidoctor.convertFile('./java/basics/annotations.adoc', options)
+asciidoctor.convertFile('./java/basics/networking.adoc', options)
 
 // Course: "Java with Jakarta EE"
 asciidoctor.convertFile('./java/jakarta-ee/java-enterprise.adoc', options)
