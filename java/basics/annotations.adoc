@@ -1,55 +1,65 @@
-= Annotations
-
-== Definition Annotation
-
-=== Creating Custom Annotation
-
-[source,java]
-----
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-@interface MyAnnotation { 
-    String str(); 
-    int val(); 
-}
-----
-
-=== Using Annotation
-
-[source,java]
-----
-@MyAnnotation(str = "Пример аннотации", val = 988) 
-public static void myMethod() {
-    // code 
-}
-----
+= JSR 250, 269, 308: Annotations
 
 == Embedded Annotations
 
 === Embedded Annotations
 
+[.step]
 * `@Retention`
-* `@Documented`
 * `@Target`
+* `@Documented`
 * `@Inherited`
 * `@Override`
 
 === Embedded Annotations
 
+[.step]
 * `@Deprecated`
 * `@SafeVarargs`
 * `@SuppressWarnings`
 * `@Repeatable`
 * `@FunctionalInterface`
 
+== `@Retention`
+
 === `@Retention`
 
+[.fragment]
+[source, java]
+----
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Retention {
+    RetentionPolicy value();
+}
+----
+
+=== `RetentionPolicy`
+
+[.step]
 * `SOURCE`
 * `CLASS`
 * `RUNTIME`
 
+== `@Target`
+
 === `@Target`
 
+[.fragment]
+[source, java]
+----
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Target {
+    ElementType[] value();
+}
+----
+
+=== `ElementType`
+
+[.step]
 * `TYPE`
 * `FIELD`
 * `METHOD`
@@ -57,10 +67,37 @@ public static void myMethod() {
 * `CONSTRUCTOR`
 * `LOCAL_VARIABLE`
 
-=== `@Target`
+=== `ElementType`
 
+[.step]
 * `ANNOTATION_TYPE`
 * `PACKAGE`
 * `TYPE_PARAMETER`
 * `TYPE_USE`
 * `MODULE`
+
+== Definition Annotation
+
+=== Creating Custom Annotation
+
+[.fragment]
+[source,java]
+----
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface MyAnnotation {
+    String str();
+    int val();
+}
+----
+
+=== Using Annotation
+
+[.fragment]
+[source,java]
+----
+@MyAnnotation(str = "Пример аннотации", val = 988)
+public static void myMethod() {
+    // code
+}
+----
