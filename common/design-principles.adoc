@@ -97,7 +97,7 @@ The last three principles are about the *couplings between packages*, and talk a
 === SRP
 
 [.fragment]
-image::/assets/img/common/solid/SRP.jpg[SRP]
+image::/assets/img/common/design-principles/solid/SRP.jpg[SRP]
 
 [.fragment]
 Просто потому, что ты можешь, не значит, что ты должен.
@@ -111,7 +111,7 @@ image::/assets/img/common/solid/SRP.jpg[SRP]
 === OCP
 
 [.fragment]
-image::/assets/img/common/solid/OCP.jpg[OCP]
+image::/assets/img/common/design-principles/solid/OCP.jpg[OCP]
 
 [.fragment]
 При надевании пальто не требуется операция на открытой груди.
@@ -127,7 +127,7 @@ image::/assets/img/common/solid/OCP.jpg[OCP]
 === LSP
 
 [.fragment]
-image::/assets/img/common/solid/LSP.jpg[LSP]
+image::/assets/img/common/design-principles/solid/LSP.jpg[LSP]
 
 [.fragment]
 Если оно похоже на утку, крякает как утка, но нужны батарейки - вероятно, у вас неправильная абстракци.
@@ -141,7 +141,7 @@ image::/assets/img/common/solid/LSP.jpg[LSP]
 === ISP
 
 [.fragment]
-image::/assets/img/common/solid/ISP.jpg[ISP]
+image::/assets/img/common/design-principles/solid/ISP.jpg[ISP]
 
 [.fragment]
 Вы хотите, чтобы я подключил это? Только куда и как?
@@ -155,7 +155,7 @@ image::/assets/img/common/solid/ISP.jpg[ISP]
 === DIP
 
 [.fragment]
-image::/assets/img/common/solid/DIP.jpg[DIP]
+image::/assets/img/common/design-principles/solid/DIP.jpg[DIP]
 
 [.fragment]
 Вы бы припаяли лампу прямо к розетке в стене?
