@@ -90,6 +90,7 @@
 
 === Course: Common [[course-common]]
 
+* link:./common/uml.html[UML]
 * link:./common/design-patterns.html[Design Patterns]
 * link:./common/design-principles.html[Design Principles]
 * link:./common/json.html[JSON]
