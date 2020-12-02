@@ -22,8 +22,9 @@ asciidoctor.convertFile('./index.adoc', options)
 
 // Common thrmes
 asciidoctor.convertFile('./common/uml.adoc', options)
-asciidoctor.convertFile('./common/design-patterns.adoc', options)
 asciidoctor.convertFile('./common/design-principles.adoc', options)
+asciidoctor.convertFile('./common/design-patterns.adoc', options)
+asciidoctor.convertFile('./common/architectural-patterns.adoc', options)
 asciidoctor.convertFile('./common/json.adoc', options)
 asciidoctor.convertFile('./common/programming-languages.adoc', options)
 asciidoctor.convertFile('./common/scrum.adoc', options)
