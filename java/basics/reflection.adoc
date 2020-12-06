@@ -13,7 +13,14 @@ How research class?
 Reflection
 
 [.fragment]
-image:/assets/img/java/basics/reflection.webp[Reflection]
+image:/assets/img/java/basics/reflection/reflection-juggling.webp[Reflection juggling]
+
+== Structure
+
+=== Structure
+
+[.fragment]
+image:/assets/img/java/basics/reflection/reflection-structure.gif[Reflection Structure]
 
 == Класс `Class`
 
@@ -34,9 +41,9 @@ image:/assets/img/java/basics/reflection.webp[Reflection]
 === Методы
 
 [.step]
-* `getSuperclass()` - возвращает супер класс объекта ссылочного типа.
-* `getPackage()` - возвращает пакет.
-* `getModifiers()` - возвращает модификаторы класса.
+* `getSuperclass(): Class<?>` - возвращает супер класс объекта ссылочного типа.
+* `getPackage(): Package` - возвращает пакет.
+* `getModifiers(): int` - возвращает модификаторы класса.
 
 === Методы
 
@@ -44,28 +51,30 @@ image:/assets/img/java/basics/reflection.webp[Reflection]
 Логические методы позволяющие уточнить, является ли объект массивом, интерфейсом или примитивным типом.
 
 [.step]
-* `isArray()`
-* `isInterface()`
-* `isPrimitive()`
+* `isArray(): boolean`
+* `isInterface(): boolean`
+* `isPrimitive(): boolean`
 
 === Методы
 
 [.fragment]
-Если объект ссылочного типа, то можно извлечь сведения о вложенных классах, конструкторах, методах в виде массива:
+Если объект ссылочного типа, то можно извлечь сведения о всех вложенных классах, конструкторах, методах в виде массива:
 
 [.step]
-* `getDeclaredClasses()`
-* `getDeclaredConstructors()`
-* `getDeclaredMethods()`
-* `getDeclaredFields()`
+* `getDeclaredClasses(): Class<?>[]`
+* `getDeclaredConstructors(): Constructors<?>[]`
+* `getDeclaredMethods(): Method[]`
+* `getDeclaredFields(): Field[]`
 
 === Методы
 
 [.fragment]
-Методы возвращают такие же массивы, но не всех, а только открытых членов класса.
+Методы возвращают такие же массивы, но не всех, а только `private` членов класса.
 
 [.step]
-* `getClasses()`
-* `getConstructors()`
-* `getMethods()`
-* `getFields()`
+* `getClasses(): Class<?>[]`
+* `getConstructors(): Constructors<?>[]`
+* `getMethods(): Method[]`
+* `getFields(): Field[]`
+* `getInterfaces(): Class<?>[]`
+* `getAnnotations(): Annotation[]`
