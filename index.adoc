@@ -7,6 +7,7 @@
 * <<course-java-data-persistence, Data Persistence in Java>>
 * <<course-java-jakarta-ee, Java with Jakarta EE>>
 * <<course-java-spring-framework, Java with Spring Framework>>
+* link:./code-review.html[Code Review]
 
 === Course: Basics Java [[course-java-basics]]
 

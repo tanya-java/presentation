@@ -18,7 +18,9 @@ var options = {
     ]
 }
 
+// Root
 asciidoctor.convertFile('./index.adoc', options)
+asciidoctor.convertFile('./code-review.adoc', options)
 
 
 // Common themes
