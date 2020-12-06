@@ -67,6 +67,7 @@ asciidoctor.convertFile('./java/basics/lambda-expressions.adoc', options)
 asciidoctor.convertFile('./java/basics/date-and-time.adoc', options)
 asciidoctor.convertFile('./java/basics/reflection.adoc', options)
 asciidoctor.convertFile('./java/basics/annotations.adoc', options)
+asciidoctor.convertFile('./java/basics/xml.adoc', options)
 asciidoctor.convertFile('./java/basics/networking.adoc', options)
 
 // Course: "Java with Jakarta EE"

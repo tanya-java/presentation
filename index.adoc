@@ -44,6 +44,7 @@
 
 === Course: Basics Java [[course-java-basics-4]]
 
+* link:./java/basics/xml.html[XML (JSR 5, 31, 105, 173, 206, 222, 224)]
 * link:./java/basics/networking.html[Networking]
 
 === Course: Java for Desktop [[course-java-desktop]]
