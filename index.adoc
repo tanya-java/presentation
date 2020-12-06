@@ -90,12 +90,13 @@
 
 === Course: Common [[course-common]]
 
+* link:./common/programming-languages.html[Programming languages]
 * link:./common/uml.html[UML]
 * link:./common/design-principles.html[Design Principles]
 * link:./common/design-patterns.html[Design Patterns]
 * link:./common/architectural-patterns.html[Architectural Patterns]
+* link:./common/xml.html[XML]
 * link:./common/json.html[JSON]
-* link:./common/programming-languages.html[Programming languages]
 * link:./common/scrum.html[Scrum]
 * link:./common/regex.html[Regular Expression]
 
