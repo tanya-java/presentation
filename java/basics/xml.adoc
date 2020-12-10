@@ -125,3 +125,84 @@ Package `java.xml`
 * `createAttribute(String localName, String value): Attribute`
 * `createEndElement(String prefix, String namespaceUri, String localName): EndElement`
 * `createEndDocument(): EndDocument`
+
+== XPath
+
+=== XPath
+
+[.fragment]
+[source, java]
+----
+XPathFactory xpathFactory = XPathFactory.newInstance();
+XPath xpath = xpathFactory.newXPath();
+----
+
+=== XPathExpression
+
+[.fragment]
+[source, java]
+----
+XPathExpression xPathExpression = xpath.compile("THIS_IS_YOUR_EXPRESSIONS");
+NodeList nodes = (NodeList) xPathExpression.evaluate(doc, XPathConstants.NODESET);
+----
+
+=== `XPathConstants`
+
+[.step]
+* `STRING`
+* `NUMBER`
+* `BOOLEAN`
+* `NODE`
+* `NODESET`
+
+=== Example
+
+[.fragment]
+[source, xml]
+----
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<developers>
+    <developer id="1">
+        <name>Andrew</name>
+        <age>25</age>
+        <position>Middle</position>
+        <language>Java</language>
+    </developer>
+    <developer id="2">
+        <name>Dima</name>
+        <age>21</age>
+        <position>Junior</position>
+        <language>JS</language>
+    </developer>
+</developers>
+----
+
+=== Example: как получить developers какого-то уровня?
+
+[.fragment]
+[source, java]
+----
+XPathExpression xPathExpression = xpath.compile(
+    "/developers/developer[position='" + position + "']/name/text()"
+);
+----
+
+=== Example: как получить developers младше какого-то возраста?
+
+[.fragment]
+[source, java]
+----
+XPathExpression xPathExpression = xpath.compile(
+    "/developers/developer[age<" + age + "]/name/text()"
+);
+----
+
+=== Example: как получить имя developer по id?
+
+[.fragment]
+[source, java]
+----
+XPathExpression xPathExpression = xpath.compile(
+    "/developers/developer[@id='" + id + "']/name/text()"
+);
+----
