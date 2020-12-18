@@ -2,3 +2,4 @@ node_modules/
 .deploy/
 package-lock.json
 *.html
+/node_modules
