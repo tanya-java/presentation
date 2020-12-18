@@ -1,0 +1,480 @@
+= JSR-335: Lambda expressions
+
+== Intro
+
+=== Problem
+
+[.fragment]
+Сложность решения некоторых простых задач в сравнении с функциональными языками программирования.
+
+[.fragment]
+[source, java]
+----
+button.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent event) {
+        System.out.println("Hello World!");
+    }
+});
+----
+
+=== Solution
+
+
+[.fragment]
+[source, java]
+----
+button.addActionListener(event -> System.out.println("Hello World!"));
+----
+
+[.fragment]
+link:https://jcp.org/en/jsr/detail?id=335[JSR-335]: Lambda expressions
+
+== Lambda expressions
+
+=== Functional Interface
+
+[.fragment]
+[source, java]
+----
+interface Operationable {
+    int calculate(int x, int y);
+}
+----
+
+=== Anonymous Classes
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable op = new Operationable() {
+            public int calculate(int x, int y) {
+                return x + y;
+            }
+        };
+        int z = op.calculate(20, 10);
+        System.out.println(z);
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable operation;
+        operation = (x, y) -> x + y;
+
+        int result = operation.calculate(10, 20);
+        System.out.println(result);
+    }
+}
+----
+
+=== Steps for using Lambda Expression
+
+[.fragment]
+[source, java]
+----
+// Defining reference to functional interface:
+Operationable operation;
+
+// Creating Lambda Expression
+operation = (x, y) -> x + y;
+
+// Using Lambda Expression
+int result = operation.calculate(10, 20);
+----
+
+=== Example
+
+[.fragment]
+[source, java]
+----
+Operationable operation1 = (int x, int y)-> x + y;
+Operationable operation2 = (int x, int y)-> x - y;
+Operationable operation3 = (int x, int y)-> x * y;
+
+System.out.println(operation1.calculate(20, 10));
+System.out.println(operation2.calculate(20, 10));
+System.out.println(operation3.calculate(20, 10));
+----
+
+=== Syntax Lambda Expressions
+
+[.fragment]
+[source, java]
+----
+(int a, int b) -> {
+    return a + b;
+}
+
+(a, b) -> {
+    return a + b;
+}
+
+() -> System.out.println("Hello World");
+
+(String s) -> {
+    System.out.println(s);
+}
+
+(s) -> System.out.println(s);
+
+() -> 42;
+
+() -> {
+    return 3.1415;
+}
+----
+
+=== Terminal Lambda Expressions
+
+[.fragment]
+[source, java]
+----
+interface Printable {
+    void print(String s);
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Printable printer = s -> System.out.println(s);
+        printer.print("Hello Java!");
+    }
+}
+----
+
+=== Lambda Expressions and global variables
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    static int x = 10;
+    static int y = 20;
+
+    public static void main(String[] args) {
+        Operation op = () -> {
+            x = 30;
+            return x + y;
+        };
+        System.out.println(op.calculate());
+        System.out.println(x);
+    }
+}
+
+interface Operation {
+    int calculate();
+}
+----
+
+=== Lambda Expressions and local variables
+
+[.fragment]
+[source, java]
+----
+public static void main(String[] args) {
+    int n = 70;
+    int m = 30;
+    Operation op = () -> {
+        // n = 100;
+        return m + n;
+    };
+    // n = 100;
+    System.out.println(op.calculate());
+}
+----
+
+=== Generic Functional Interface
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operationable<Integer> operation1 = (x, y) -> x + y;
+        Operationable<String> operation2 = (x, y) -> x + y;
+
+        System.out.println(operation1.calculate(20, 10));
+        System.out.println(operation2.calculate("20", "10"));
+    }
+}
+
+interface Operationable<T> {
+    T calculate(T x, T y);
+}
+----
+
+== Lambda as parameters and results of methods
+
+=== Lambda as parameters method
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        Expression func = (n) -> n % 2 == 0;
+        int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println(sum(nums, func));
+    }
+
+    private static int sum(int[] numbers, Expression func) {
+        int result = 0;
+        for (int i : numbers) {
+            if (func.isEqual(i))
+                result += i;
+        }
+        return result;
+    }
+}
+
+interface Expression {
+    boolean isEqual(int n);
+}
+----
+
+=== Method links as method parameters
+
+[.fragment]
+[source, java]
+----
+interface Expression {
+    boolean isEqual(int n);
+}
+
+class ExpressionHelper {
+    static boolean isEven(int n) {
+        return n % 2 == 0;
+    }
+
+    static boolean isPositive(int n) {
+        return n > 0;
+    }
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        int[] nums = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+        System.out.println(sum(nums, ExpressionHelper::isEven));
+
+        Expression expr = ExpressionHelper::isPositive;
+        System.out.println(sum(nums, expr));
+    }
+
+    private static int sum(int[] numbers, Expression func) {
+        int result = 0;
+        for (int i : numbers) {
+            if (func.isEqual(i))
+                result += i;
+        }
+        return result;
+    }
+}
+----
+
+=== Links to constructors
+
+[.fragment]
+[source, java]
+----
+public class LambdaApp {
+    public static void main(String[] args) {
+        UserBuilder userBuilder = User::new;
+        User user = userBuilder.create("Tom");
+        System.out.println(user.getName());
+    }
+}
+
+interface UserBuilder {
+    User create(String name);
+}
+
+class User {
+    private String name;
+
+    String getName() {
+        return name;
+    }
+
+    User(String n) {
+        this.name = n;
+    }
+}
+----
+
+=== Lambda as a result of methods
+
+[.fragment]
+[source, java]
+----
+interface Operation {
+    int execute(int x, int y);
+}
+
+public class LambdaApp {
+    public static void main(String[] args) {
+        Operation func = action(1);
+        int a = func.execute(6, 5);
+        System.out.println(a); // 11
+
+        int b = action(2).execute(8, 2);
+        System.out.println(b); // 6
+    }
+
+    private static Operation action(int number) {
+        switch (number) {
+            case 1:
+                return (x, y) -> x + y;
+            case 2:
+                return (x, y) -> x - y;
+            case 3:
+                return (x, y) -> x * y;
+            default:
+                return (x, y) -> 0;
+        }
+    }
+}
+----
+
+== Stream
+
+=== Stream
+
+[.fragment]
+image::/assets/img/java/basics/stream.jpg[Stream]
+
+== `BaseStream`
+
+=== Interface `BaseStream`
+
+[.step]
+* `interface BaseStream<T , S extends BaseStream<T , S>>`
+
+=== `BaseStream` Methods
+
+[.step]
+* `close(): void`
+* `isParallel(): boolean`
+* `iterator(): Iterator<Т>`
+* `spliterator(): Spliterator<Т>`
+* `parallel(): S`
+* `sequential(): S`
+* `unordered(): S`
+
+=== `BaseStream` Inheritors
+
+[.step]
+* `Stream<T>`
+* `IntStream`
+* `DoubleStream`
+* `LongStream`
+
+== `Stream<T>`
+
+=== Intermediate methods
+
+[.step]
+* `map(Function<? super T, ? extends R> mapper): Stream<R>`
+* `filter(Predicate<? super T> predicate): Stream<T>`
+* `sorted(): Stream<T>`
+* `concat​(Stream<? extends T> a, Stream<? extends T> b): Stream<T>`
+* `distinct(): Stream<T>`
+
+=== Intermediate methods
+
+[.step]
+* `skip(long n): Stream<T>`
+* `sorted(Comparator<? super T> comparator): Stream<T>`
+* `takeWhile​(Predicate<? super T> predicate): Stream<T>`
+* `dropWhile​(Predicate<? super T> predicate): Stream<T>`
+* `limit(long maxSize): Stream<T>`
+
+=== Terminal methods
+
+[.step]
+* `forEach(Consumer<? super T> action): void`
+* `allMatch(Predicate<? super T> predicate): boolean`
+* `anyMatch(Predicate<? super T> predicate): boolean`
+* `count(): long`
+* `noneMatch(Predicate<? super T> predicate): boolean`
+* `toArray(): Object[]`
+
+=== Terminal methods
+
+[.step]
+* `collect(Collector<? super T, A, R> collector): <R, A> R`
+* `flatMap(Function<? super T, ? extends Stream<? extends R>> mapper): <R> Stream<R>`
+* `findFirst(): Optional<T>`
+* `findAny(): Optional<T>`
+* `max(Comparator<? super T> comparator): Optional<T>`
+* `min(Comparator<? super T> comparator): Optional<T>`
+
+== Creating `Stream`
+
+=== Creating `Stream`
+
+[.step]
+* `default Stream<E> stream`
+* `default Stream<E> parallelStream`
+* `Arrays.stream(T[] array)`
+* `Stream.of(T..values)`
+
+== `Optional`
+
+=== Methods
+
+[.step]
+* `Optional<T>.empty(): <T>`
+* `filter(Predicate<? super T> predicate): Optional<T>`
+* `flatMap(Function<? super T,Optional<U>> mapper): Optional<U>`
+* `get(): T`
+* `ifPresent(Consumer<? super T> consumer): void`
+* `isPresent(): boolean`
+
+=== Methods
+
+[.step]
+* `map(Function<? super T,? extends U> mapper): Optional<U>`
+* `Optional<T>.of(T value): <T>`
+* `Optional<T>.ofNullable(T value): <T>`
+* `orElse(T other): T`
+* `orElseGet(Supplier<? extends T> other): T`
+* `<X extends Throwable> orElseThrow(Supplier<? extends X> exceptionSupplier): T`
+
+== Method `collect()`
+
+=== `Collectors` Methods
+
+[.step]
+* `toList(): List<T>`
+* `toSet(): Set<T>`
+* `toMap(): Map<K, U>`
+* `toCollection(): Collection<T>`
+* `groupingBy(Function<? super T, ? extends K>): Collector<T, ?, Map<K, List<T>>>`
+* `partitioningBy(Predicate<? super T>): Collector<T, ?, Map<Boolean, List<T>>>`
+
+=== Collectors Methods
+
+[.step]
+* `counting()`
+* `summing()`
+* `maxBy(Comparator<? super T>)`
+* `minBy(Comparator<? super T>)`
+* `summarizing()`
+* `mapping()`
+
+== Parallel Stream
+
+=== Methods
+
+[.step]
+* `parallel()`
+* `sequential()`
+* `forEachOrdered()`
+* `unordered()`

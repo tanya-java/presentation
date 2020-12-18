@@ -1,0 +1,268 @@
+= Concurrency: thread synchronization
+
+== Problem
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class CommonResource {
+    public int x = 0;
+}
+----
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class CountThread implements Runnable {
+    private final CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.x = 1;
+        for (int i = 1; i <= 4; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+            res.x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+----
+
+=== Problem code
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        CommonResource commonResource = new CommonResource();
+        for (int i = 1; i <= 5; i++) {
+            Thread t = new Thread(new CountThread(commonResource));
+            t.setName("Thread " + i);
+            t.start();
+        }
+    }
+}
+----
+
+== Thread Synchronization
+
+=== Types of thread synchronization
+
+[.step]
+* Mutual Exclusive (взаимное исключение)
+[.step]
+** synchronized method
+** synchronized block
+** static synchronization
+* Cooperation (Inter-thread communication in java) (кооперация)
+
+== Operator `synchronized`
+
+=== `synchronized block`
+
+[.fragment]
+[source,java]
+----
+class CountThread implements Runnable {
+    private final CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        synchronized (res) {
+            res.x = 1;
+            for (int i = 1; i <= 4; i++) {
+                System.out.printf("%s %d \n", Thread.currentThread().getName(), res.x);
+                res.x++;
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+----
+
+=== `synchronized method`
+
+[.fragment]
+[source,java]
+----
+class CommonResource {
+    private int x;
+
+    synchronized void increment() {
+        x = 1;
+        for (int i = 1; i <= 4; i++) {
+            System.out.printf("%s %d \n", Thread.currentThread().getName(), x);
+            x++;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+----
+
+=== `synchronized method`
+
+[.fragment]
+[source,java]
+----
+class CountThread implements Runnable {
+    private final CommonResource res;
+
+    public CountThread(CommonResource res) {
+        this.res = res;
+    }
+
+    public void run() {
+        res.increment();
+    }
+}
+----
+
+== Cooperation
+
+=== Methods
+
+[.step]
+* `wait()`
+* `notify()`
+* `notifyAll()`
+
+=== Thread Lifecycle
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/thread-lifecycle.jpeg[Thread lifecycle]
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+// Класс Магазин, хранящий произведенные товары
+public class Store {
+    private int product = 0;
+
+    public synchronized void get() {
+        while (product < 1) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        product--;
+        System.out.println("Покупатель купил 1 товар");
+        System.out.println("Товаров на складе: " + product);
+        notify();
+    }
+
+    public synchronized void put() {
+        while (product >= 3) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        product++;
+        System.out.println("Производитель добавил 1 товар");
+        System.out.println("Товаров на складе: " + product);
+        notify();
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+class Producer implements Runnable {
+    private Store store;
+
+    public Producer(Store store) {
+       this.store = store;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            store.put();
+        }
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+class Consumer implements Runnable {
+    private Store store;
+
+    public Consumer(Store store) {
+       this.store = store;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            store.get();
+        }
+    }
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+public class Program {
+    public static void main(String[] args) {
+        Store store=new Store();
+        Producer producer = new Producer(store);
+        Consumer consumer = new Consumer(store);
+        new Thread(producer).start();
+        new Thread(consumer).start();
+    }
+}
+----
+
+== Typical problems in Java concurrency
+
+[.step]
+* Deadlock (взаимная блокировка)
+* Starvation (голодание)
+* Nested Monitor Lockout (блокировка вложенного монитора)
+* Slipped Conditions (изменчивое условие)
+
+=== Deadlock
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/deadlock.jpg[Deadlock]
+
+=== Starvation
+
+[.fragment]
+image::/assets/img/java/basics/concurrency/starvation.png[Starvation]

@@ -1,0 +1,80 @@
+= Reflection
+
+== Intro
+
+=== Problem
+
+[.fragment]
+How research class?
+
+=== Solution
+
+[.fragment]
+Reflection
+
+[.fragment]
+image:/assets/img/java/basics/reflection/reflection-juggling.webp[Reflection juggling]
+
+== Structure
+
+=== Structure
+
+[.fragment]
+image:/assets/img/java/basics/reflection/reflection-structure.gif[Reflection Structure]
+
+== Класс `Class`
+
+=== Класс `Class`
+
+[.fragment]
+Он предоставляет информацию:
+
+[.step]
+* является ли класс интерфейсом, массивом или примитивным типом
+* каков супер класс объекта
+* каково имя класса
+* какие в нем конструкторы, поля, методы и вложенные классы
+
+[.fragment]
+В классе `Сlass` нет конструкторов. Экземпляр этого класса создается *JVM* во время загрузки класса и предоставляется методом `getClass()` класса `Object`.
+
+=== Методы
+
+[.step]
+* `getSuperclass(): Class<?>` - возвращает супер класс объекта ссылочного типа.
+* `getPackage(): Package` - возвращает пакет.
+* `getModifiers(): int` - возвращает модификаторы класса.
+
+=== Методы
+
+[.fragment]
+Логические методы позволяющие уточнить, является ли объект массивом, интерфейсом или примитивным типом.
+
+[.step]
+* `isArray(): boolean`
+* `isInterface(): boolean`
+* `isPrimitive(): boolean`
+
+=== Методы
+
+[.fragment]
+Если объект ссылочного типа, то можно извлечь сведения о всех вложенных классах, конструкторах, методах в виде массива:
+
+[.step]
+* `getDeclaredClasses(): Class<?>[]`
+* `getDeclaredConstructors(): Constructors<?>[]`
+* `getDeclaredMethods(): Method[]`
+* `getDeclaredFields(): Field[]`
+
+=== Методы
+
+[.fragment]
+Методы возвращают такие же массивы, но не всех, а только `private` членов класса.
+
+[.step]
+* `getClasses(): Class<?>[]`
+* `getConstructors(): Constructors<?>[]`
+* `getMethods(): Method[]`
+* `getFields(): Field[]`
+* `getInterfaces(): Class<?>[]`
+* `getAnnotations(): Annotation[]`

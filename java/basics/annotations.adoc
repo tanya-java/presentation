@@ -1,0 +1,116 @@
+= JSR 250, 269, 308: Annotations
+
+== Intro
+
+=== Problem
+
+[.fragment]
+How add information for developer to class?
+
+=== Solution
+
+[.fragment]
+Annotations
+
+== Predefined/Standard Annotations
+
+=== Predefined/Standard Annotations
+
+[.step]
+* `@Override`
+* `@Deprecated`
+* `@FunctionalInterface`
+* `@Documented`
+* `@SuppressWarnings`
+
+=== Predefined/Standard Annotations
+
+[.step]
+* `@Retention`
+* `@Target`
+* `@Inherited`
+* `@SafeVarargs`
+* `@Repeatable`
+
+== Definition Annotation
+
+=== Creating Custom Annotation
+
+[.fragment]
+[source,java]
+----
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface Description {
+    String title();
+    int version() default 1;
+    String text();
+}
+----
+
+=== Using Annotation
+
+[.fragment]
+[source,java]
+----
+@Description(title="title", version=2, text="text")
+public class Logger() {
+    // members
+}
+----
+
+== `@Retention`
+
+=== `@Retention`
+
+[.fragment]
+[source, java]
+----
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Retention {
+    RetentionPolicy value();
+}
+----
+
+=== `RetentionPolicy`
+
+[.step]
+* `SOURCE` - аннотация используется в _compile time_ и должна отбрасываться компилятором;
+* `CLASS` - аннтоация будет записана в class-файл компилятором, но не должна быть доступна во время выполнения (runtime)
+* `RUNTIME` - аннотация будет записана в class-файл и доступна в _runtime_ через _reflection_
+
+== `@Target`
+
+=== `@Target`
+
+[.fragment]
+[source, java]
+----
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Target {
+    ElementType[] value();
+}
+----
+
+=== `ElementType`
+
+[.step]
+* `TYPE`
+* `FIELD`
+* `METHOD`
+* `PARAMETER`
+* `CONSTRUCTOR`
+* `LOCAL_VARIABLE`
+
+=== `ElementType`
+
+[.step]
+* `ANNOTATION_TYPE`
+* `PACKAGE`
+* `TYPE_PARAMETER`
+* `TYPE_USE`
+* `MODULE`

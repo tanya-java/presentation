@@ -1,0 +1,97 @@
+= presentation
+
+Presenations for different courses. Use *AsciiDoc* and *Asciidoctor Reveal.js* for convertation to *HTML*
+
+== Getting Started
+
+Need to install:
+
+* *Nginx*
+* *npm*
+* *Node.js*
+
+=== Install Packages
+
+[source,sh]
+----
+npm i
+----
+
+=== Convert slides
+
+[source,sh]
+----
+node convert-slides.js
+----
+
+== Local deploy
+
+=== Configure nginx
+
+Make directory `.deploy`:
+[source,sh]
+----
+mkdir .deploy
+----
+
+Plate following config to `.deploy/nginx.conf`:
+
+[source,conf]
+----
+worker_processes 1;
+error_log $PROJECT_PATH/.deploy/error.log;
+pid $PROJECT_PATH/.deploy/nginx.pid;
+
+events {
+        worker_connections 10;
+}
+
+http {
+    access_log $PROJECT_PATH/.deploy/access.log;
+    include /etc/nginx/mime.types;
+    server {
+            listen 3000;
+            server_name presentation;
+
+            location / {
+                    root $PROJECT_PATH;
+            }
+    }
+}
+----
+
+Replace `$PROJECT_PATH` to project path.
+
+=== Run nginx
+
+[source,sh]
+----
+nginx -c $(pwd)/.deploy/nginx.conf
+----
+
+== Specification
+
+The current repository contains `code-review.adoc` file, which changes depending on the code being reviewed. Therefore, changes in it cannot be committed.
+
+Use the following git command for to ignore changes in file `code-review.adoc`
+
+[source,sh]
+----
+git update-index --assume-unchanged code-review.adoc
+----
+
+To revert that ignorance use the following command:
+
+[source,sh]
+----
+git update-index --no-assume-unchanged code-review.adoc
+----
+
+== Code of Conduct
+
+This project is governed by the link:.github/CODE_OF_CONDUCT.md[Code of Conduct].
+By participating, you are expected to uphold this code of conduct.
+
+== License
+
+The project is released under version 1.3 of the https://www.gnu.org/licenses/fdl-1.3.ru.html[GNU Free Documentation License].

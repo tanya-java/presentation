@@ -1,0 +1,198 @@
+= Loops
+
+== Loop `for`
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+for ([инициализация счетчика]; [условие]; [изменение счетчика]) {
+    // operators
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+for (int i = 1; i < 9; i++) {
+    System.out.printf("Квадрат числа %d равен %d.\n", i, i * i);
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int i = 1;
+for ( ; ; ) {
+    System.out.printf("Квадрат числа %d равен %d.\n", i, i * i);
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int i = 1;
+for ( ; i < 9; ) {
+    System.out.printf("Квадрат числа %d равен %d.\n", i, i * i);
+    i++;
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int n = 10;
+for (int i = 0, j = n - 1; i < j; i++, j--) {
+    System.out.println(i * j);
+}
+----
+
+== Loop `foreach`
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+for (тип_данных название_переменной : контейнер) {
+    // действия
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i : array) {
+    System.out.println(i);
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i = 0; i < array.length; i++) {
+    System.out.println(array[i]);
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i = 0; i < array.length; i++) {
+    array[i] = array[i] * 2;
+    System.out.println(array[i]);
+}
+----
+
+== Loop `while`
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+while (условие) {
+    //действия
+}
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i = 0; i < nums.length; i++) {
+    if (nums[i] > 10) {
+        break;
+    }
+    System.out.println(nums[i]);
+}
+----
+
+== Loop `do .. while`
+
+=== Syntax
+
+[.fragment]
+[source,java]
+----
+do {
+    //действия
+} while (условие);
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int j = 7;
+do {
+    System.out.println(j);
+    j--;
+} while (j > 0);
+----
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int j = -1;
+do {
+    System.out.println(j);
+    j--;
+} while (j > 0)
+----
+
+
+== Operator `break`
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i = 0; i < nums.length; i++) {
+    if (nums[i] > 10) {
+        break;
+    }
+    System.out.println(nums[i]);
+}
+----
+
+== Operator `continue`
+
+=== Example
+
+[.fragment]
+[source,java]
+----
+int[] nums = new int[]{1, 2, 3, 4, 12, 9};
+for (int i = 0; i < nums.length; i++) {
+    if (nums[i] > 10) {
+        continue;
+    }
+    System.out.println(nums[i]);
+}
+----

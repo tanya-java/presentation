@@ -1,0 +1,16 @@
+= Architectural patterns
+
+== MVC
+
+=== What is MVC?
+
+MVC is a architectural pattern for GUI and Web Applications.
+
+[.step]
+* *M* = *Model*
+* *V* = *View*
+* *C* = *Controller*
+
+=== MVC
+
+image::/assets/img/common/architectural-patterns/mvc.png[Уровень представления]

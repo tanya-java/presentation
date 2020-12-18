@@ -1,0 +1,261 @@
+= JSR 310: Date and Time API
+
+== Intro
+
+=== Problem
+
+[.step]
+* До Java 8 для работы с датой и временем использовались классы:
+[.step]
+** `java.util.Date`
+** `java.util.Calendar`
+* Какие проблемы при их использовании
+[.step]
+** не потокобезопасные
+** изменяемые объекты
+** временная зона даты – это временная зона JVM по умолчанию
+** месяца начинаются с нуля
+
+=== Problem
+
+[.step]
+* Использовали сторонние библиотеки (например: *Joda-Time*)
+* _Joda-Time is the de facto standard date and time library for Java prior to Java SE 8_ (c) *joda.org*
+
+=== Solution
+
+[.step]
+* JSR 310: Date and Time API
+* Содержит классы:
+[.step]
+** *неизменные* (*immutable*),
+** *потокобезопасные* (*thread-safe*)
+** с *продуманным дизайном*
+
+== `java.time`
+
+=== Basics
+
+[.step]
+* `java.time.temporal.Temporal`
+[.step]
+** `LocalTime`
+** `LocalDate`
+** `LocalDateTime`
+** `Instant`
+* `java.time.temporal.TemporalAmount`
+[.step]
+** `Period`
+** `Duration`
+
+=== Basics
+
+[.fragment]
+image:/assets/img/java/basics/date-time.png[Java Date and Time API]
+
+== `Temporal`
+
+=== `Temporal`
+
+[.step]
+* `isSupported(TemporalUnit): boolean`
+* `with(TemporalAdjuster): Temporal`
+* `with(TemporalField, long): Temporal`
+* `plus(TemporalAmount): Temporal`
+* `plus(long, TemporalUnit): Temporal`
+* `minus(TemporalAmount): Temporal`
+* `minus(long, TemporalUnit): Temporal`
+* `until(Temporal, TemporalUnit): long`
+
+=== `ChronoField`
+
+[.step]
+* `HOUR_OF_AMPM`
+* `HOUR_OF_DAY`
+* `MINUTE_OF_DAY`
+* `MINUTE_OF_HOUR`
+* `SECOND_OF_DAY`
+* `SECOND_OF_MINUTE`
+* `NANO_OF_DAY`
+* `NANO_OF_SECOND`
+
+=== `ChronoUnit`
+
+[.step]
+* `NANOS`
+* `MICROS`
+* `MILLIS`
+* `SECONDS`
+* `MINUTES`
+* `HOURS`
+* `HALF_DAYS`
+* `DAYS`
+
+=== `ChronoUnit`
+
+[.step]
+* `WEEKS`
+* `MONTHS`
+* `YEARS`
+* `DECADES`
+* `CENTURIES`
+* `MILLENNIA`
+* `ERAS`
+* `FOREVER`
+
+== `LocalTime`
+
+=== Creating `LocalTime`
+
+[.step]
+* `LocalTime.now(): LocalTime`
+* `LocalTime.of(int, int): LocalTime`
+* `LocalTime.of(int, int, int): LocalTime`
+* `LocalTime.of(int, int, int, int): LocalTime`
+
+=== Methods
+
+[.step]
+* `getHour(): int`
+* `getMinute(): int`
+* `getSecond(): int`
+* `getNano(): int`
+* `get(ChronoField): int`
+
+=== Compare `LocalTime`
+
+[.step]
+* `isAfter(LocalTime): boolean`
+* `isBefore(LocalTime): boolean`
+* `equals(LocalTime): boolean`
+
+=== Set units
+
+[.step]
+* `with(ChronoField, int): LocalTime`
+* ...
+
+=== Change units
+
+[.step]
+* `plus(int, ChronoUnit): LocalTime`
+* `minus(int, ChronoUnit): LocalTime`
+* ...
+
+== `LocalDate`
+
+[.step]
+Same as `LocalTime` + few methods
+
+== `LocalDateTime`
+
+[.step]
+Same as `LocalTime` + few methods
+
+== `Instant`
+
+[.step]
+Same as `LocalTime` + few methods
+
+== `TemporalAmount`
+
+=== `TemporalAmount`
+
+[.step]
+* `get(TemporalUnit): long`
+* `getUnits(): List<TemporalUnit>`
+* `addTo(Temporal): Temporal`
+* `subtractFrom(Temporal): Temporal`
+
+== `Duration`
+
+=== `Duration`
+
+[.step]
+* time range
+* use for:
+[.step]
+** hours
+** minutes
+** seconds
+** millis
+** nanos
+
+== `Period`
+
+[.step]
+* time range
+* use for:
+[.step]
+** years
+** months
+** days
+
+== `DateTimeFormatter`
+
+=== `DateTimeFormatter`
+
+Класс `DateTimeFormatter` используется в Java 8 при форматировании и разборе даты.
+
+=== Creating
+
+[.step]
+* `ofPattern(String, Locale)`: DateTimeFormatter
+
+[.fragment]
+[source, java]
+----
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss", Locale.US);
+----
+
+=== Pattern
+
+[.fragment]
+|===
+|Символ|Что означает|Пример
+|`y`|год в эре|`2014`, `14`
+|`M/L`|месяц (название или номер)|`9`, `09`, `Sep`, `September`, `S`
+|`d`|день месяца|`17`
+|`E`|день недели|`Вт`, `вторник`
+|`h`|время в 12-часовом формате|`1`
+|`H`|часы в 24-часовом формате|`13`
+|`m`|минуты|`32`
+|`s`|секунды|`11`
+|`S`|миллисекунды|`109`
+|===
+
+=== Parsing
+
+[.step]
+* `parse(CharSequence text)` - конвертация строки, которая содержит дату и время, в объект `LocalDateTime`. При этом используется формат строки вида `2007-12-03T10:15:30`.
+* `parse(CharSequence text, DateTimeFormatter formatter)` - конвертация строки, которая содержит дату и время, в объект `LocalDateTime` с использованием указанного формата.
+
+=== Example
+
+[.fragment]
+[source, java]
+----
+DateTimeFormatter formatter1 =
+        DateTimeFormatter.ofPattern("MMMM d, yyyy HH:mm:ss");
+LocalDateTime localDateTime =
+        LocalDateTime.parse("июня 5, 2018 12:10:56", formatter1);
+System.out.println(localDateTime);
+
+DateTimeFormatter formatter2 =
+        DateTimeFormatter.ofPattern("MMMM d, yyyy");
+LocalDate localDate = LocalDate.parse("июня 5, 2018", formatter2);
+System.out.println(localDate);
+
+----
+
+=== Example
+
+[.fragment]
+[source, java]
+----
+LocalDateTime dateTime = LocalDateTime.now();
+DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("MMMM, dd, yyyy HH:mm:ss", Locale.US);
+System.out.println(dateTime.format(formatter));
+----

@@ -1,0 +1,151 @@
+= Form
+
+== Form
+
+=== Example Form
+
+image::/assets/img/html-and-css/form/form.png[Form]
+
+=== `<form>`
+
+[source,html]
+----
+<form action="https://rakovets.com/login" method="get">
+    поля формы
+</form>
+----
+`action` - задает адрес (URL) отправки формы
+`method` - задает метод отправки формы
+
+=== `<input>`
+
+[source,html]
+----
+<form action="https://rakovets.com/registr" method="get">
+    <input type=“type” name=“name”>
+</form>
+----
+`type` - задает тип поля
+`name` - задает имя поля
+
+=== Values for attribute `type`
+
+image::/assets/img/html-and-css/form/values-for-attribute-type.png[Values for attribute `type`]
+
+=== Values for attribute `type` (HTML5)
+
+image::/assets/img/html-and-css/form/values-for-attribute-type-html5.png[Values for attribute `type` (HTML5)]
+
+=== Values for attribute `type` (HTML5) support
+
+image::/assets/img/html-and-css/form/values-for-attribute-type-html5-support.png[Values for attribute `type` (HTML5) support]
+
+=== `<label>`
+
+Связывает текст (подпись) и поле ввода.
+
+[source,html]
+----
+<label>
+    Подпись<input type=“text” name=“username”>
+</label>
+----
+
+image::/assets/img/html-and-css/form/label.png[Label]
+
+image::/assets/img/html-and-css/form/label2.png[Label]
+
+
+=== `submit`
+
+[source,html]
+----
+<input type=“submit” value=“text”>
+----
+
+image::/assets/img/html-and-css/form/submit.png[“submit”]
+
+
+=== `<textarea>`
+
+[source,html]
+----
+<textarea rows=“45” cols=“32”> text </textarea>
+----
+
+image::/assets/img/html-and-css/form/textarea.png[textarea]
+
+
+=== `checkbox`
+
+[source,html]
+----
+<input type=“checkbox” checked>
+----
+
+
+Работает как выбор: ДА или НЕТ. `checked` – по умолчанию установить
+
+image::/assets/img/html-and-css/form/checkbox.png[checkbox]
+
+
+=== `radio`
+
+[source,html]
+----
+<input type=“radio” name=“question-tag” value=“p”>
+<input type=“radio” name=“question-tag” value=“b”>
+----
+
+Работает как выбор ОДНОГО из вариантов. `checked` - значение по умолчанию
+
+image::/assets/img/html-and-css/form/radio.png[radio]
+
+
+=== `<select>`
+
+[source,html]
+----
+<select name=“year”>
+    <option value=“2000”>2000 год</option>
+    <option value=“2015”>2015 год</option>
+</select>
+----
+
+Работает как выбор ОДНОГО из вариантов.
+
+image::/assets/img/html-and-css/form/select.png[select]
+
+
+=== `<select multiple>`
+
+[source,html]
+----
+<select name=“year” size=“4” multiple>
+    <option value=“2000” selected>2000 год</option>
+    <option value=“2015”>2015 год</option>
+</select>
+----
+
+`multiple` - мультиселект
+`size` - высота мультиселекта
+`selected` - выбор вариантов по умолчанию
+
+=== `file`
+
+[source,html]
+----
+<form action="https://rakovets.com/file" method="get" enctype=“multipart/form-data”>
+    <input type=“file” name=“upload-file”>
+</form>
+----
+
+image::/assets/img/html-and-css/form/file.png[file]
+
+
+=== `hidden`
+
+[source,html]
+----
+<input type=“text” name=“hide” value=“15135” hidden>
+----
