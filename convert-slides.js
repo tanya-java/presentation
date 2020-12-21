@@ -20,8 +20,6 @@ var options = {
 
 // Root
 asciidoctor.convertFile('./index.adoc', options)
-asciidoctor.convertFile('./code-review.adoc', options)
-
 
 // Common themes
 asciidoctor.convertFile('./common/programming-languages.adoc', options)
