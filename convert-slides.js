@@ -21,25 +21,6 @@ var options = {
 // Root
 asciidoctor.convertFile('./index.adoc', options)
 
-// Common themes
-asciidoctor.convertFile('./common/programming-languages.adoc', options)
-asciidoctor.convertFile('./common/uml.adoc', options)
-asciidoctor.convertFile('./common/design-principles.adoc', options)
-asciidoctor.convertFile('./common/design-patterns.adoc', options)
-asciidoctor.convertFile('./common/architectural-patterns.adoc', options)
-asciidoctor.convertFile('./common/xml.adoc', options)
-asciidoctor.convertFile('./common/json.adoc', options)
-asciidoctor.convertFile('./common/scrum.adoc', options)
-asciidoctor.convertFile('./common/regex.adoc', options)
-
-// Course: "HTML and CSS"
-asciidoctor.convertFile('./html-and-css/form.adoc', options)
-asciidoctor.convertFile('./html-and-css/link.adoc', options)
-asciidoctor.convertFile('./html-and-css/text-markup.adoc', options)
-asciidoctor.convertFile('./html-and-css/html-tables.adoc', options)
-asciidoctor.convertFile('./html-and-css/css-intro.adoc', options)
-asciidoctor.convertFile('./html-and-css/css-float.adoc', options)
-
 // Course: "Java Basics"
 asciidoctor.convertFile('./java/basics/intro.adoc', options)
 asciidoctor.convertFile('./java/basics/data-types.adoc', options)
@@ -68,6 +49,13 @@ asciidoctor.convertFile('./java/basics/annotations.adoc', options)
 asciidoctor.convertFile('./java/basics/xml.adoc', options)
 asciidoctor.convertFile('./java/basics/networking.adoc', options)
 
+// Course: "Data persistence in Java"
+asciidoctor.convertFile('./java/data-persistence/database-connection-pool.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/intro-jpa.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/intro-hibernate.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/mapping.adoc', options)
+asciidoctor.convertFile('./java/data-persistence/query-language.adoc', options)
+
 // Course: "Java with Jakarta EE"
 asciidoctor.convertFile('./java/jakarta-ee/java-enterprise.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/apache-tomcat.adoc', options)
@@ -79,13 +67,31 @@ asciidoctor.convertFile('./java/jakarta-ee/filter.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/i18n.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/logging.adoc', options)
 asciidoctor.convertFile('./java/jakarta-ee/apache-maven.adoc', options)
-asciidoctor.convertFile('./java/data-persistence/database-connection-pool.adoc', options)
-asciidoctor.convertFile('./java/data-persistence/intro-jpa.adoc', options)
-asciidoctor.convertFile('./java/data-persistence/intro-hibernate.adoc', options)
-asciidoctor.convertFile('./java/data-persistence/mapping.adoc', options)
-asciidoctor.convertFile('./java/data-persistence/query-language.adoc', options)
+
+// Course: "Java with Spring"
 asciidoctor.convertFile('./java/spring/intro-spring.adoc', options)
 asciidoctor.convertFile('./java/spring/beans.adoc', options)
 asciidoctor.convertFile('./java/spring/spring-orm.adoc', options)
 asciidoctor.convertFile('./java/spring/spring-webmvc.adoc', options)
+
+// Common themes
+asciidoctor.convertFile('./common/programming-languages.adoc', options)
+asciidoctor.convertFile('./common/uml.adoc', options)
+asciidoctor.convertFile('./common/design-principles.adoc', options)
+asciidoctor.convertFile('./common/design-patterns.adoc', options)
+asciidoctor.convertFile('./common/architectural-patterns.adoc', options)
+asciidoctor.convertFile('./common/xml.adoc', options)
+asciidoctor.convertFile('./common/json.adoc', options)
+asciidoctor.convertFile('./common/scrum.adoc', options)
+asciidoctor.convertFile('./common/regex.adoc', options)
+
+// Course: "SQL"
 asciidoctor.convertFile('./sql/database-normalization.adoc', options)
+
+// Course: "HTML and CSS"
+asciidoctor.convertFile('./html-and-css/form.adoc', options)
+asciidoctor.convertFile('./html-and-css/link.adoc', options)
+asciidoctor.convertFile('./html-and-css/text-markup.adoc', options)
+asciidoctor.convertFile('./html-and-css/html-tables.adoc', options)
+asciidoctor.convertFile('./html-and-css/css-intro.adoc', options)
+asciidoctor.convertFile('./html-and-css/css-float.adoc', options)
