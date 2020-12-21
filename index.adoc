@@ -1,14 +1,20 @@
 = Presentations
 
-== Java Courses
+== Courses
 
 * <<course-java-basics, Basics Java>>
-* <<course-java-desktop, Java for Desktop>>
 * <<course-java-data-persistence, Data Persistence in Java>>
 * <<course-java-jakarta-ee, Java with Jakarta EE>>
 * <<course-java-spring-framework, Java with Spring Framework>>
+* <<course-java-desktop, Java for Desktop>>
+* <<course-common, Common>>
+* <<course-sql, SQL>>
+* <<course-html-and-css, HTML and CSS>>
+* <<course-javascript-basic, JavaScript Basic>>
 
-=== Course: Basics Java [[course-java-basics]]
+== Course: Basics Java [[course-java-basics]]
+
+=== Course: Basics Java 
 
 * link:./java/basics/intro.html[Intro]
 * link:./java/basics/data-types.html[Data Types]
@@ -19,7 +25,7 @@
 * link:./java/basics/arrays.html[Arrays]
 * link:./java/basics/oop-classes-and-objects.html[OOP: Classes and Objects]
 
-=== Course: Basics Java [[course-java-basics-2]]
+=== Course: Basics Java
 
 * link:./java/basics/strings.html[Strings]
 * link:./java/basics/oop-inheritance-and-polymorphism.html[OOP: Inheritance and Polymorphism]
@@ -30,7 +36,7 @@
 * link:./java/basics/exception-handling.html[Exception Handling]
 * link:./java/basics/java-io.html[Java IO]
 
-=== Course: Basics Java [[course-java-basics-3]]
+=== Course: Basics Java
 
 * link:./java/basics/concurrency-common.html[Concurrency: common]
 * link:./java/basics/concurrency-thread-synchronization.html[Concurrency: thread synchronization]
@@ -41,14 +47,14 @@
 * link:./java/basics/reflection.html[Reflection]
 * link:./java/basics/annotations.html[Annotations (JSR 250, 269, 308)]
 
-=== Course: Basics Java [[course-java-basics-4]]
+=== Course: Basics Java
 
 * link:./java/basics/xml.html[XML (JSR 5, 31, 105, 173, 206, 222, 224)]
 * link:./java/basics/networking.html[Networking]
 
-=== Course: Java for Desktop [[course-java-desktop]]
+== Course: Data Persistence in Java [[course-java-data-persistence]]
 
-=== Course: Data Persistence in Java [[course-java-data-persistence]]
+=== Course: Data Persistence in Java
 
 * link:./java/data-persistence/jdbc.html[(in develop)Java DataBase Connectivity (JDBC)]
 * link:./java/data-persistence/dto.html[(in develop) Data Access Object (DAO)]
@@ -59,7 +65,9 @@
 * link:./java/data-persistence/query-language.html[Query Language]
 * link:./java/data-persistence/transaction.html[(in develop) Transaction]
 
-=== Course: Java with Jakarta EE [[course-java-jakarta-ee]]
+== Course: Java with Jakarta EE [[course-java-jakarta-ee]]
+
+=== Course: Java with Jakarta EE
 
 * link:./java/jakarta-ee/apache-maven.html[Apache Maven]
 * link:./java/jakarta-ee/apache-tomcat.html[Apache Tomcat]
@@ -70,26 +78,27 @@
 * link:./java/jakarta-ee/filter.html[Filter]
 * link:./java/jakarta-ee/i18n.html[i18n]
 
-=== Course: Java with Jakarta EE [[course-java-jakarta-ee-2]]
+=== Course: Java with Jakarta EE
 
 * link:./java/jakarta-ee/java-enterprise.html[Java Enterprise]
 * link:./java/jakarta-ee/logging.html[Logging]
 
-=== Course: Java with Spring Framework [[course-java-spring-framework]]
+== Course: Java with Spring Framework [[course-java-spring-framework]]
+
+=== Course: Java with Spring Framework
 
 * link:./java/spring/intro-spring.html[Intro to Spring]
 * link:./java/spring/beans.html[Beans]
 * link:./java/spring/spring-orm.html[Spring ORM]
 * link:./java/spring/spring-webmvc.html[Spring Web MVC]
 
-== Other Courses
+== Course: Java for Desktop [[course-java-desktop]]
 
-* <<course-common, Common>>
-* <<course-html-and-css, HTML and CSS>>
-* <<course-javascript-basic, JavaScript Basic>>
-* <<course-sql, SQL>>
+=== Course: Java for Desktop
 
-=== Course: Common [[course-common]]
+== Course: Common [[course-common]]
+
+=== Course: Common
 
 * link:./common/programming-languages.html[Programming languages]
 * link:./common/uml.html[UML]
@@ -101,7 +110,15 @@
 * link:./common/scrum.html[Scrum]
 * link:./common/regex.html[Regular Expression]
 
-=== Course: HTML and CSS [[course-html-and-css]]
+== Course: SQL [[course-sql]]
+
+=== Course: SQL
+
+* link:./sql/database-normalization.html[Database Normalization]
+
+== Course: HTML and CSS [[course-html-and-css]]
+
+=== Course: HTML and CSS
 
 * link:./html-and-css/text-markup.html[Text Markup]
 * link:./html-and-css/link.html[Link]
@@ -110,8 +127,6 @@
 * link:./html-and-css/css-intro.html[CSS: Intro]
 * link:./html-and-css/css-float.html[CSS: Float]
 
-=== Course: JavaScript Basic [[course-javascript-basic]]
+== Course: JavaScript Basic [[course-javascript-basic]]
 
-=== Course: SQL [[course-sql]]
-
-* link:./sql/database-normalization.html[Database Normalization]
+=== Course: JavaScript Basic
