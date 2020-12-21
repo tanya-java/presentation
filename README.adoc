@@ -69,24 +69,6 @@ Replace `$PROJECT_PATH` to project path.
 nginx -c $(pwd)/.deploy/nginx.conf
 ----
 
-== Specification
-
-The current repository contains `code-review.adoc` file, which changes depending on the code being reviewed. Therefore, changes in it cannot be committed.
-
-Use the following git command for to ignore changes in file `code-review.adoc`
-
-[source,sh]
-----
-git update-index --assume-unchanged code-review.adoc
-----
-
-To revert that ignorance use the following command:
-
-[source,sh]
-----
-git update-index --no-assume-unchanged code-review.adoc
-----
-
 == Code of Conduct
 
 This project is governed by the link:.github/CODE_OF_CONDUCT.md[Code of Conduct].
