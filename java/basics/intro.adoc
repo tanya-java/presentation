@@ -99,7 +99,7 @@ image::/assets/img/java/basics/intro/boxer-engine.jpg[Boxer Engine]
 === JRE
 
 [.fragment]
-*Java Runtime Environment* 
+*Java Runtime Environment*
 (*JRE*) - минимальная реализация виртуальной машины и билиотеки Java. *JRE* необходима для исполнения Java-приложений.
 
 === JDK
@@ -122,16 +122,16 @@ image::/assets/img/java/basics/intro/jvm-jre-jdk.png[JVM, JRE, JDK]
 [.step]
 * Открыть командную строку.
 [.step]
-** _Пуск_ -> _Выполнить_ -> _cmd.exe_
-* Для проверки наличия *JDK*, необходимо выполнить в терминале команду: `javaс --version`
+** _Пуск_ -> _PowerShell_
+* Для проверки наличия *JDK*, необходимо выполнить powershell команду: `javaс --version`
 * Проанализировать результат работы команды
-* Для проверки наличия *JRE*, необходимо выполнить в терминале команду: `java --version`
+* Для проверки наличия *JRE*, необходимо выполнить powershell команду: `java --version`
 * Проанализировать результат работы команды
 
 === Установка OpenJDK
 
 [.step]
-* Скачиваем *OpenJDK 11.0.2* (_build 11.0.2+9_) с сайта https://jdk.java.net/archive/ для _OS Windows_
+* Скачиваем *OpenJDK 11.0.2* (_build 11.0.2_) с сайта https://jdk.java.net/archive/ для _OS Windows_
 * Распаковываем в `d:\opt\java\openjdk-11.0.2`
 
 === Установка системных переменных среды (с помощью UI)
@@ -145,7 +145,7 @@ image::/assets/img/java/basics/intro/jvm-jre-jdk.png[JVM, JRE, JDK]
 === Установка системных переменных среды (с помощью CLI)
 
 [.step]
-* Выполнить в терминале команды:
+* Выполнить powershell команды:
 
 [.fragment]
 [source,cmd]
