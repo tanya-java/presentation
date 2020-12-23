@@ -1,22 +1,41 @@
 = Programming languages
 
-== Problem
+== Intro
 
 === Problem
 
 [.fragment]
 image::/assets/img/common/programming-languages/programming-languages.png[Programming languages]
 
-=== Which programming language to choose?
+=== Problem
+
+[.fragment]
+Which programming language to choose?
+
+=== Solution
+
+[.fragment]
+Let's find out ...
 
 == Programming languages
+
+=== How is PC understand us?
+
+[.fragment]
+image::/assets/img/common/programming-languages/compiler-vs-interpreter.jpg[Compiler vsInterpreter]
+
+
+=== Types for Programming Languages
+
+[.fragment]
+image::/assets/img/common/programming-languages/pl-types.jpeg[Types for Programming Languages]
 
 === Python
 
 [.step]
 * Очень просто в изучении
 * Очень популярный
-* Быстрый вход в разработку
+* Interpreted Language
 * Используется для web-приложений (Django)
 * Используется в науке и технике
 * Используется в стартапах
@@ -26,6 +45,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Не простой в изучении
 * Популярный
+* Compiled Language
 * Старый, широко распространенный
 * Используется для разработки системного и аппаратного программирования
 
@@ -34,6 +54,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Очень сложный в освоении
 * Популярный
+* Compiled Language
 * Как C только с расширенными возможностями
 * Используется для разработки игр
 * Используется для разработки высокопроизводительных систем
@@ -43,6 +64,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Простой в освоении
 * Популярный
+* Intermediate Language
 * Используется для разработки web-приложений (.NET)
 * Используется для разработки игр (Unity)
 * Используется для desktop-приложений для OS Windows
@@ -52,6 +74,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Очень простой в освоении
 * Очень, очень популярный
+* Interpreted Language
 * Используется для разработки клиентских web-приложений (Angular/React/etc.)
 * Используется для разработки web-приложений (Node.js)
 * Используется для многих других задач
@@ -61,6 +84,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Прост в освоении
 * Не популярный
+* Interpreted Language
 * Очень быстрая разработка
 * Используется в стартапах
 * Используется для разработки web-приложений (Ruby on Rails)
@@ -70,6 +94,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Прост в освоении
 * Популярный
+* Interpreted Language
 * Быстрая разработка
 * Используется для разработки full-web-приложений (небольших и средних)
 
@@ -77,7 +102,8 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 
 [.step]
 * Прост в освоении
-* Очень, очень популярный для OS Mac и iOS
+* Очень, очень популярный но ТОЛЬКО для Mac OS и iOS
+* Compiled Language
 * Используется для разработки приложений под все устройста компании Apple
 
 === Java
@@ -85,6 +111,7 @@ image::/assets/img/common/programming-languages/programming-languages.png[Progra
 [.step]
 * Прост в освоении
 * Очень популярный
+* Intermediate Language
 * Используется для разработки web-приложений (огромных)
 * Используется для разработки Big Data приложений
 * Используется для разработки высоконагруженны-приложений
