@@ -1,4 +1,4 @@
-= Intro to Java
+= Intro
 
 == Intro
 
@@ -12,6 +12,7 @@
 
 [.step]
 * Use Programing Languages
+* For example: Java
 
 == Why Java?
 
@@ -74,7 +75,7 @@ image::/assets/img/java/basics/intro/james-gosling.jpg[James Gosling]
 [.step]
 * *Java Platform, Standard Edition* (*Java SE*)
 * *Java Platform, Enterprise Edition* (*Java EE*) -> *Jakarta EE*
-* *Java Platform, Enterprise Edition* (*Java ME*)
+* *Java Platform, Mobile Edition* (*Java ME*)
 * *Java Card*
 * *JavaFX* -> *OpenJFX*
 
@@ -95,6 +96,11 @@ image::/assets/img/java/basics/intro/java-se-lifecycle.jpg[Java SE Lifecycle]
 
 [.fragment]
 image::/assets/img/java/basics/intro/boxer-engine.jpg[Boxer Engine]
+
+=== JVM
+
+[.fragment]
+image::/assets/img/java/basics/intro/jvm.png[JVM]
 
 === JRE
 
@@ -158,17 +164,17 @@ setx PATH "%PATH%;%JAVA_HOME%\bin"
 * Перезапустить OS
 * Проверить установку JDK
 
-== Program Lifecycle
+== Compile and Run time
 
 === How computer understands Java?
 
 [.fragment]
-image::/assets/img/java/basics/intro/compiler.jpg[Compiler]
+image::/assets/img/java/basics/intro/compiler-interpreter.jpg[Compiler and Interpreter]
 
-=== Lifecycle
+=== Compile and Run time
 
 [.fragment]
-image::/assets/img/java/basics/intro/lifecycle.png[Program Lifecycle]
+image::/assets/img/java/basics/intro/compile-and-run-time.gif[Compile and Run time]
 
 === Write `source code`
 
